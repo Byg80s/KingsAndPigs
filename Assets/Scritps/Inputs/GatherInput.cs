@@ -41,6 +41,8 @@ public class GatherInput : MonoBehaviour
     private void StartMove(InputAction.CallbackContext context)
     {
         _valueX = context.ReadValue<float>();
+
+        // _valueX = Mathf.RoundToInt(context.ReadValue<float>()); // This make movement input stick to 1
     }
 
     private void StopMove(InputAction.CallbackContext context)

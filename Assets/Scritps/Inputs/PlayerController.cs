@@ -3,26 +3,36 @@ using UnityEngine;
 
 public class PlayerController : MonoBehaviour
 {
+    //Components
     private Rigidbody2D m_rb;
     private GatherInput m_ginput;
     private Transform m_transform;
+    private Animator m_animator;
+    
+
+    //Values
     [SerializeField] private float _speed;
     [SerializeField] private int _direction = 1;
+    [SerializeField] private int _idSpeed;
 
     void Start()
     {
         m_rb = GetComponent<Rigidbody2D>();
         m_ginput = GetComponent<GatherInput>();
         m_transform = GetComponent<Transform>();
+        m_animator = GetComponent<Animator>();
+        _idSpeed = Animator.StringToHash("_speed");
     }
 
     void Update()
     {
-
+        Animations();
+        Flip();
     }
     private void FixedUpdate()
     {
-        Flip();
+  
+    
         Move();
 
     }
@@ -41,5 +51,9 @@ public class PlayerController : MonoBehaviour
             _direction *= -1;
         }
 
+    }
+    private void Animations()
+    {
+        m_animator.SetFloat(_idSpeed, Mathf.Abs(m_rb.linearVelocityX));
     }
 }

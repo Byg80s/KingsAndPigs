@@ -16,8 +16,8 @@ TagManager:
   - Ground
   - Enemies
   - Ignore
-  - 
-  - 
+  - Traps
+  - Items
   - 
   - 
   - 
@@ -53,6 +53,15 @@ TagManager:
     locked: 0
   - name: Ground
     uniqueID: 4159939837
+    locked: 0
+  - name: Enemies
+    uniqueID: 3024705397
+    locked: 0
+  - name: Traps
+    uniqueID: 1443197959
+    locked: 0
+  - name: Items
+    uniqueID: 1654646141
     locked: 0
   m_RenderingLayers:
   - Default

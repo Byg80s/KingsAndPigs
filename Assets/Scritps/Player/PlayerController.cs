@@ -36,6 +36,7 @@ public class PlayerController : MonoBehaviour
     [SerializeField] private Vector2 _wallJumpForce;
     [SerializeField] private bool _isWallJumping;
     [SerializeField] private float _wallTimeDetection;
+    [SerializeField] private bool _isMove;
 
 
 
@@ -101,7 +102,6 @@ public class PlayerController : MonoBehaviour
     void Update()
     {
         Animations();
-
     }
     private void FixedUpdate()
     {
@@ -128,6 +128,8 @@ public class PlayerController : MonoBehaviour
 
 
         //NEW MECHANICS, WHEN PLAYER TAKE A ESPECIAL OBJECT IS POSIBLE ACTIVATE HANDLEWALL AND DESLICE
+        //NOW WORK ONLY IF PRESS DIRECTIOL BUTTON
+
         HandleWall();
         HandleWallDeslice();
         HandleGround();
@@ -175,6 +177,7 @@ public class PlayerController : MonoBehaviour
 
         if (_wallDetected && !_isGrounded) return;
         if (_isWallJumping) return;
+
         Flip();
         m_rb.linearVelocity = new Vector2(_speed * m_ginput.Value.x, m_rb.linearVelocity.y);
 
@@ -264,7 +267,7 @@ public class PlayerController : MonoBehaviour
         _isNocked = true;
         _isCanNocked = false;
         yield return new WaitForSeconds(time);
-        _isNocked=false;
+        _isNocked = false;
         _isCanNocked = true;
     }
 

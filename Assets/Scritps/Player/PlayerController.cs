@@ -60,7 +60,7 @@ public class PlayerController : MonoBehaviour
     [Header("parameters Knock")]
     [SerializeField] private bool _isNocked;
     [SerializeField] private bool _isCanNocked;
-    [SerializeField] private Vector2 _KnockPower;
+    [SerializeField] private Vector2 _KnockForce;
     [SerializeField] private float _knockDuration;
 
     //Layers
@@ -87,7 +87,7 @@ public class PlayerController : MonoBehaviour
         _idSpeed = Animator.StringToHash("_speed");
         _idGround = Animator.StringToHash("_isGround");
         _idFall = Animator.StringToHash("_isWall");
-        _idKnock = Animator.StringToHash("_isKnock");
+        _idKnock = Animator.StringToHash("_knockback");
 
         Lfoot = GameObject.Find("LFoot").GetComponent<Transform>();
         Rfoot = GameObject.Find("RFoot").GetComponent<Transform>();
@@ -105,7 +105,7 @@ public class PlayerController : MonoBehaviour
     }
     private void FixedUpdate()
     {
-
+        if (_isNocked) return;
         CheckColision();
         Move();
         Jump();
@@ -231,7 +231,6 @@ public class PlayerController : MonoBehaviour
         m_rb.linearVelocity = new Vector2(_wallJumpForce.x * -_direction, _wallJumpForce.y);
         HandleDirection();
         StartCoroutine(WaitReturnTime(_wallTimeDetection));
-        StartCoroutine(WaitKnock(_knockDuration));
     }
 
     private void DoubleJump()
@@ -240,6 +239,13 @@ public class PlayerController : MonoBehaviour
         m_rb.linearVelocity = new Vector2(_speed * m_ginput.Value.x, _jumpForce);
         if (_canDoubleJumped)
             _counterExtraJumps--;
+    }
+    public void KnockBack()
+    {
+        StartCoroutine(WaitKnock(_knockDuration));
+        m_rb.linearVelocity = new Vector2(_KnockForce.x * -_direction, _KnockForce.y);
+        m_animator.SetTrigger(_idKnock);
+
     }
     private void OnDrawGizmos()
     {
@@ -256,8 +262,10 @@ public class PlayerController : MonoBehaviour
     IEnumerator WaitKnock(float time)
     {
         _isNocked = true;
+        _isCanNocked = false;
         yield return new WaitForSeconds(time);
-        _isNocked=false;    
+        _isNocked=false;
+        _isCanNocked = true;
     }
 
 

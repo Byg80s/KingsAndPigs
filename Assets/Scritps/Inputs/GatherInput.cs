@@ -11,8 +11,8 @@ public class GatherInput : MonoBehaviour
     public bool IsJumping { get => _isJumping; set => _isJumping = value; }
 
 
-    [SerializeField] private float _valueX;
-    public float ValueX { get => _valueX; }
+    [SerializeField] private Vector2 _value;
+    public Vector2 Value { get => _value; }
 
 
 
@@ -40,14 +40,14 @@ public class GatherInput : MonoBehaviour
     //MOVE
     private void StartMove(InputAction.CallbackContext context)
     {
-        _valueX = context.ReadValue<float>();
+        _value = context.ReadValue<Vector2>().normalized;
 
         // _valueX = Mathf.RoundToInt(context.ReadValue<float>()); // This make movement input stick to 1
     }
 
     private void StopMove(InputAction.CallbackContext context)
     {
-        _valueX = 0f;
+        _value = Vector2.zero;
     }
     //ACTION JUMP
     private void StartJump(InputAction.CallbackContext context)

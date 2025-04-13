@@ -1,18 +1,24 @@
+using System;
 using UnityEngine;
 
 public class GameManager : MonoBehaviour
 {
     public static GameManager instance;
 
-    [Header("Player Controler")]
+   
     [SerializeField] private PlayerController _playerControler;
     public PlayerController PlayerControler { get => _playerControler; }
 
-    [Header("Variables")]
+    [Header("Cristals Manager")]
+    [SerializeField] private bool _CrystalsHaveRandomLook;
     [SerializeField] private int _cristalCollected;
-    public int CristalCollected { get => _cristalCollected; }
+    public int CristalCollected  => _cristalCollected;
 
+    public bool CrystalsHaveRandomLook1 { get => _CrystalsHaveRandomLook; }
 
+    [SerializeField] private int _CrystalsHaveRandom;
+
+    
 
     private void Awake()
     {
@@ -21,5 +27,6 @@ public class GameManager : MonoBehaviour
     }
 
     public void AddCristals()=>_cristalCollected++;
+    public bool CrystalsHaveRandomLook() => CrystalsHaveRandomLook1;
 
 }

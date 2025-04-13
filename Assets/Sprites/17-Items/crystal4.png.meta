@@ -1,12 +1,5 @@
 fileFormatVersion: 2
-guid: d1da1e25fa6b7f74489c6b7ae41e9f29
-AssetOrigin:
-  serializedVersion: 1
-  productId: 303690
-  packageName: Pixel Item vol1- Potion, Mushroom & Crystal
-  packageVersion: 1.0
-  assetPath: Assets/Pixel Item vol1- Potion, Mushroom & Crystal/Sprite/Crystal/crystal3.png
-  uploadId: 712523
+guid: aad433a948846c443b893b28a6d3d61e
 TextureImporter:
   internalIDToNameTable: []
   externalObjects: {}
@@ -156,7 +149,7 @@ TextureImporter:
     serializedVersion: 2
     sprites:
     - serializedVersion: 2
-      name: crystal3_0
+      name: crystal4_0
       rect:
         serializedVersion: 2
         x: 0
@@ -171,14 +164,14 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 43348e63947d3924b9b2ce01da774904
-      internalID: 485546055
+      spriteID: 987ce87ce34858b4392a983bd6b2ff1a
+      internalID: -1568011967
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: crystal3_1
+      name: crystal4_1
       rect:
         serializedVersion: 2
         x: 64
@@ -193,14 +186,14 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: c8dfeac44948bc940866b2059364c9c3
-      internalID: -79177359
+      spriteID: 32e008f82b602b340977224711dec3d3
+      internalID: 2113820028
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: crystal3_2
+      name: crystal4_2
       rect:
         serializedVersion: 2
         x: 128
@@ -215,14 +208,14 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 6aea891027b2e1d48b4effbd7a7cfcf7
-      internalID: -723224477
+      spriteID: 94ef5c70e84899148907ec2a2ea57019
+      internalID: 630062425
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: crystal3_3
+      name: crystal4_3
       rect:
         serializedVersion: 2
         x: 192
@@ -237,14 +230,14 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 8de2f82955e28b94f93bed45ef49ef40
-      internalID: 434696224
+      spriteID: a5e5b7c3109de47499f50d18df1f09ad
+      internalID: -415965333
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: crystal3_4
+      name: crystal4_4
       rect:
         serializedVersion: 2
         x: 256
@@ -259,14 +252,14 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: c42cc6a624bdf534ebf93ed427eec6c9
-      internalID: 615261482
+      spriteID: 0bd552a64f962b747af380dc17ce7863
+      internalID: 538231942
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: crystal3_5
+      name: crystal4_5
       rect:
         serializedVersion: 2
         x: 320
@@ -281,14 +274,14 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: f2f3efc87a9e36a4f8302dfc55a86f4f
-      internalID: -171892886
+      spriteID: e2e55658a777892459ce3f56d3ce3566
+      internalID: -414108632
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: crystal3_6
+      name: crystal4_6
       rect:
         serializedVersion: 2
         x: 384
@@ -303,14 +296,14 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 1679cdb864649124d8da585cfce11550
-      internalID: -1166624139
+      spriteID: 848e6a6d20fa52a49ac5780833d345eb
+      internalID: 2004886844
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: crystal3_7
+      name: crystal4_7
       rect:
         serializedVersion: 2
         x: 448
@@ -325,14 +318,14 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: a8dfda7808a590e409cafa7f187d8bc5
-      internalID: 1763867139
+      spriteID: 7ee97c4788b177a4fbcab03d13e8691f
+      internalID: 1528321081
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: crystal3_8
+      name: crystal4_8
       rect:
         serializedVersion: 2
         x: 512
@@ -347,14 +340,14 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 6666ef7c0ffeb4047a580e17af775e98
-      internalID: -1059137257
+      spriteID: 7b0800cbd6d0bf44bb58419c3922f4b4
+      internalID: 1918484162
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: crystal3_9
+      name: crystal4_9
       rect:
         serializedVersion: 2
         x: 576
@@ -369,14 +362,14 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: fff1f8e77de26c1459e9648bba8e9e23
-      internalID: -712100890
+      spriteID: 27ae41ca8697f554288f5876d8ae2e0f
+      internalID: 1689873877
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: crystal3_10
+      name: crystal4_10
       rect:
         serializedVersion: 2
         x: 640
@@ -391,14 +384,14 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 2655b8bc15c22ce46be48803c8086845
-      internalID: 2014676169
+      spriteID: 016aa199569e48445b15432fed7bac4f
+      internalID: 707452906
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: crystal3_11
+      name: crystal4_11
       rect:
         serializedVersion: 2
         x: 704
@@ -413,14 +406,14 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 30074d71089e6db4e9b2ea840107ba16
-      internalID: -27305679
+      spriteID: b08b87a4ea30cf1418fb0102aff96aaa
+      internalID: 579160006
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: crystal3_12
+      name: crystal4_12
       rect:
         serializedVersion: 2
         x: 768
@@ -435,14 +428,14 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 8b4bb39301006fc40991835488780dba
-      internalID: 919285840
+      spriteID: 640f08de473d8f54490d8f321a88d285
+      internalID: -276721585
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: crystal3_13
+      name: crystal4_13
       rect:
         serializedVersion: 2
         x: 832
@@ -457,14 +450,14 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 85a4b01f04c67b744a7c9fc77fc34f4a
-      internalID: 1109973947
+      spriteID: 21749309924d19d4cbe2149e644a2a23
+      internalID: -590641703
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: crystal3_14
+      name: crystal4_14
       rect:
         serializedVersion: 2
         x: 896
@@ -479,14 +472,14 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 4c6a9440077237144a83f09135a38292
-      internalID: 1408457859
+      spriteID: 3c04600c06f4e23479d1a4c3a964c21a
+      internalID: 222220614
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: crystal3_15
+      name: crystal4_15
       rect:
         serializedVersion: 2
         x: 960
@@ -501,14 +494,14 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 4e8526c0d720be84ebb879611e4dca22
-      internalID: -1964882034
+      spriteID: 1724c515285ed56489e659ccfc4ac5b8
+      internalID: -805343264
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: crystal3_16
+      name: crystal4_16
       rect:
         serializedVersion: 2
         x: 1024
@@ -523,14 +516,14 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 913353920a0f3cc49a01c8c69d4db804
-      internalID: 712493489
+      spriteID: 4a1df0f51ee1a9643bfcb5115f143898
+      internalID: 2125750511
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: crystal3_17
+      name: crystal4_17
       rect:
         serializedVersion: 2
         x: 1088
@@ -545,14 +538,14 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: c222e87d7a4958549a140f28035439fc
-      internalID: -1343901362
+      spriteID: 591eb1dc0d505d5448b69c0d99e5a90f
+      internalID: 460595244
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: crystal3_18
+      name: crystal4_18
       rect:
         serializedVersion: 2
         x: 1152
@@ -567,14 +560,14 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: d1877f93a3c77c64fac1a32cba2d96ce
-      internalID: 246962819
+      spriteID: 1df61a5fa5d79ff43b96ebfea61f056a
+      internalID: 401926370
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: crystal3_19
+      name: crystal4_19
       rect:
         serializedVersion: 2
         x: 1216
@@ -589,14 +582,14 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 17b18c34ce565434db07475f3b453983
-      internalID: 372771731
+      spriteID: 31c903d115528a244a1220003c0b9c99
+      internalID: -1309479679
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: crystal3_20
+      name: crystal4_20
       rect:
         serializedVersion: 2
         x: 1280
@@ -611,14 +604,14 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: c7e2bf684e335af43b8ad6f3ebd3969e
-      internalID: 1760197057
+      spriteID: 55de00849fee69f4aa5b07e2dfb0e934
+      internalID: -234934329
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: crystal3_21
+      name: crystal4_21
       rect:
         serializedVersion: 2
         x: 1344
@@ -633,14 +626,14 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 927a71cc49d3a624aba4e3a7216e1eb6
-      internalID: -364309159
+      spriteID: 3fe033c33f9fc764cb7ed85fda85cb49
+      internalID: 883030757
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: crystal3_22
+      name: crystal4_22
       rect:
         serializedVersion: 2
         x: 1408
@@ -655,14 +648,14 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: d8a9686c2a3546248821726acbf390eb
-      internalID: -1338158873
+      spriteID: 0d133f715d0b2774bb77d73a612bd4c7
+      internalID: 1192597348
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: crystal3_23
+      name: crystal4_23
       rect:
         serializedVersion: 2
         x: 1472
@@ -677,14 +670,14 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 75f9b50c0bf728f44a57ce2a8d5820b7
-      internalID: 649335335
+      spriteID: 299f3d5ce3c9a31439d269fabaa80e45
+      internalID: 822813632
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: crystal3_24
+      name: crystal4_24
       rect:
         serializedVersion: 2
         x: 1536
@@ -699,14 +692,14 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 5545dbc1c0c669d48b2cfbbfd6e56259
-      internalID: -559136032
+      spriteID: 03eb68a144c63004b85f7ce50cb2ba21
+      internalID: -998058461
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: crystal3_25
+      name: crystal4_25
       rect:
         serializedVersion: 2
         x: 1600
@@ -721,14 +714,14 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: f09debb42399901408d09a137b4767d6
-      internalID: -333804882
+      spriteID: 4a4117b02f907f44d8602cb758d11521
+      internalID: -2089786494
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: crystal3_26
+      name: crystal4_26
       rect:
         serializedVersion: 2
         x: 1664
@@ -743,14 +736,14 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 5db6f401f13c5eb4fbf50dc14959c1d9
-      internalID: -792954975
+      spriteID: 899b3579a107be946bb097140769bcfc
+      internalID: 1984118636
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: crystal3_27
+      name: crystal4_27
       rect:
         serializedVersion: 2
         x: 1728
@@ -765,14 +758,14 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: b421f917734fb3344bdcfea137a8c0e4
-      internalID: -127636017
+      spriteID: 9115b72a2b66ae447b683a39ca3b04c4
+      internalID: 206160800
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: crystal3_28
+      name: crystal4_28
       rect:
         serializedVersion: 2
         x: 1792
@@ -787,14 +780,14 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 254e8e817b198e14e91634d7698b1ff5
-      internalID: -933504339
+      spriteID: 4f4d3117f134989409d20618a4df40e0
+      internalID: -1582938199
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: crystal3_29
+      name: crystal4_29
       rect:
         serializedVersion: 2
         x: 1856
@@ -809,8 +802,8 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 792a0c803c4389b4195b120ddf414a0b
-      internalID: 224997624
+      spriteID: 3d7e9ae26e79e31479a9321e9f3cb57c
+      internalID: 1487444731
       vertices: []
       indices: 
       edges: []
@@ -829,36 +822,36 @@ TextureImporter:
     spriteCustomMetadata:
       entries: []
     nameFileIdTable:
-      crystal3_0: 485546055
-      crystal3_1: -79177359
-      crystal3_10: 2014676169
-      crystal3_11: -27305679
-      crystal3_12: 919285840
-      crystal3_13: 1109973947
-      crystal3_14: 1408457859
-      crystal3_15: -1964882034
-      crystal3_16: 712493489
-      crystal3_17: -1343901362
-      crystal3_18: 246962819
-      crystal3_19: 372771731
-      crystal3_2: -723224477
-      crystal3_20: 1760197057
-      crystal3_21: -364309159
-      crystal3_22: -1338158873
-      crystal3_23: 649335335
-      crystal3_24: -559136032
-      crystal3_25: -333804882
-      crystal3_26: -792954975
-      crystal3_27: -127636017
-      crystal3_28: -933504339
-      crystal3_29: 224997624
-      crystal3_3: 434696224
-      crystal3_4: 615261482
-      crystal3_5: -171892886
-      crystal3_6: -1166624139
-      crystal3_7: 1763867139
-      crystal3_8: -1059137257
-      crystal3_9: -712100890
+      crystal4_0: -1568011967
+      crystal4_1: 2113820028
+      crystal4_10: 707452906
+      crystal4_11: 579160006
+      crystal4_12: -276721585
+      crystal4_13: -590641703
+      crystal4_14: 222220614
+      crystal4_15: -805343264
+      crystal4_16: 2125750511
+      crystal4_17: 460595244
+      crystal4_18: 401926370
+      crystal4_19: -1309479679
+      crystal4_2: 630062425
+      crystal4_20: -234934329
+      crystal4_21: 883030757
+      crystal4_22: 1192597348
+      crystal4_23: 822813632
+      crystal4_24: -998058461
+      crystal4_25: -2089786494
+      crystal4_26: 1984118636
+      crystal4_27: 206160800
+      crystal4_28: -1582938199
+      crystal4_29: 1487444731
+      crystal4_3: -415965333
+      crystal4_4: 538231942
+      crystal4_5: -414108632
+      crystal4_6: 2004886844
+      crystal4_7: 1528321081
+      crystal4_8: 1918484162
+      crystal4_9: 1689873877
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 

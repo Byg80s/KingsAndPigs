@@ -18,7 +18,7 @@ TagManager:
   - Ignore
   - Traps
   - Items
-  - 
+  - CameraPoints
   - 
   - 
   - 
@@ -48,6 +48,9 @@ TagManager:
   - name: MiddleGround
     uniqueID: 804101277
     locked: 0
+  - name: Items
+    uniqueID: 1654646141
+    locked: 0
   - name: Player
     uniqueID: 3245257447
     locked: 0
@@ -60,8 +63,8 @@ TagManager:
   - name: Traps
     uniqueID: 1443197959
     locked: 0
-  - name: Items
-    uniqueID: 1654646141
+  - name: CameraPoint
+    uniqueID: 2444792071
     locked: 0
   m_RenderingLayers:
   - Default

@@ -5,6 +5,10 @@ TagManager:
   serializedVersion: 3
   tags:
   - Orange
+  - FalseGround
+  - Portal
+  - CristalsTimer
+  - TrapSnife
   layers:
   - Default
   - TransparentFX

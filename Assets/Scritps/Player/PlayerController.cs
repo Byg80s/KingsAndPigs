@@ -71,6 +71,8 @@ public class PlayerController : MonoBehaviour
 
     //Other experimental variables
     [SerializeField] private bool _isPotion;
+    [Header("Dead VFX")]
+    [SerializeField] private GameObject DeathVfx;
 
     private void Awake()
     {
@@ -270,6 +272,10 @@ public class PlayerController : MonoBehaviour
         _isNocked = false;
         _isCanNocked = true;
     }
-
+    public void Died()
+    {
+        GameObject DeathVfxPrefab=Instantiate(DeathVfx,transform.position,Quaternion.identity);
+        Destroy(gameObject);
+    } 
 
 }

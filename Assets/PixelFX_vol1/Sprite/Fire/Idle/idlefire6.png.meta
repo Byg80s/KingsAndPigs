@@ -1,0 +1,1508 @@
+fileFormatVersion: 2
+guid: 45ed991d711ff814d93b52f26342bc98
+TextureImporter:
+  internalIDToNameTable:
+  - first:
+      213: -755878833143366802
+    second: idlefire6_0
+  - first:
+      213: 5684058059160479400
+    second: idlefire6_1
+  - first:
+      213: -5842079510985569687
+    second: idlefire6_2
+  - first:
+      213: -2801386585073840530
+    second: idlefire6_3
+  - first:
+      213: 5093242301131727510
+    second: idlefire6_4
+  - first:
+      213: -6120312543198156383
+    second: idlefire6_5
+  - first:
+      213: -3768032560378145188
+    second: idlefire6_6
+  - first:
+      213: -3541987472796597179
+    second: idlefire6_7
+  - first:
+      213: -3602771506288309568
+    second: idlefire6_8
+  - first:
+      213: 510519787161677317
+    second: idlefire6_9
+  - first:
+      213: 4522557751026698695
+    second: idlefire6_10
+  - first:
+      213: -348657874835216153
+    second: idlefire6_11
+  - first:
+      213: 1634671256915610593
+    second: idlefire6_12
+  - first:
+      213: -6928213572877044033
+    second: idlefire6_13
+  - first:
+      213: 4889267064500785972
+    second: idlefire6_14
+  - first:
+      213: 1589388756208650569
+    second: idlefire6_15
+  - first:
+      213: 9184742953499621090
+    second: idlefire6_16
+  - first:
+      213: -5365604580874948329
+    second: idlefire6_17
+  - first:
+      213: 8971213539915219492
+    second: idlefire6_18
+  - first:
+      213: -8565642478356738721
+    second: idlefire6_19
+  - first:
+      213: -688945648585446176
+    second: idlefire6_20
+  - first:
+      213: -5260841684879689618
+    second: idlefire6_21
+  - first:
+      213: -4658227721121686950
+    second: idlefire6_22
+  - first:
+      213: -6220099168787493874
+    second: idlefire6_23
+  - first:
+      213: -7334573741275231983
+    second: idlefire6_24
+  - first:
+      213: 3829841941764773058
+    second: idlefire6_25
+  - first:
+      213: -5310101494012849409
+    second: idlefire6_26
+  - first:
+      213: 6551461902185576153
+    second: idlefire6_27
+  - first:
+      213: 8354248681398867932
+    second: idlefire6_28
+  - first:
+      213: 951280816665664918
+    second: idlefire6_29
+  - first:
+      213: 5408916000862788183
+    second: idlefire6_30
+  - first:
+      213: 326159569103037796
+    second: idlefire6_31
+  - first:
+      213: 1203056874270181293
+    second: idlefire6_32
+  - first:
+      213: -2125027976820205834
+    second: idlefire6_33
+  - first:
+      213: -7338223275051841084
+    second: idlefire6_34
+  - first:
+      213: -5292851935581065320
+    second: idlefire6_35
+  - first:
+      213: 5749748653272062456
+    second: idlefire6_36
+  - first:
+      213: 8907497799478869085
+    second: idlefire6_37
+  - first:
+      213: 1751761261022560696
+    second: idlefire6_38
+  - first:
+      213: 4231731857068109096
+    second: idlefire6_39
+  - first:
+      213: -1296359973089797845
+    second: idlefire6_40
+  - first:
+      213: 358607576632037830
+    second: idlefire6_41
+  - first:
+      213: 8031546548929728860
+    second: idlefire6_42
+  - first:
+      213: -2263231654535863419
+    second: idlefire6_43
+  - first:
+      213: -7213778781243309754
+    second: idlefire6_44
+  - first:
+      213: 7994919588431935518
+    second: idlefire6_45
+  - first:
+      213: 4263854554029351275
+    second: idlefire6_46
+  - first:
+      213: -7437807831549847364
+    second: idlefire6_47
+  - first:
+      213: 4237406907014915731
+    second: idlefire6_48
+  - first:
+      213: 7983543933046648603
+    second: idlefire6_49
+  - first:
+      213: -7981556744560435527
+    second: idlefire6_50
+  - first:
+      213: -5981206264535099852
+    second: idlefire6_51
+  externalObjects: {}
+  serializedVersion: 13
+  mipmaps:
+    mipMapMode: 0
+    enableMipMap: 0
+    sRGBTexture: 1
+    linearTexture: 0
+    fadeOut: 0
+    borderMipMap: 0
+    mipMapsPreserveCoverage: 0
+    alphaTestReferenceValue: 0.5
+    mipMapFadeDistanceStart: 1
+    mipMapFadeDistanceEnd: 3
+  bumpmap:
+    convertToNormalMap: 0
+    externalNormalMap: 0
+    heightScale: 0.25
+    normalMapFilter: 0
+    flipGreenChannel: 0
+  isReadable: 0
+  streamingMipmaps: 0
+  streamingMipmapsPriority: 0
+  vTOnly: 0
+  ignoreMipmapLimit: 0
+  grayScaleToAlpha: 0
+  generateCubemap: 6
+  cubemapConvolution: 0
+  seamlessCubemap: 0
+  textureFormat: 1
+  maxTextureSize: 2048
+  textureSettings:
+    serializedVersion: 2
+    filterMode: 0
+    aniso: 1
+    mipBias: 0
+    wrapU: 1
+    wrapV: 1
+    wrapW: 1
+  nPOTScale: 0
+  lightmap: 0
+  compressionQuality: 50
+  spriteMode: 2
+  spriteExtrude: 1
+  spriteMeshType: 1
+  alignment: 0
+  spritePivot: {x: 0.5, y: 0.5}
+  spritePixelsToUnits: 32
+  spriteBorder: {x: 0, y: 0, z: 0, w: 0}
+  spriteGenerateFallbackPhysicsShape: 1
+  alphaUsage: 1
+  alphaIsTransparency: 1
+  spriteTessellationDetail: -1
+  textureType: 8
+  textureShape: 1
+  singleChannelComponent: 0
+  flipbookRows: 1
+  flipbookColumns: 1
+  maxTextureSizeSet: 0
+  compressionQualitySet: 0
+  textureFormatSet: 0
+  ignorePngGamma: 0
+  applyGammaDecoding: 0
+  swizzle: 50462976
+  cookieLightType: 0
+  platformSettings:
+  - serializedVersion: 4
+    buildTarget: DefaultTexturePlatform
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 0
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    ignorePlatformSupport: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  - serializedVersion: 4
+    buildTarget: Standalone
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    ignorePlatformSupport: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  - serializedVersion: 4
+    buildTarget: Android
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    ignorePlatformSupport: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  - serializedVersion: 4
+    buildTarget: WebGL
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    ignorePlatformSupport: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  - serializedVersion: 4
+    buildTarget: WindowsStoreApps
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    ignorePlatformSupport: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  spriteSheet:
+    serializedVersion: 2
+    sprites:
+    - serializedVersion: 2
+      name: idlefire6_0
+      rect:
+        serializedVersion: 2
+        x: 461
+        y: 2
+        width: 36
+        height: 54
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: e6bb041c4349285f0800000000000000
+      internalID: -755878833143366802
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: idlefire6_1
+      rect:
+        serializedVersion: 2
+        x: 537
+        y: 45
+        width: 12
+        height: 12
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 8a6e4fa70b4d1ee40800000000000000
+      internalID: 5684058059160479400
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: idlefire6_2
+      rect:
+        serializedVersion: 2
+        x: 602
+        y: 46
+        width: 12
+        height: 12
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 96a0e1e23a3cceea0800000000000000
+      internalID: -5842079510985569687
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: idlefire6_3
+      rect:
+        serializedVersion: 2
+        x: 667
+        y: 49
+        width: 10
+        height: 10
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: e6e01264eb97f19d0800000000000000
+      internalID: -2801386585073840530
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: idlefire6_4
+      rect:
+        serializedVersion: 2
+        x: 731
+        y: 52
+        width: 8
+        height: 8
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 69223f143e4dea640800000000000000
+      internalID: 5093242301131727510
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: idlefire6_5
+      rect:
+        serializedVersion: 2
+        x: 796
+        y: 53
+        width: 8
+        height: 8
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 1a96e443b28401ba0800000000000000
+      internalID: -6120312543198156383
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: idlefire6_6
+      rect:
+        serializedVersion: 2
+        x: 861
+        y: 56
+        width: 6
+        height: 6
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: c561e88a95245bbc0800000000000000
+      internalID: -3768032560378145188
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: idlefire6_7
+      rect:
+        serializedVersion: 2
+        x: 912
+        y: 2
+        width: 33
+        height: 61
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 5444315e82558dec0800000000000000
+      internalID: -3541987472796597179
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: idlefire6_8
+      rect:
+        serializedVersion: 2
+        x: 976
+        y: 2
+        width: 38
+        height: 62
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 0ca49c04762600ec0800000000000000
+      internalID: -3602771506288309568
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: idlefire6_9
+      rect:
+        serializedVersion: 2
+        x: 1040
+        y: 2
+        width: 38
+        height: 62
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 50e6494aa0bb51700800000000000000
+      internalID: 510519787161677317
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: idlefire6_10
+      rect:
+        serializedVersion: 2
+        x: 1168
+        y: 2
+        width: 40
+        height: 54
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 7c9c222205a53ce30800000000000000
+      internalID: 4522557751026698695
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: idlefire6_11
+      rect:
+        serializedVersion: 2
+        x: 1231
+        y: 2
+        width: 42
+        height: 55
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 7e8ed469281592bf0800000000000000
+      internalID: -348657874835216153
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: idlefire6_12
+      rect:
+        serializedVersion: 2
+        x: 1774
+        y: 35
+        width: 12
+        height: 21
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 1eb0ff8e8d48fa610800000000000000
+      internalID: 1634671256915610593
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: idlefire6_13
+      rect:
+        serializedVersion: 2
+        x: 11
+        y: 2
+        width: 34
+        height: 45
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: fb6bf94767a0adf90800000000000000
+      internalID: -6928213572877044033
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: idlefire6_14
+      rect:
+        serializedVersion: 2
+        x: 53
+        y: 42
+        width: 6
+        height: 6
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 433169f9d7a2ad340800000000000000
+      internalID: 4889267064500785972
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: idlefire6_15
+      rect:
+        serializedVersion: 2
+        x: 75
+        y: 2
+        width: 35
+        height: 47
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 94901df17a4ae0610800000000000000
+      internalID: 1589388756208650569
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: idlefire6_16
+      rect:
+        serializedVersion: 2
+        x: 118
+        y: 43
+        width: 6
+        height: 6
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 2e6fd98ad03c67f70800000000000000
+      internalID: 9184742953499621090
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: idlefire6_17
+      rect:
+        serializedVersion: 2
+        x: 139
+        y: 2
+        width: 50
+        height: 48
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 7117db7df0b8985b0800000000000000
+      internalID: -5365604580874948329
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: idlefire6_18
+      rect:
+        serializedVersion: 2
+        x: 203
+        y: 2
+        width: 51
+        height: 50
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 42242dade27208c70800000000000000
+      internalID: 8971213539915219492
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: idlefire6_19
+      rect:
+        serializedVersion: 2
+        x: 268
+        y: 2
+        width: 51
+        height: 52
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: f5dcc847c89b02980800000000000000
+      internalID: -8565642478356738721
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: idlefire6_20
+      rect:
+        serializedVersion: 2
+        x: 332
+        y: 2
+        width: 35
+        height: 52
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 0ec6382359f5076f0800000000000000
+      internalID: -688945648585446176
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: idlefire6_21
+      rect:
+        serializedVersion: 2
+        x: 381
+        y: 2
+        width: 52
+        height: 53
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: e68bd295c5cbdf6b0800000000000000
+      internalID: -5260841684879689618
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: idlefire6_22
+      rect:
+        serializedVersion: 2
+        x: 526
+        y: 2
+        width: 36
+        height: 48
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: a5a1aa76196aa5fb0800000000000000
+      internalID: -4658227721121686950
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: idlefire6_23
+      rect:
+        serializedVersion: 2
+        x: 591
+        y: 2
+        width: 35
+        height: 48
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: e0c08b0f2c4cda9a0800000000000000
+      internalID: -6220099168787493874
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: idlefire6_24
+      rect:
+        serializedVersion: 2
+        x: 654
+        y: 2
+        width: 36
+        height: 48
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 119c164ea0c563a90800000000000000
+      internalID: -7334573741275231983
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: idlefire6_25
+      rect:
+        serializedVersion: 2
+        x: 720
+        y: 2
+        width: 30
+        height: 45
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 2c418c464f4562530800000000000000
+      internalID: 3829841941764773058
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: idlefire6_26
+      rect:
+        serializedVersion: 2
+        x: 745
+        y: 41
+        width: 10
+        height: 10
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: ff2d71843dabe46b0800000000000000
+      internalID: -5310101494012849409
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: idlefire6_27
+      rect:
+        serializedVersion: 2
+        x: 784
+        y: 2
+        width: 31
+        height: 47
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 9d6b64f83e77bea50800000000000000
+      internalID: 6551461902185576153
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: idlefire6_28
+      rect:
+        serializedVersion: 2
+        x: 811
+        y: 44
+        width: 8
+        height: 8
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: cd71e0cb9e040f370800000000000000
+      internalID: 8354248681398867932
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: idlefire6_29
+      rect:
+        serializedVersion: 2
+        x: 878
+        y: 45
+        width: 6
+        height: 6
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 69d1007dcd0a33d00800000000000000
+      internalID: 951280816665664918
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: idlefire6_30
+      rect:
+        serializedVersion: 2
+        x: 943
+        y: 47
+        width: 6
+        height: 6
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 75a5a53f174501b40800000000000000
+      internalID: 5408916000862788183
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: idlefire6_31
+      rect:
+        serializedVersion: 2
+        x: 1104
+        y: 2
+        width: 40
+        height: 52
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 4652b786660c68400800000000000000
+      internalID: 326159569103037796
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: idlefire6_32
+      rect:
+        serializedVersion: 2
+        x: 1288
+        y: 2
+        width: 43
+        height: 47
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: da747736add12b010800000000000000
+      internalID: 1203056874270181293
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: idlefire6_33
+      rect:
+        serializedVersion: 2
+        x: 1353
+        y: 2
+        width: 44
+        height: 46
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 6f65ddf50526282e0800000000000000
+      internalID: -2125027976820205834
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: idlefire6_34
+      rect:
+        serializedVersion: 2
+        x: 1390
+        y: 43
+        width: 6
+        height: 6
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 4c908089fc4692a90800000000000000
+      internalID: -7338223275051841084
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: idlefire6_35
+      rect:
+        serializedVersion: 2
+        x: 1439
+        y: 27
+        width: 23
+        height: 22
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 89fa3f215330c86b0800000000000000
+      internalID: -5292851935581065320
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: idlefire6_36
+      rect:
+        serializedVersion: 2
+        x: 1455
+        y: 45
+        width: 6
+        height: 6
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 8f9df0acfe53bcf40800000000000000
+      internalID: 5749748653272062456
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: idlefire6_37
+      rect:
+        serializedVersion: 2
+        x: 1510
+        y: 30
+        width: 16
+        height: 21
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: d5cf28ffd0acd9b70800000000000000
+      internalID: 8907497799478869085
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: idlefire6_38
+      rect:
+        serializedVersion: 2
+        x: 1548
+        y: 2
+        width: 44
+        height: 50
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 8b14a8ee5918f4810800000000000000
+      internalID: 1751761261022560696
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: idlefire6_39
+      rect:
+        serializedVersion: 2
+        x: 1640
+        y: 32
+        width: 17
+        height: 21
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 82daf3d04b12aba30800000000000000
+      internalID: 4231731857068109096
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: idlefire6_40
+      rect:
+        serializedVersion: 2
+        x: 1705
+        y: 35
+        width: 16
+        height: 19
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: b2992fe0977620ee0800000000000000
+      internalID: -1296359973089797845
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: idlefire6_41
+      rect:
+        serializedVersion: 2
+        x: 1840
+        y: 38
+        width: 10
+        height: 10
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 6c19ae2e0b70af400800000000000000
+      internalID: 358607576632037830
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: idlefire6_42
+      rect:
+        serializedVersion: 2
+        x: 1906
+        y: 40
+        width: 8
+        height: 8
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: c5198f58809c57f60800000000000000
+      internalID: 8031546548929728860
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: idlefire6_43
+      rect:
+        serializedVersion: 2
+        x: 848
+        y: 2
+        width: 31
+        height: 42
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 58368f22dc26790e0800000000000000
+      internalID: -2263231654535863419
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: idlefire6_44
+      rect:
+        serializedVersion: 2
+        x: 1417
+        y: 2
+        width: 38
+        height: 37
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 6410ebf2b6283eb90800000000000000
+      internalID: -7213778781243309754
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: idlefire6_45
+      rect:
+        serializedVersion: 2
+        x: 1482
+        y: 2
+        width: 37
+        height: 38
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: e183c4cb109a3fe60800000000000000
+      internalID: 7994919588431935518
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: idlefire6_46
+      rect:
+        serializedVersion: 2
+        x: 1504
+        y: 37
+        width: 6
+        height: 6
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: b61e9d240214c2b30800000000000000
+      internalID: 4263854554029351275
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: idlefire6_47
+      rect:
+        serializedVersion: 2
+        x: 1613
+        y: 2
+        width: 35
+        height: 42
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: cb85ad43f2997c890800000000000000
+      internalID: -7437807831549847364
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: idlefire6_48
+      rect:
+        serializedVersion: 2
+        x: 1679
+        y: 2
+        width: 34
+        height: 43
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 3962965912b4eca30800000000000000
+      internalID: 4237406907014915731
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: idlefire6_49
+      rect:
+        serializedVersion: 2
+        x: 1743
+        y: 2
+        width: 34
+        height: 44
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: b1f68f198ee3bce60800000000000000
+      internalID: 7983543933046648603
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: idlefire6_50
+      rect:
+        serializedVersion: 2
+        x: 1802
+        y: 2
+        width: 41
+        height: 44
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 9be1addcd60db3190800000000000000
+      internalID: -7981556744560435527
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: idlefire6_51
+      rect:
+        serializedVersion: 2
+        x: 1866
+        y: 2
+        width: 40
+        height: 44
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 4365b0a979c7efca0800000000000000
+      internalID: -5981206264535099852
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    outline: []
+    customData: 
+    physicsShape: []
+    bones: []
+    spriteID: 
+    internalID: 0
+    vertices: []
+    indices: 
+    edges: []
+    weights: []
+    secondaryTextures: []
+    spriteCustomMetadata:
+      entries: []
+    nameFileIdTable:
+      idlefire6_0: -755878833143366802
+      idlefire6_1: 5684058059160479400
+      idlefire6_10: 4522557751026698695
+      idlefire6_11: -348657874835216153
+      idlefire6_12: 1634671256915610593
+      idlefire6_13: -6928213572877044033
+      idlefire6_14: 4889267064500785972
+      idlefire6_15: 1589388756208650569
+      idlefire6_16: 9184742953499621090
+      idlefire6_17: -5365604580874948329
+      idlefire6_18: 8971213539915219492
+      idlefire6_19: -8565642478356738721
+      idlefire6_2: -5842079510985569687
+      idlefire6_20: -688945648585446176
+      idlefire6_21: -5260841684879689618
+      idlefire6_22: -4658227721121686950
+      idlefire6_23: -6220099168787493874
+      idlefire6_24: -7334573741275231983
+      idlefire6_25: 3829841941764773058
+      idlefire6_26: -5310101494012849409
+      idlefire6_27: 6551461902185576153
+      idlefire6_28: 8354248681398867932
+      idlefire6_29: 951280816665664918
+      idlefire6_3: -2801386585073840530
+      idlefire6_30: 5408916000862788183
+      idlefire6_31: 326159569103037796
+      idlefire6_32: 1203056874270181293
+      idlefire6_33: -2125027976820205834
+      idlefire6_34: -7338223275051841084
+      idlefire6_35: -5292851935581065320
+      idlefire6_36: 5749748653272062456
+      idlefire6_37: 8907497799478869085
+      idlefire6_38: 1751761261022560696
+      idlefire6_39: 4231731857068109096
+      idlefire6_4: 5093242301131727510
+      idlefire6_40: -1296359973089797845
+      idlefire6_41: 358607576632037830
+      idlefire6_42: 8031546548929728860
+      idlefire6_43: -2263231654535863419
+      idlefire6_44: -7213778781243309754
+      idlefire6_45: 7994919588431935518
+      idlefire6_46: 4263854554029351275
+      idlefire6_47: -7437807831549847364
+      idlefire6_48: 4237406907014915731
+      idlefire6_49: 7983543933046648603
+      idlefire6_5: -6120312543198156383
+      idlefire6_50: -7981556744560435527
+      idlefire6_51: -5981206264535099852
+      idlefire6_6: -3768032560378145188
+      idlefire6_7: -3541987472796597179
+      idlefire6_8: -3602771506288309568
+      idlefire6_9: 510519787161677317
+  mipmapLimitGroupName: 
+  pSDRemoveMatte: 0
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 

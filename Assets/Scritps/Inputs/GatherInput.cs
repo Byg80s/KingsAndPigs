@@ -9,6 +9,8 @@ public class GatherInput : MonoBehaviour
 
     [SerializeField] private bool _isJumping;
     public bool IsJumping { get => _isJumping; set => _isJumping = value; }
+    [SerializeField] private bool _push;
+    public bool Push { get => _push; set => _push = value; }
 
 
     [SerializeField] private Vector2 _value;
@@ -31,6 +33,8 @@ public class GatherInput : MonoBehaviour
         _controls.Player.Move.canceled += StopMove;
         _controls.Player.Jump.performed += StartJump;
         _controls.Player.Jump.canceled += StopJump;
+        _controls.Player.Push.performed += StarPush;
+        _controls.Player.Push.canceled += StopPush;
         _controls.Player.Enable();
 
     }
@@ -58,6 +62,14 @@ public class GatherInput : MonoBehaviour
     {
         IsJumping = false;
     }
+    private void StarPush(InputAction.CallbackContext context)
+    {
+        Push=true;
+    }
+    private void StopPush(InputAction.CallbackContext context)
+    {
+        Push=false;
+    }
     //DISABLE CONTROLS SYSTEM PLAYER
     private void OnDisable()
     {
@@ -65,6 +77,8 @@ public class GatherInput : MonoBehaviour
         _controls.Player.Move.canceled -= StopMove;
         _controls.Player.Jump.performed -= StartJump;
         _controls.Player.Jump.canceled -= StopJump;
+        _controls.Player.Push.performed -= StarPush;
+        _controls.Player.Push.canceled -= StopPush;
         _controls.Player.Disable();
     }
 }

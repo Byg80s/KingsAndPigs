@@ -10,6 +10,7 @@ public class PlayerController : MonoBehaviour
     [Header("Components")]
     //Components
     [SerializeField] private Transform m_transform;
+    [SerializeField] private Collider2D m_collider;
     private Rigidbody2D m_rb;
     private GatherInput m_ginput;
     private Animator m_animator;
@@ -27,6 +28,8 @@ public class PlayerController : MonoBehaviour
     [SerializeField] private bool _isGrounded;
     [SerializeField] private bool _canDoubleJumped;
 
+    [Header("Parameters Push Action")]
+    [SerializeField] private bool _isPushed;
     [Header("Parameters Wall detection")]
 
     [SerializeField] private bool _wallDetected;
@@ -49,6 +52,7 @@ public class PlayerController : MonoBehaviour
     private int _idGround;
     private int _idFall;
     private int _idKnock;
+    private int _idPsuh;
 
 
     //RayCast Ground
@@ -76,11 +80,14 @@ public class PlayerController : MonoBehaviour
 
     private void Awake()
     {
-     
+
         m_rb = GetComponent<Rigidbody2D>();
         m_ginput = GetComponent<GatherInput>();
         //    m_transform = GetComponent<Transform>();
         m_animator = GetComponent<Animator>();
+        //   m_collider=GetComponentInChildren<Collider2D>();
+        m_collider.GetComponentInChildren<Collider>();
+
 
     }
 
@@ -92,6 +99,7 @@ public class PlayerController : MonoBehaviour
         _idGround = Animator.StringToHash("_isGround");
         _idFall = Animator.StringToHash("_isWall");
         _idKnock = Animator.StringToHash("_knockback");
+        _idPsuh = Animator.StringToHash("_isPush");
 
         //      Lfoot = GameObject.Find("LFoot").GetComponent<Transform>();
         //     Rfoot = GameObject.Find("RFoot").GetComponent<Transform>();
@@ -119,7 +127,7 @@ public class PlayerController : MonoBehaviour
 
         Move();
         Jump();
-
+        PushObject();
 
 
 
@@ -132,16 +140,13 @@ public class PlayerController : MonoBehaviour
         m_animator.SetFloat(_idSpeed, Mathf.Abs(m_rb.linearVelocityX));
         m_animator.SetBool(_idGround, _isGrounded);
         m_animator.SetBool(_idFall, _wallDetected);
+        m_animator.SetBool(_idPsuh, _isPushed);
     }
 
     //Check Ground
     private void CheckColision()
     {
 
-
-
-        //NEW MECHANICS, WHEN PLAYER TAKE A ESPECIAL OBJECT IS POSIBLE ACTIVATE HANDLEWALL AND DESLICE
-        //NOW WORK ONLY IF PRESS DIRECTIOL BUTTON
 
         HandleWall();
         HandleWallDeslice();
@@ -187,10 +192,11 @@ public class PlayerController : MonoBehaviour
 
     private void Move()
     {
-       
+
 
         if (_wallDetected && !_isGrounded) return;
         if (_isWallJumping) return;
+
 
         Flip();
         m_rb.linearVelocity = new Vector2(_speed * m_ginput.Value.x, m_rb.linearVelocity.y);
@@ -207,7 +213,7 @@ public class PlayerController : MonoBehaviour
     {
         if (m_ginput.Value.x * _direction < 0 && !GameManager.instance.blockInputs) //The !_gameManager.blockInputs parameter is posible need erase)
         {
-           
+
             HandleDirection();
         }
 
@@ -233,11 +239,6 @@ public class PlayerController : MonoBehaviour
             else if (_wallDetected) WallJump();
 
             else if (_counterExtraJumps > 0 && _canDoubleJumped) DoubleJump();
-
-
-
-
-
         }
 
         m_ginput.IsJumping = false;
@@ -265,6 +266,23 @@ public class PlayerController : MonoBehaviour
         m_animator.SetTrigger(_idKnock);
 
     }
+    private void PushObject()
+    {
+        m_collider.isTrigger = true;
+        if (m_ginput.Push)
+
+        {
+            _isPushed = true;           
+            m_collider.isTrigger = false;
+        }
+        else
+        {
+            _isPushed = false;
+            m_collider.isTrigger = true;
+        }
+    }
+
+
     private void OnDrawGizmos()
     {
         Gizmos.DrawLine(m_transform.position, new Vector2(m_transform.position.x + (_rayWall * _direction), m_transform.position.y));
@@ -299,9 +317,9 @@ public class PlayerController : MonoBehaviour
         }
         else
         {
-            m_rb.bodyType= RigidbodyType2D.Dynamic;
+            m_rb.bodyType = RigidbodyType2D.Dynamic;
         }
-        
+
     }
-  
+
 }

@@ -1,31 +1,16 @@
 fileFormatVersion: 2
-guid: 92abf3a4b77793e4baa9816350d3a6b5
+guid: 0ff70a57d52c7374d973d3353e2e991b
 TextureImporter:
   internalIDToNameTable:
   - first:
-      213: -2040908164472487208
-    second: Door Out (78x58)_0
+      213: -5281422124547630143
+    second: Chest_0
   - first:
-      213: -2394759738856020318
-    second: Door Out (78x58)_1
+      213: 4714410783012859700
+    second: Chest_1
   - first:
-      213: 4712378661485179610
-    second: Door Out (78x58)_2
-  - first:
-      213: 4412310672111565407
-    second: Door Out (78x58)_3
-  - first:
-      213: -5231970420580665600
-    second: Door Out (78x58)_4
-  - first:
-      213: -3057481843588990713
-    second: Door Out (78x58)_5
-  - first:
-      213: 6783514942609459231
-    second: Door Out (78x58)_6
-  - first:
-      213: -78119673854300105
-    second: Door Out (78x58)_7
+      213: -4685547431992939551
+    second: Chest_2
   externalObjects: {}
   serializedVersion: 13
   mipmaps:
@@ -160,177 +145,67 @@ TextureImporter:
     serializedVersion: 2
     sprites:
     - serializedVersion: 2
-      name: Door Out (78x58)_0
+      name: Chest_0
       rect:
         serializedVersion: 2
         x: 0
         y: 0
-        width: 78
-        height: 58
-      alignment: 9
-      pivot: {x: 0.405, y: 0.5}
+        width: 32
+        height: 32
+      alignment: 0
+      pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
       physicsShape: []
-      tessellationDetail: 0
+      tessellationDetail: -1
       bones: []
-      spriteID: a9c19dec10dfc90408725d209de20987
-      internalID: -2040908164472487208
+      spriteID: 1cb13755f8e94b6b0800000000000000
+      internalID: -5281422124547630143
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Door Out (78x58)_1
+      name: Chest_1
       rect:
         serializedVersion: 2
-        x: 78
+        x: 32
         y: 0
-        width: 78
-        height: 58
-      alignment: 9
-      pivot: {x: 0.405, y: 0.5}
+        width: 32
+        height: 32
+      alignment: 0
+      pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
       physicsShape: []
-      tessellationDetail: 0
+      tessellationDetail: -1
       bones: []
-      spriteID: b8e7639d3845af440be41057adb735aa
-      internalID: -2394759738856020318
+      spriteID: 43fa0ce01a3fc6140800000000000000
+      internalID: 4714410783012859700
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Door Out (78x58)_2
+      name: Chest_2
       rect:
         serializedVersion: 2
-        x: 156
+        x: 64
         y: 0
-        width: 78
-        height: 58
-      alignment: 9
-      pivot: {x: 0.405, y: 0.5}
+        width: 32
+        height: 32
+      alignment: 0
+      pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
       physicsShape: []
-      tessellationDetail: 0
+      tessellationDetail: -1
       bones: []
-      spriteID: b5cc4358408a95440a1a628d8fa888d4
-      internalID: 4712378661485179610
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: Door Out (78x58)_3
-      rect:
-        serializedVersion: 2
-        x: 234
-        y: 0
-        width: 78
-        height: 58
-      alignment: 9
-      pivot: {x: 0.405, y: 0.5}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      customData: 
-      outline: []
-      physicsShape: []
-      tessellationDetail: 0
-      bones: []
-      spriteID: 4fb9717814058af4288179366244232a
-      internalID: 4412310672111565407
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: Door Out (78x58)_4
-      rect:
-        serializedVersion: 2
-        x: 312
-        y: 0
-        width: 78
-        height: 58
-      alignment: 9
-      pivot: {x: 0.405, y: 0.5}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      customData: 
-      outline: []
-      physicsShape: []
-      tessellationDetail: 0
-      bones: []
-      spriteID: 0f672a1b1fe7f744e9aa357b8b62f84a
-      internalID: -5231970420580665600
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: Door Out (78x58)_5
-      rect:
-        serializedVersion: 2
-        x: 390
-        y: 0
-        width: 78
-        height: 58
-      alignment: 9
-      pivot: {x: 0.405, y: 0.5}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      customData: 
-      outline: []
-      physicsShape: []
-      tessellationDetail: 0
-      bones: []
-      spriteID: ed4182a1dad9f44449e8cb42cc80d8bb
-      internalID: -3057481843588990713
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: Door Out (78x58)_6
-      rect:
-        serializedVersion: 2
-        x: 468
-        y: 0
-        width: 78
-        height: 58
-      alignment: 9
-      pivot: {x: 0.405, y: 0.5}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      customData: 
-      outline: []
-      physicsShape: []
-      tessellationDetail: 0
-      bones: []
-      spriteID: fab2bd83e25bcfc48b7ca1353521e999
-      internalID: 6783514942609459231
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: Door Out (78x58)_7
-      rect:
-        serializedVersion: 2
-        x: 546
-        y: 0
-        width: 78
-        height: 58
-      alignment: 9
-      pivot: {x: 0.405, y: 0.5}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      customData: 
-      outline: []
-      physicsShape: []
-      tessellationDetail: 0
-      bones: []
-      spriteID: 701344dd480a4b2428022723e0859d75
-      internalID: -78119673854300105
+      spriteID: 1eb21d98f6799feb0800000000000000
+      internalID: -4685547431992939551
       vertices: []
       indices: 
       edges: []
@@ -339,7 +214,7 @@ TextureImporter:
     customData: 
     physicsShape: []
     bones: []
-    spriteID: e3c9b5e96b6992a4fbe1558b88ea3fa1
+    spriteID: e283b05dea1f8e9428035249db78768e
     internalID: 0
     vertices: []
     indices: 
@@ -349,14 +224,9 @@ TextureImporter:
     spriteCustomMetadata:
       entries: []
     nameFileIdTable:
-      Door Out (78x58)_0: -2040908164472487208
-      Door Out (78x58)_1: -2394759738856020318
-      Door Out (78x58)_2: 4712378661485179610
-      Door Out (78x58)_3: 4412310672111565407
-      Door Out (78x58)_4: -5231970420580665600
-      Door Out (78x58)_5: -3057481843588990713
-      Door Out (78x58)_6: 6783514942609459231
-      Door Out (78x58)_7: -78119673854300105
+      Chest_0: -5281422124547630143
+      Chest_1: 4714410783012859700
+      Chest_2: -4685547431992939551
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 

@@ -10,6 +10,7 @@ public class MovementTraps : MonoBehaviour
     [SerializeField] private Transform[] m_Way;
 
     public int _index = 0;
+    [SerializeField] private int _speedMove;
 
     private void Awake()
     {
@@ -21,9 +22,9 @@ public class MovementTraps : MonoBehaviour
         //  _index = 0;
         // _Trap= GameObject.Find("TrapSnife").GetComponent<Transform>();
         // _index = _gameManager.IndexWaipointTrapSnife;
-        _gameManager.IndexWaipointTrapSnife = _index;
         // transform.position = m_WaitpointFirst[_index].transform.position;
-
+        //IS POSIBLE USE THIS
+       // _gameManager.IndexWaipointTrapSnife = _index;
 
     }
 
@@ -47,6 +48,23 @@ public class MovementTraps : MonoBehaviour
 
         if (_gameManager.ActivateTrapSnife())
         {
+            transform.position = Vector2.MoveTowards(transform.position, m_Way[_index].transform.position, _speedMove * Time.deltaTime);
+
+
+            if (Vector2.Distance(transform.position, m_Way[_index].transform.position) < 0.01f)
+
+            {
+                _index += 1 % m_Way.Length;
+            }
+            if (_index >= m_Way.Length)
+            {
+                _index = 0;
+            }
+        }
+
+/*
+        if (_gameManager.ActivateTrapSnife())
+        {
             transform.position = Vector2.MoveTowards(transform.position, m_Way[_gameManager.IndexWaipointTrapSnife].transform.position, _gameManager.MoveSpeed * Time.deltaTime);
 
 
@@ -62,9 +80,7 @@ public class MovementTraps : MonoBehaviour
         }
 
 
-
-
-
+*/
     }
 
 

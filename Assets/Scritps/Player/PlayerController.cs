@@ -3,10 +3,10 @@ using System.Collections;
 using System.Collections.Generic;
 using Unity.VisualScripting;
 using UnityEngine;
-using static UnityEditor.Experimental.GraphView.GraphView;
 
 public class PlayerController : MonoBehaviour
 {
+
     [Header("Components")]
     //Components
     [SerializeField] private Transform m_transform;
@@ -76,6 +76,7 @@ public class PlayerController : MonoBehaviour
 
     private void Awake()
     {
+     
         m_rb = GetComponent<Rigidbody2D>();
         m_ginput = GetComponent<GatherInput>();
         //    m_transform = GetComponent<Transform>();
@@ -92,8 +93,8 @@ public class PlayerController : MonoBehaviour
         _idFall = Animator.StringToHash("_isWall");
         _idKnock = Animator.StringToHash("_knockback");
 
-        Lfoot = GameObject.Find("LFoot").GetComponent<Transform>();
-        Rfoot = GameObject.Find("RFoot").GetComponent<Transform>();
+        //      Lfoot = GameObject.Find("LFoot").GetComponent<Transform>();
+        //     Rfoot = GameObject.Find("RFoot").GetComponent<Transform>();
 
 
         _counterExtraJumps = _extraJumps;
@@ -107,10 +108,20 @@ public class PlayerController : MonoBehaviour
     }
     private void FixedUpdate()
     {
+
+
+
         if (_isNocked) return;
         CheckColision();
+
+        //Block Player Movement
+        BlockInputs();
+
         Move();
         Jump();
+
+
+
 
     }
 
@@ -176,6 +187,7 @@ public class PlayerController : MonoBehaviour
 
     private void Move()
     {
+       
 
         if (_wallDetected && !_isGrounded) return;
         if (_isWallJumping) return;
@@ -193,8 +205,9 @@ public class PlayerController : MonoBehaviour
     // Flip Player
     private void Flip()
     {
-        if (m_ginput.Value.x * _direction < 0)
+        if (m_ginput.Value.x * _direction < 0 && !GameManager.instance.blockInputs) //The !_gameManager.blockInputs parameter is posible need erase)
         {
+           
             HandleDirection();
         }
 
@@ -274,8 +287,21 @@ public class PlayerController : MonoBehaviour
     }
     public void Died()
     {
-        GameObject DeathVfxPrefab=Instantiate(DeathVfx,transform.position,Quaternion.identity);
+        GameObject DeathVfxPrefab = Instantiate(DeathVfx, transform.position, Quaternion.identity);
         Destroy(gameObject);
-    } 
-
+    }
+    public void BlockInputs()
+    {
+        if (GameManager.instance.blockInputs && _isGrounded)
+        {
+            m_rb.linearVelocity = Vector2.zero;
+            m_rb.bodyType = RigidbodyType2D.Static;
+        }
+        else
+        {
+            m_rb.bodyType= RigidbodyType2D.Dynamic;
+        }
+        
+    }
+  
 }

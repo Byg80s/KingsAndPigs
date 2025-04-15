@@ -9,6 +9,10 @@ TagManager:
   - Portal
   - CristalsTimer
   - TrapSnife
+  - View01
+  - Down
+  - EntranceDoor
+  - HitBox
   layers:
   - Default
   - TransparentFX
@@ -23,7 +27,7 @@ TagManager:
   - Traps
   - Items
   - CameraPoints
-  - 
+  - BoxesMove
   - 
   - 
   - 

@@ -77,6 +77,9 @@ public class PlayerController : MonoBehaviour
     [SerializeField] private bool _isPotion;
     [Header("Dead VFX")]
     [SerializeField] private GameObject DeathVfx;
+    [Header("Player Inside Door VFX")]
+    [SerializeField] private GameObject IndoorVfx;
+   
 
     private void Awake()
     {
@@ -87,7 +90,7 @@ public class PlayerController : MonoBehaviour
         m_animator = GetComponent<Animator>();
         //   m_collider=GetComponentInChildren<Collider2D>();
         m_collider.GetComponentInChildren<Collider>();
-
+       
 
     }
 
@@ -100,7 +103,7 @@ public class PlayerController : MonoBehaviour
         _idFall = Animator.StringToHash("_isWall");
         _idKnock = Animator.StringToHash("_knockback");
         _idPsuh = Animator.StringToHash("_isPush");
-
+     
         //      Lfoot = GameObject.Find("LFoot").GetComponent<Transform>();
         //     Rfoot = GameObject.Find("RFoot").GetComponent<Transform>();
 
@@ -306,6 +309,13 @@ public class PlayerController : MonoBehaviour
     public void Died()
     {
         GameObject DeathVfxPrefab = Instantiate(DeathVfx, transform.position, Quaternion.identity);
+        Destroy(gameObject);
+    
+   
+    }
+    public void ExitLevel()
+    {
+        GameObject InDoorVfxPrefab = Instantiate(IndoorVfx, transform.position, Quaternion.identity);
         Destroy(gameObject);
     }
     public void BlockInputs()

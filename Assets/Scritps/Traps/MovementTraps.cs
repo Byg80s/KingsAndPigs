@@ -19,13 +19,7 @@ public class MovementTraps : MonoBehaviour
     private void Start()
     {
         _gameManager = GameManager.instance;
-        //  _index = 0;
-        // _Trap= GameObject.Find("TrapSnife").GetComponent<Transform>();
-        // _index = _gameManager.IndexWaipointTrapSnife;
-        // transform.position = m_WaitpointFirst[_index].transform.position;
-        //IS POSIBLE USE THIS
-       // _gameManager.IndexWaipointTrapSnife = _index;
-
+        
     }
 
     private void Update()
@@ -62,25 +56,6 @@ public class MovementTraps : MonoBehaviour
             }
         }
 
-/*
-        if (_gameManager.ActivateTrapSnife())
-        {
-            transform.position = Vector2.MoveTowards(transform.position, m_Way[_gameManager.IndexWaipointTrapSnife].transform.position, _gameManager.MoveSpeed * Time.deltaTime);
-
-
-            if (Vector2.Distance(transform.position, m_Way[_gameManager.IndexWaipointTrapSnife].transform.position) < 0.01f)
-
-            {
-                _gameManager.IndexWaipointTrapSnife += 1 % m_Way.Length;
-            }
-            if (_gameManager.IndexWaipointTrapSnife >= m_Way.Length)
-            {
-                _gameManager.IndexWaipointTrapSnife = 0;
-            }
-        }
-
-
-*/
     }
 
 

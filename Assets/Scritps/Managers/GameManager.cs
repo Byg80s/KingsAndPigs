@@ -13,7 +13,9 @@ public class GameManager : MonoBehaviour
     [Header("Player Settings")]
     [SerializeField] private GameObject _PlayerPrefab;
     [SerializeField] private Transform _PlayerRespawnPoint;
+    [SerializeField] private Transform _PlayerExitLevelPoint;
     [SerializeField] private PlayerController _playerControler;
+    
     public PlayerController PlayerControler => _playerControler;
     [SerializeField] private int _timeRespawn;
     public int TimeRespawn => _timeRespawn;
@@ -22,6 +24,9 @@ public class GameManager : MonoBehaviour
     [SerializeField] private float _timeBlockInputsRespawn;
     public float TimeBlockInputsRespawn { get => _timeBlockInputsRespawn; set => _timeBlockInputsRespawn = value; }
 
+    [Header("Enemy Settings")]
+    [SerializeField] private bool _detectedPlayerIsGround;
+    public bool DetectedPlayerIsGround { get => _detectedPlayerIsGround; set => _detectedPlayerIsGround = value; }
 
     #endregion
     #region CRISTALS MANAGER
@@ -47,7 +52,6 @@ public class GameManager : MonoBehaviour
     [SerializeField] private bool isDeadZone;
     public bool IsDeadZone { get => isDeadZone; set => isDeadZone = value; }
 
-
     [Header("Activate Traps")]
     [SerializeField] private int x1;
 
@@ -62,9 +66,10 @@ public class GameManager : MonoBehaviour
         else Destroy(gameObject);
        
     }
-    public void ReSpawnPlayer() => StartCoroutine(RespawnPlayerCorotine(TimeRespawn));
+    public void ReSpawnPlayer() => StartCoroutine(RespawnPlayerCorotineIfDie(TimeRespawn));
+    public void ExitDoor()=>StartCoroutine(RespawnPlayerCorotineIfExit(TimeRespawn));
 
-    IEnumerator RespawnPlayerCorotine(int time)
+    IEnumerator RespawnPlayerCorotineIfDie(int time)
     {
         yield return new WaitForSeconds(time);
         GameObject newPlayer = Instantiate(_PlayerPrefab, _PlayerRespawnPoint.position, Quaternion.identity);
@@ -72,6 +77,15 @@ public class GameManager : MonoBehaviour
         newPlayer.name = "Player";
         _playerControler = newPlayer.GetComponent<PlayerController>();
 
+    }
+
+    IEnumerator RespawnPlayerCorotineIfExit(int time)
+    {
+        yield return new WaitForSeconds(time);
+        GameObject newPlayer = Instantiate(_PlayerPrefab, _PlayerExitLevelPoint.position, Quaternion.identity);
+        virtualCamera.Follow = newPlayer.transform;
+        newPlayer.name = "Player";
+        _playerControler = newPlayer.GetComponent<PlayerController>();
     }
     public void AddCristals() => _cristalCollected++;
     public bool CrystalsHaveRandomLook() => CrystalsHaveRandomLook1;

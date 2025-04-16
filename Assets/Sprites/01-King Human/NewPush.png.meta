@@ -1,25 +1,31 @@
 fileFormatVersion: 2
-guid: 94f160541a27c6843ae0a1d905266a95
+guid: fe61bfc243c61b648bf1a718e883ac2a
 TextureImporter:
   internalIDToNameTable:
   - first:
-      213: 5287780966827553206
-    second: Run (34x28)_0
+      213: 1364998330277378858
+    second: NewPush_0
   - first:
-      213: -8523111416270535624
-    second: Run (34x28)_1
+      213: 513784357585380866
+    second: NewPush_1
   - first:
-      213: 2478249536684720882
-    second: Run (34x28)_2
+      213: 4825974663478708775
+    second: NewPush_2
   - first:
-      213: -6893775213456251399
-    second: Run (34x28)_3
+      213: 2145860790894941595
+    second: NewPush_3
   - first:
-      213: -6883968133703189721
-    second: Run (34x28)_4
+      213: -5371007391176356195
+    second: NewPush_4
   - first:
-      213: 8378798624735198860
-    second: Run (34x28)_5
+      213: 916466197410453993
+    second: NewPush_5
+  - first:
+      213: 2429208726586307056
+    second: NewPush_6
+  - first:
+      213: 134305235562762863
+    second: NewPush_7
   externalObjects: {}
   serializedVersion: 13
   mipmaps:
@@ -154,133 +160,177 @@ TextureImporter:
     serializedVersion: 2
     sprites:
     - serializedVersion: 2
-      name: Run (34x28)_0
+      name: NewPush_0
       rect:
         serializedVersion: 2
         x: 0
         y: 0
-        width: 34
-        height: 28
+        width: 78
+        height: 58
       alignment: 9
-      pivot: {x: 0.5, y: 0.4}
+      pivot: {x: 0.405, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
       physicsShape: []
       tessellationDetail: -1
       bones: []
-      spriteID: 6b1f3d106c8f16940800000000000000
-      internalID: 5287780966827553206
+      spriteID: a2b3f23dfb271f210800000000000000
+      internalID: 1364998330277378858
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Run (34x28)_1
+      name: NewPush_1
       rect:
         serializedVersion: 2
-        x: 34
+        x: 78
         y: 0
-        width: 34
-        height: 28
+        width: 78
+        height: 58
       alignment: 9
-      pivot: {x: 0.5, y: 0.4}
+      pivot: {x: 0.405, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
       physicsShape: []
       tessellationDetail: -1
       bones: []
-      spriteID: 8344e140353d7b980800000000000000
-      internalID: -8523111416270535624
+      spriteID: 206670da624512700800000000000000
+      internalID: 513784357585380866
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Run (34x28)_2
+      name: NewPush_2
       rect:
         serializedVersion: 2
-        x: 68
+        x: 156
         y: 0
-        width: 34
-        height: 28
+        width: 78
+        height: 58
       alignment: 9
-      pivot: {x: 0.5, y: 0.4}
+      pivot: {x: 0.405, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
       physicsShape: []
       tessellationDetail: -1
       bones: []
-      spriteID: 2f28ed2c2d2846220800000000000000
-      internalID: 2478249536684720882
+      spriteID: 72a0fa7236e49f240800000000000000
+      internalID: 4825974663478708775
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Run (34x28)_3
+      name: NewPush_3
       rect:
         serializedVersion: 2
-        x: 102
+        x: 234
         y: 0
-        width: 34
-        height: 28
+        width: 78
+        height: 58
       alignment: 9
-      pivot: {x: 0.5, y: 0.4}
+      pivot: {x: 0.405, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
       physicsShape: []
       tessellationDetail: -1
       bones: []
-      spriteID: 9f52c88d7f36450a0800000000000000
-      internalID: -6893775213456251399
+      spriteID: b955bb22501a7cd10800000000000000
+      internalID: 2145860790894941595
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Run (34x28)_4
+      name: NewPush_4
       rect:
         serializedVersion: 2
-        x: 136
+        x: 312
         y: 0
-        width: 34
-        height: 28
+        width: 78
+        height: 58
       alignment: 9
-      pivot: {x: 0.5, y: 0.4}
+      pivot: {x: 0.405, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
       physicsShape: []
       tessellationDetail: -1
       bones: []
-      spriteID: 72b3389847b3770a0800000000000000
-      internalID: -6883968133703189721
+      spriteID: d9e8fea0c395675b0800000000000000
+      internalID: -5371007391176356195
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Run (34x28)_5
+      name: NewPush_5
       rect:
         serializedVersion: 2
-        x: 170
+        x: 390
         y: 0
-        width: 34
-        height: 28
+        width: 78
+        height: 58
       alignment: 9
-      pivot: {x: 0.5, y: 0.4}
+      pivot: {x: 0.405, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
       physicsShape: []
       tessellationDetail: -1
       bones: []
-      spriteID: c8e7fd7d4f8774470800000000000000
-      internalID: 8378798624735198860
+      spriteID: 9e99d41a621f7bc00800000000000000
+      internalID: 916466197410453993
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: NewPush_6
+      rect:
+        serializedVersion: 2
+        x: 468
+        y: 0
+        width: 78
+        height: 58
+      alignment: 9
+      pivot: {x: 0.405, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 0f1b471677846b120800000000000000
+      internalID: 2429208726586307056
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: NewPush_7
+      rect:
+        serializedVersion: 2
+        x: 546
+        y: 0
+        width: 78
+        height: 58
+      alignment: 9
+      pivot: {x: 0.405, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: f62913176e52dd100800000000000000
+      internalID: 134305235562762863
       vertices: []
       indices: 
       edges: []
@@ -289,7 +339,7 @@ TextureImporter:
     customData: 
     physicsShape: []
     bones: []
-    spriteID: d4c37d9295ea1134bb610ad710122938
+    spriteID: dd8baa8b06a07084e8b3c76f4617f321
     internalID: 0
     vertices: []
     indices: 
@@ -299,12 +349,14 @@ TextureImporter:
     spriteCustomMetadata:
       entries: []
     nameFileIdTable:
-      Run (34x28)_0: 5287780966827553206
-      Run (34x28)_1: -8523111416270535624
-      Run (34x28)_2: 2478249536684720882
-      Run (34x28)_3: -6893775213456251399
-      Run (34x28)_4: -6883968133703189721
-      Run (34x28)_5: 8378798624735198860
+      NewPush_0: 1364998330277378858
+      NewPush_1: 513784357585380866
+      NewPush_2: 4825974663478708775
+      NewPush_3: 2145860790894941595
+      NewPush_4: -5371007391176356195
+      NewPush_5: 916466197410453993
+      NewPush_6: 2429208726586307056
+      NewPush_7: 134305235562762863
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 

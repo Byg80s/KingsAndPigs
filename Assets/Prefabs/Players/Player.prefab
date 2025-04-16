@@ -218,6 +218,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 99b1711f601beff4e9a739c269b629ed, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  _gameManager: {fileID: 0}
   m_transform: {fileID: 1684742943925739952}
   m_collider: {fileID: 4524884349589939311}
   _speed: 5
@@ -247,6 +248,7 @@ MonoBehaviour:
     m_Bits: 128
   _isPotion: 0
   DeathVfx: {fileID: 6623422932010929671, guid: c45d70e95a5760446940d0acae821e5b, type: 3}
+  IndoorVfx: {fileID: 8821653136501827335, guid: 60fe51efd4be83a418877315718c3863, type: 3}
 --- !u!95 &7119266980768476404
 Animator:
   serializedVersion: 7
@@ -281,8 +283,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 3b1b53d9c29a3064aafba1a5e61c126f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  entranceDoor: {fileID: 0}
+  Door: {fileID: 0}
   animatorEntranceDoor: {fileID: 0}
+  _FindTag: RespawnDoor
 --- !u!1 &2953185959375350643
 GameObject:
   m_ObjectHideFlags: 0

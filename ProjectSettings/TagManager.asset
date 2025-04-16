@@ -13,6 +13,8 @@ TagManager:
   - Down
   - EntranceDoor
   - HitBox
+  - RespawnDoor
+  - ExirDoor
   layers:
   - Default
   - TransparentFX
@@ -28,8 +30,8 @@ TagManager:
   - Items
   - CameraPoints
   - BoxesMove
-  - 
-  - 
+  - HitBox
+  - HurtBox
   - 
   - 
   - 

@@ -11,6 +11,7 @@ public class PlayerController : MonoBehaviour
     //Components
     [SerializeField] private Transform m_transform;
     [SerializeField] private Collider2D m_collider;
+    private  Collider2D childCollider;
     private Rigidbody2D m_rb;
     private GatherInput m_ginput;
     private Animator m_animator;
@@ -86,11 +87,10 @@ public class PlayerController : MonoBehaviour
 
         m_rb = GetComponent<Rigidbody2D>();
         m_ginput = GetComponent<GatherInput>();
-        //    m_transform = GetComponent<Transform>();
         m_animator = GetComponent<Animator>();
-        //   m_collider=GetComponentInChildren<Collider2D>();
         m_collider.GetComponentInChildren<Collider>();
-       
+        childCollider = GetComponentInChildren<BoxCollider2D>();
+
 
     }
 
@@ -103,7 +103,6 @@ public class PlayerController : MonoBehaviour
         _idFall = Animator.StringToHash("_isWall");
         _idKnock = Animator.StringToHash("_knockback");
         _idPsuh = Animator.StringToHash("_isPush");
-     
         //      Lfoot = GameObject.Find("LFoot").GetComponent<Transform>();
         //     Rfoot = GameObject.Find("RFoot").GetComponent<Transform>();
 
@@ -277,19 +276,19 @@ public class PlayerController : MonoBehaviour
         {
             _isPushed = true;           
             m_collider.isTrigger = false;
+            GameManager.instance.IsPushAction = true;
+                
         }
         else
         {
             _isPushed = false;
             m_collider.isTrigger = true;
+            GameManager.instance.IsPushAction = false;
         }
     }
 
 
-    private void OnDrawGizmos()
-    {
-        Gizmos.DrawLine(m_transform.position, new Vector2(m_transform.position.x + (_rayWall * _direction), m_transform.position.y));
-    }
+ 
 
     //IEnumerators
     IEnumerator WaitReturnTime(float time)
@@ -331,5 +330,11 @@ public class PlayerController : MonoBehaviour
         }
 
     }
+    private void OnDrawGizmos()
+    {
+        Gizmos.DrawLine(m_transform.position, new Vector2(m_transform.position.x + (_rayWall * _direction), m_transform.position.y));
+        Gizmos.color = new Color(0f, 1f, 1f, 0.5f);
+        Gizmos.DrawCube(m_collider.bounds.center, m_collider.bounds.size);
 
+    }
 }

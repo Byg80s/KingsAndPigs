@@ -218,10 +218,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 99b1711f601beff4e9a739c269b629ed, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _gameManager: {fileID: 0}
   m_transform: {fileID: 1684742943925739952}
   m_collider: {fileID: 4524884349589939311}
-  _speed: 5
+  _speed: 3
   _jumpForce: 10
   _extraJumps: 1
   _counterExtraJumps: 0
@@ -229,26 +228,26 @@ MonoBehaviour:
   _canDoubleJumped: 1
   _isPushed: 0
   _wallDetected: 0
-  _canWallDesliced: 0
+  _canWallDesliced: 1
   _rayWall: 0.3
   _speedDeslice: 0
-  _wallJumpForce: {x: 7, y: 8}
+  _wallJumpForce: {x: 3, y: 6}
   _isWallJumping: 0
-  _wallTimeDetection: 0.3
+  _wallTimeDetection: 0.1
   _isMove: 0
-  Lfoot: {fileID: 6562869596952090669}
-  Rfoot: {fileID: 449993926364153832}
-  rayGround: 0.05
+  Lfoot: {fileID: 449993926364153832}
+  Rfoot: {fileID: 6562869596952090669}
+  rayGround: 0.3
   _isNocked: 0
   _isCanNocked: 0
-  _KnockForce: {x: 4, y: 2}
-  _knockDuration: 0.5
+  _KnockForce: {x: 3, y: 5}
+  _knockDuration: 1
   GroundLayer:
     serializedVersion: 2
     m_Bits: 128
   _isPotion: 0
   DeathVfx: {fileID: 6623422932010929671, guid: c45d70e95a5760446940d0acae821e5b, type: 3}
-  IndoorVfx: {fileID: 8821653136501827335, guid: 60fe51efd4be83a418877315718c3863, type: 3}
+  IndoorVfx: {fileID: 6623422932010929671, guid: c45d70e95a5760446940d0acae821e5b, type: 3}
 --- !u!95 &7119266980768476404
 Animator:
   serializedVersion: 7
@@ -296,9 +295,9 @@ GameObject:
   m_Component:
   - component: {fileID: 7020469931887500240}
   - component: {fileID: 4524884349589939311}
-  m_Layer: 6
-  m_Name: HitBox
-  m_TagString: HitBox
+  m_Layer: 13
+  m_Name: Hammer
+  m_TagString: Box
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0

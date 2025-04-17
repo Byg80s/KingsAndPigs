@@ -15,6 +15,7 @@ TagManager:
   - HitBox
   - RespawnDoor
   - ExirDoor
+  - Box
   layers:
   - Default
   - TransparentFX
@@ -29,7 +30,7 @@ TagManager:
   - Traps
   - Items
   - CameraPoints
-  - BoxesMove
+  - DisplazmentObjects
   - HitBox
   - HurtBox
   - 

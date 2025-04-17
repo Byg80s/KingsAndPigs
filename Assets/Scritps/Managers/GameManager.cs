@@ -15,7 +15,10 @@ public class GameManager : MonoBehaviour
     [SerializeField] private Transform _PlayerRespawnPoint;
     [SerializeField] private Transform _PlayerExitLevelPoint;
     [SerializeField] private PlayerController _playerControler;
-    
+    [SerializeField] private bool _isPushAction;
+    public bool IsPushAction { get => _isPushAction; set => _isPushAction = value; }
+
+
     public PlayerController PlayerControler => _playerControler;
     [SerializeField] private int _timeRespawn;
     public int TimeRespawn => _timeRespawn;

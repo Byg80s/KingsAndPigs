@@ -5,31 +5,35 @@ using UnityEngine.UIElements;
 
 public class MovementTraps : MonoBehaviour
 {
-    [SerializeField] private GameManager _gameManager;
 
     [SerializeField] private Transform[] m_Way;
-
-    public int _index = 0;
+    [SerializeField] private bool _Active;
+    [SerializeField] private int _index;
     [SerializeField] private int _speedMove;
+    [SerializeField] private int _idActivated;
+    [SerializeField] private bool needAnimation;
+    private Animator m_anim;
+    public int index { get => _index; set => _index = value; }
 
-    private void Awake()
-    {
-
-    }
     private void Start()
     {
-        _gameManager = GameManager.instance;
-        
+        m_anim = GetComponent<Animator>();
+        index = 0;
+        _idActivated = Animator.StringToHash("_isActived");
     }
 
     private void Update()
     {
-       
-
         IfActivateEvente();
+        if (needAnimation)
+        {
+            Animations();
+        }
 
-
-
+    }
+    void Animations()
+    {
+        m_anim.SetBool(_idActivated, _Active);
     }
     void IfActivateEvente()
     {
@@ -39,24 +43,20 @@ public class MovementTraps : MonoBehaviour
 
     void WatPointsMove()
     {
-
-        if (_gameManager.ActivateTrapSnife())
+        if (_Active)
         {
-            transform.position = Vector2.MoveTowards(transform.position, m_Way[_index].transform.position, _speedMove * Time.deltaTime);
+            transform.position = Vector2.MoveTowards(transform.position, m_Way[index].transform.position, _speedMove * Time.deltaTime);
 
-
-            if (Vector2.Distance(transform.position, m_Way[_index].transform.position) < 0.01f)
+            if (Vector2.Distance(transform.position, m_Way[index].transform.position) < 0.01f)
 
             {
-                _index += 1 % m_Way.Length;
+                index += 1 % m_Way.Length;
             }
-            if (_index >= m_Way.Length)
+            if (index >= m_Way.Length)
             {
-                _index = 0;
+                index = 0;
             }
         }
-
     }
-
 
 }

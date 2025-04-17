@@ -31,10 +31,10 @@ TagManager:
   - Items
   - CameraPoints
   - DisplazmentObjects
-  - HitBox
-  - HurtBox
-  - 
-  - 
+  - HitBoxPlayer
+  - HurtBoxPlayer
+  - HitBoxEnemie
+  - HurtBoxEnemie
   - 
   - 
   - 

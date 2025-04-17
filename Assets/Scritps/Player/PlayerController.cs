@@ -103,8 +103,7 @@ public class PlayerController : MonoBehaviour
         _idFall = Animator.StringToHash("_isWall");
         _idKnock = Animator.StringToHash("_knockback");
         _idPsuh = Animator.StringToHash("_isPush");
-        //      Lfoot = GameObject.Find("LFoot").GetComponent<Transform>();
-        //     Rfoot = GameObject.Find("RFoot").GetComponent<Transform>();
+        
 
 
         _counterExtraJumps = _extraJumps;
@@ -129,7 +128,7 @@ public class PlayerController : MonoBehaviour
 
         Move();
         Jump();
-        PushObject();
+        if (_isGrounded) PushObject();
 
 
 
@@ -166,7 +165,7 @@ public class PlayerController : MonoBehaviour
         {
             _isGrounded = true;
             _counterExtraJumps = _extraJumps;
-            _canDoubleJumped = false;
+            _canDoubleJumped = true;
         }
         else
         {
@@ -186,8 +185,9 @@ public class PlayerController : MonoBehaviour
 
     }
     private void HandleWall()
+        
     {
-        _wallDetected = Physics2D.Raycast(m_transform.position, Vector2.right * _direction, _rayWall, GroundLayer);
+           _wallDetected = Physics2D.Raycast(m_transform.position, Vector2.right * _direction, _rayWall, GroundLayer);
     }
 
     //Movement directional
@@ -198,22 +198,16 @@ public class PlayerController : MonoBehaviour
 
         if (_wallDetected && !_isGrounded) return;
         if (_isWallJumping) return;
-
+      
 
         Flip();
         m_rb.linearVelocity = new Vector2(_speed * m_ginput.Value.x, m_rb.linearVelocity.y);
-
-
-
-
-
-
     }
 
     // Flip Player
     private void Flip()
     {
-        if (m_ginput.Value.x * _direction < 0 && !GameManager.instance.blockInputs) //The !_gameManager.blockInputs parameter is posible need erase)
+        if (m_ginput.Value.x * _direction < 0 && !GameManager.instance.blockInputs) 
         {
 
             HandleDirection();
@@ -233,7 +227,7 @@ public class PlayerController : MonoBehaviour
         if (m_ginput.IsJumping)
         {
             if (_isGrounded)
-            {
+                {
 
                 m_rb.linearVelocity = new Vector2(_speed * m_ginput.Value.x, _jumpForce);
                 _canDoubleJumped = true;
@@ -241,6 +235,7 @@ public class PlayerController : MonoBehaviour
             else if (_wallDetected) WallJump();
 
             else if (_counterExtraJumps > 0 && _canDoubleJumped) DoubleJump();
+        
         }
 
         m_ginput.IsJumping = false;
@@ -274,22 +269,18 @@ public class PlayerController : MonoBehaviour
         if (m_ginput.Push)
 
         {
-            _isPushed = true;           
-            m_collider.isTrigger = false;
+            _isPushed = true;
+            childCollider.isTrigger = false;
             GameManager.instance.IsPushAction = true;
                 
         }
         else
         {
-            _isPushed = false;
-            m_collider.isTrigger = true;
+            _isPushed = false;         
+            childCollider.isTrigger = true;
             GameManager.instance.IsPushAction = false;
         }
     }
-
-
- 
-
     //IEnumerators
     IEnumerator WaitReturnTime(float time)
     {
@@ -300,17 +291,15 @@ public class PlayerController : MonoBehaviour
     IEnumerator WaitKnock(float time)
     {
         _isNocked = true;
-        _isCanNocked = false;
+      // _isCanNocked = false;
         yield return new WaitForSeconds(time);
         _isNocked = false;
-        _isCanNocked = true;
+        //_isCanNocked = true;
     }
     public void Died()
     {
         GameObject DeathVfxPrefab = Instantiate(DeathVfx, transform.position, Quaternion.identity);
         Destroy(gameObject);
-    
-   
     }
     public void ExitLevel()
     {

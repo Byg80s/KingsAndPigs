@@ -44,8 +44,6 @@ public class GameManager : MonoBehaviour
     #region TRAPS PARAMETERS
     //Traps
     [Header("Parameters and WaitPoint Traps")]
-    [SerializeField] private bool _ActivateTrapSnife;
-    public bool ActivateTrapSnife1 { get => _ActivateTrapSnife; }
     [SerializeField] private float _moveSpeed;
     public float MoveSpeed { get => _moveSpeed; }
 
@@ -56,7 +54,11 @@ public class GameManager : MonoBehaviour
     public bool IsDeadZone { get => isDeadZone; set => isDeadZone = value; }
 
     [Header("Activate Traps")]
-    [SerializeField] private int x1;
+    [SerializeField] private int index;
+    private bool[] _DesactivationTraps;
+    public bool[] DesactivationTraps { get => _DesactivationTraps; set => _DesactivationTraps = value; }
+
+
 
     [Header("Event Open Ground")]
     [SerializeField] private int x;
@@ -67,10 +69,10 @@ public class GameManager : MonoBehaviour
     {
         if (instance == null) instance = this;
         else Destroy(gameObject);
-       
+
     }
     public void ReSpawnPlayer() => StartCoroutine(RespawnPlayerCorotineIfDie(TimeRespawn));
-    public void ExitDoor()=>StartCoroutine(RespawnPlayerCorotineIfExit(TimeRespawn));
+    public void ExitDoor() => StartCoroutine(RespawnPlayerCorotineIfExit(TimeRespawn));
 
     IEnumerator RespawnPlayerCorotineIfDie(int time)
     {
@@ -92,7 +94,7 @@ public class GameManager : MonoBehaviour
     }
     public void AddCristals() => _cristalCollected++;
     public bool CrystalsHaveRandomLook() => CrystalsHaveRandomLook1;
-    public bool ActivateTrapSnife() => ActivateTrapSnife1;
+    // public bool ActivateTrapSnife() => ActivateTrapSnife1;
     public int NumbersOfWayPoints() => IndexWaipointTrapSnife;
 
     public bool BlockInputs() => blockInputs;

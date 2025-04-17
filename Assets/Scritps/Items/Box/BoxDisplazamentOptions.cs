@@ -8,7 +8,7 @@ public class BoxDisplazamentOptions : MonoBehaviour
 
     [SerializeField] private Collider2D m_collider;
     [SerializeField] private Collider2D HitBox;
-
+    [SerializeField] private float _forcePush;
 
 
 
@@ -23,11 +23,14 @@ public class BoxDisplazamentOptions : MonoBehaviour
         if (HitBox.gameObject.CompareTag("Box") && GameManager.instance.IsPushAction)
 
         {
-
-            Debug.Log("Detected");
+            Debug.Log("TRUE");
+          // m_rb.MovePosition(m_rb.position+new Vector2(transform.position.x,transform.position.y)*_forcePush*Time.deltaTime);
+          m_rb.bodyType=RigidbodyType2D.Dynamic;
 
         }
-     
+        else
+            m_rb.bodyType=RigidbodyType2D.Static;
+        
 
         
     }

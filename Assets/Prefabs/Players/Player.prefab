@@ -248,7 +248,7 @@ MonoBehaviour:
     m_Bits: 128
   _isPotion: 0
   DeathVfx: {fileID: 6623422932010929671, guid: c45d70e95a5760446940d0acae821e5b, type: 3}
-  IndoorVfx: {fileID: 6623422932010929671, guid: c45d70e95a5760446940d0acae821e5b, type: 3}
+  IndoorVfx: {fileID: 8821653136501827335, guid: 60fe51efd4be83a418877315718c3863, type: 3}
 --- !u!95 &7119266980768476404
 Animator:
   serializedVersion: 7

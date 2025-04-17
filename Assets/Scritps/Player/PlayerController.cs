@@ -127,7 +127,7 @@ public class PlayerController : MonoBehaviour
         BlockInputs();
 
         Move();
-        Jump();
+        if (!_isPushed)Jump();
         if (_isGrounded) PushObject();
 
 
@@ -317,6 +317,10 @@ public class PlayerController : MonoBehaviour
         {
             m_rb.bodyType = RigidbodyType2D.Dynamic;
         }
+
+    }
+    private void Hitbox()
+    {
 
     }
     private void OnDrawGizmos()

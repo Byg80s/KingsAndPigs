@@ -9,7 +9,7 @@ public class EnemyControler : MonoBehaviour
     [Header("Components")]
     //Components
     [SerializeField] private Transform m_transform;
-    [SerializeField] private Transform m_PlayerTransform;
+    private Transform m_PlayerTransform;
     [SerializeField] private Collider2D m_collider;
     private Rigidbody2D m_rb;
     private GatherInput m_ginput;
@@ -93,7 +93,11 @@ public class EnemyControler : MonoBehaviour
     [SerializeField] private int _speedMove;
     private bool _flip;
     private float distanceToPlayer;
+    private void OnEnable()
+    {
+        m_PlayerTransform=GameObject.FindWithTag("Player").GetComponent<Transform>();
 
+    }
     //START
     void Start()
     {
@@ -208,6 +212,7 @@ public class EnemyControler : MonoBehaviour
         if (_PlayerDetected)
         {
             transform.position = Vector2.MoveTowards(transform.position, new Vector2(m_PlayerTransform.position.x, transform.position.y), _speedMove * Time.deltaTime);
+       //     transform.position = Vector2.MoveTowards(transform.position, m_PlayerTransform.position, _speedMove * Time.deltaTime);
 
             if ((m_PlayerTransform.position.x > transform.position.x && !_flip) || (m_PlayerTransform.position.x < transform.position.x && _flip))
             {

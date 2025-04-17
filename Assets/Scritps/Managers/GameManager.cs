@@ -54,8 +54,7 @@ public class GameManager : MonoBehaviour
     public bool IsDeadZone { get => isDeadZone; set => isDeadZone = value; }
 
     [Header("Activate Traps")]
-    [SerializeField] private int index;
-    private bool[] _DesactivationTraps;
+    [SerializeField] private bool[] _DesactivationTraps;
     public bool[] DesactivationTraps { get => _DesactivationTraps; set => _DesactivationTraps = value; }
 
 
@@ -70,6 +69,10 @@ public class GameManager : MonoBehaviour
         if (instance == null) instance = this;
         else Destroy(gameObject);
 
+    }
+    private void Update()
+    {
+        
     }
     public void ReSpawnPlayer() => StartCoroutine(RespawnPlayerCorotineIfDie(TimeRespawn));
     public void ExitDoor() => StartCoroutine(RespawnPlayerCorotineIfExit(TimeRespawn));

@@ -18,6 +18,8 @@ TagManager:
   - Box
   - Dust
   - HurtBox
+  - HitBoxEnemy
+  - HurtBoxEnemy
   layers:
   - Default
   - TransparentFX

@@ -11,7 +11,7 @@ public class PlayerController : MonoBehaviour
     //Components
     [SerializeField] private Transform m_transform;
     [SerializeField] private Collider2D m_collider;
-    private  Collider2D childCollider;
+   [SerializeField] private Collider2D HitBoxCollider;
     private Rigidbody2D m_rb;
     private GatherInput m_ginput;
     private Animator m_animator;
@@ -54,6 +54,7 @@ public class PlayerController : MonoBehaviour
     private int _idFall;
     private int _idKnock;
     private int _idPsuh;
+    private int _idAttack;
 
 
     //RayCast Ground
@@ -89,7 +90,7 @@ public class PlayerController : MonoBehaviour
         m_ginput = GetComponent<GatherInput>();
         m_animator = GetComponent<Animator>();
         m_collider.GetComponentInChildren<Collider>();
-        childCollider = GetComponentInChildren<BoxCollider2D>();
+     //   HammerColider = GetComponentInChildren<Collider2D>();
 
 
     }
@@ -97,16 +98,19 @@ public class PlayerController : MonoBehaviour
     //START
     void Start()
     {
+       
 
         _idSpeed = Animator.StringToHash("_speed");
         _idGround = Animator.StringToHash("_isGround");
         _idFall = Animator.StringToHash("_isWall");
         _idKnock = Animator.StringToHash("_knockback");
         _idPsuh = Animator.StringToHash("_isPush");
-        
+        _idAttack = Animator.StringToHash("_isAtack");
 
 
         _counterExtraJumps = _extraJumps;
+
+      
 
 
     }
@@ -129,7 +133,7 @@ public class PlayerController : MonoBehaviour
         Move();
         if (!_isPushed)Jump();
         if (_isGrounded) PushObject();
-
+        Attack();
 
 
     }
@@ -263,6 +267,13 @@ public class PlayerController : MonoBehaviour
         m_animator.SetTrigger(_idKnock);
 
     }
+    public void Attack()
+    {
+        
+        if(m_ginput.Atack)
+            m_animator.SetTrigger(_idAttack);
+        Debug.Log("Atack is Pressed");
+    }
     private void PushObject()
     {
         m_collider.isTrigger = true;
@@ -270,14 +281,14 @@ public class PlayerController : MonoBehaviour
 
         {
             _isPushed = true;
-            childCollider.isTrigger = false;
+            m_collider.isTrigger = false;
             GameManager.instance.IsPushAction = true;
                 
         }
         else
         {
-            _isPushed = false;         
-            childCollider.isTrigger = true;
+            _isPushed = false;
+            m_collider.isTrigger = true;
             GameManager.instance.IsPushAction = false;
         }
     }
@@ -326,8 +337,9 @@ public class PlayerController : MonoBehaviour
     private void OnDrawGizmos()
     {
         Gizmos.DrawLine(m_transform.position, new Vector2(m_transform.position.x + (_rayWall * _direction), m_transform.position.y));
-        Gizmos.color = new Color(0f, 1f, 1f, 0.5f);
+        Gizmos.color = new Color(1f, 0, 0, 0.7f);
         Gizmos.DrawCube(m_collider.bounds.center, m_collider.bounds.size);
-
+        Gizmos.color = new Color(0f, 1f, 0, 0.7f);
+        Gizmos.DrawCube(HitBoxCollider.bounds.center, HitBoxCollider.bounds.size);
     }
 }

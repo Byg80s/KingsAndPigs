@@ -547,6 +547,15 @@
                     "processors": "",
                     "interactions": "",
                     "initialStateCheck": false
+                },
+                {
+                    "name": "Atack",
+                    "type": "Button",
+                    "id": "cc150b78-4243-4580-8735-ccf76abc5171",
+                    "expectedControlType": "",
+                    "processors": "",
+                    "interactions": "",
+                    "initialStateCheck": false
                 }
             ],
             "bindings": [
@@ -811,6 +820,28 @@
                     "processors": "",
                     "groups": ";Gamepad",
                     "action": "Push",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "92800a42-0399-436c-bdc2-45353dfe150f",
+                    "path": "<Keyboard>/x",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": ";Keyboard&Mouse",
+                    "action": "Atack",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "2a35a9f2-0171-45f0-9474-031233b846e3",
+                    "path": "<Gamepad>/buttonWest",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": ";Gamepad",
+                    "action": "Atack",
                     "isComposite": false,
                     "isPartOfComposite": false
                 }

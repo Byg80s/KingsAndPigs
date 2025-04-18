@@ -16,6 +16,8 @@ TagManager:
   - RespawnDoor
   - ExirDoor
   - Box
+  - Dust
+  - HurtBox
   layers:
   - Default
   - TransparentFX

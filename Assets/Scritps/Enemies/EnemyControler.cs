@@ -30,10 +30,10 @@ public class EnemyControler : MonoBehaviour
     [SerializeField] private bool _fly;
     [Header("Parameters Push Action")]
     [SerializeField] private bool _isPushed;
+
+
     [Header("Parameters Wall detection")]
-
     [SerializeField] private bool _wallDetected;
-
     [SerializeField] private bool _canWallDesliced;
     [SerializeField] private float _rayWall;
     [SerializeField] private float _speedDeslice;
@@ -43,6 +43,10 @@ public class EnemyControler : MonoBehaviour
     [SerializeField] private bool _isMove;
     [SerializeField] private EnemiesTypes TypeEnemie;
 
+
+    [Header("Live system")]
+    [SerializeField] private int _actualLife;
+    [SerializeField]private int _currentLife;
 
     // Raycast Variables
     RaycastHit2D LfootRay;
@@ -207,9 +211,31 @@ public class EnemyControler : MonoBehaviour
     void FollowPlayer()
     {
 
+        if ((m_PlayerTransform.position.x > transform.position.x && !_flip) || (m_PlayerTransform.position.x < transform.position.x && _flip))
+        {
+            Flip();
+        }
 
-
-        if (_PlayerDetected)
+        switch (TypeEnemie)
+        {
+            case EnemiesTypes.Melee:
+                if (_PlayerDetected)
+                transform.position = Vector2.MoveTowards(transform.position, new Vector2(m_PlayerTransform.position.x, transform.position.y), _speedMove * Time.deltaTime);
+                break;
+            case EnemiesTypes.Ranged:
+                if (_PlayerDetected)
+                    transform.position = Vector2.MoveTowards(transform.position, m_PlayerTransform.position, _speedMove * Time.deltaTime);
+                break;
+            case EnemiesTypes.Flying:
+                break;
+            case EnemiesTypes.Stealth:
+                break;
+            case EnemiesTypes.Boss:
+                break;
+            default:
+                break;
+        }
+ /*       if (_PlayerDetected )
         {
             transform.position = Vector2.MoveTowards(transform.position, new Vector2(m_PlayerTransform.position.x, transform.position.y), _speedMove * Time.deltaTime);
        //     transform.position = Vector2.MoveTowards(transform.position, m_PlayerTransform.position, _speedMove * Time.deltaTime);
@@ -219,11 +245,12 @@ public class EnemyControler : MonoBehaviour
                 Flip();
             }
         }
-
-        else
-        {
+ */
+        //else
+        //{
+        if(!_PlayerDetected)
             WatPointsMove();
-        }
+      //  }
 
     }
     void WatPointsMove()
@@ -270,5 +297,15 @@ public class EnemyControler : MonoBehaviour
         Gizmos.color = Color.green;
         Gizmos.DrawWireSphere(transform.position, _playerRay);
 
+    }
+
+    private void OnTriggerEnter2D(Collider2D collision)
+    {
+        if (collision.gameObject.CompareTag("HitBox"))
+        {
+            _actualLife--;
+            _currentLife += _actualLife;
+
+        }
     }
 }

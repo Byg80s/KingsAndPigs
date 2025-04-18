@@ -12,10 +12,11 @@ public class GatherInput : MonoBehaviour
     [SerializeField] private bool _push;
     public bool Push { get => _push; set => _push = value; }
 
-
     [SerializeField] private Vector2 _value;
     public Vector2 Value { get => _value; }
 
+    [SerializeField] private bool _isAtack;
+    public bool Atack { get => _isAtack; set => _isAtack = value; }
 
 
 
@@ -35,6 +36,8 @@ public class GatherInput : MonoBehaviour
         _controls.Player.Jump.canceled += StopJump;
         _controls.Player.Push.performed += StarPush;
         _controls.Player.Push.canceled += StopPush;
+        _controls.Player.Atack.performed += StartAtack;
+        _controls.Player.Atack.canceled += StoptAtack;
         _controls.Player.Enable();
 
     }
@@ -62,13 +65,23 @@ public class GatherInput : MonoBehaviour
     {
         IsJumping = false;
     }
+    //Action Push
     private void StarPush(InputAction.CallbackContext context)
     {
-        Push=true;
+        Push = true;
     }
     private void StopPush(InputAction.CallbackContext context)
     {
-        Push=false;
+        Push = false;
+    }
+    //Action Attack
+    private void StartAtack(InputAction.CallbackContext context)
+    {
+        Atack = true;
+    }
+    private void StoptAtack(InputAction.CallbackContext context)
+    {
+        Atack = false;
     }
     //DISABLE CONTROLS SYSTEM PLAYER
     private void OnDisable()
@@ -79,6 +92,8 @@ public class GatherInput : MonoBehaviour
         _controls.Player.Jump.canceled -= StopJump;
         _controls.Player.Push.performed -= StarPush;
         _controls.Player.Push.canceled -= StopPush;
+        _controls.Player.Atack.performed -= StartAtack;
+        _controls.Player.Atack.canceled -= StoptAtack;
         _controls.Player.Disable();
     }
 }

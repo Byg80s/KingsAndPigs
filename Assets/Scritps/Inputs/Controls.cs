@@ -633,6 +633,15 @@ public partial class @Controls: IInputActionCollection2, IDisposable
                     ""processors"": """",
                     ""interactions"": """",
                     ""initialStateCheck"": false
+                },
+                {
+                    ""name"": ""Atack"",
+                    ""type"": ""Button"",
+                    ""id"": ""cc150b78-4243-4580-8735-ccf76abc5171"",
+                    ""expectedControlType"": """",
+                    ""processors"": """",
+                    ""interactions"": """",
+                    ""initialStateCheck"": false
                 }
             ],
             ""bindings"": [
@@ -899,6 +908,28 @@ public partial class @Controls: IInputActionCollection2, IDisposable
                     ""action"": ""Push"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""92800a42-0399-436c-bdc2-45353dfe150f"",
+                    ""path"": ""<Keyboard>/x"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": "";Keyboard&Mouse"",
+                    ""action"": ""Atack"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""2a35a9f2-0171-45f0-9474-031233b846e3"",
+                    ""path"": ""<Gamepad>/buttonWest"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": "";Gamepad"",
+                    ""action"": ""Atack"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
                 }
             ]
         }
@@ -983,6 +1014,7 @@ public partial class @Controls: IInputActionCollection2, IDisposable
         m_Player_Jump = m_Player.FindAction("Jump", throwIfNotFound: true);
         m_Player_Move = m_Player.FindAction("Move", throwIfNotFound: true);
         m_Player_Push = m_Player.FindAction("Push", throwIfNotFound: true);
+        m_Player_Atack = m_Player.FindAction("Atack", throwIfNotFound: true);
     }
 
     ~@Controls()
@@ -1262,6 +1294,7 @@ public partial class @Controls: IInputActionCollection2, IDisposable
     private readonly InputAction m_Player_Jump;
     private readonly InputAction m_Player_Move;
     private readonly InputAction m_Player_Push;
+    private readonly InputAction m_Player_Atack;
     /// <summary>
     /// Provides access to input actions defined in input action map "Player".
     /// </summary>
@@ -1285,6 +1318,10 @@ public partial class @Controls: IInputActionCollection2, IDisposable
         /// Provides access to the underlying input action "Player/Push".
         /// </summary>
         public InputAction @Push => m_Wrapper.m_Player_Push;
+        /// <summary>
+        /// Provides access to the underlying input action "Player/Atack".
+        /// </summary>
+        public InputAction @Atack => m_Wrapper.m_Player_Atack;
         /// <summary>
         /// Provides access to the underlying input action map instance.
         /// </summary>
@@ -1320,6 +1357,9 @@ public partial class @Controls: IInputActionCollection2, IDisposable
             @Push.started += instance.OnPush;
             @Push.performed += instance.OnPush;
             @Push.canceled += instance.OnPush;
+            @Atack.started += instance.OnAtack;
+            @Atack.performed += instance.OnAtack;
+            @Atack.canceled += instance.OnAtack;
         }
 
         /// <summary>
@@ -1340,6 +1380,9 @@ public partial class @Controls: IInputActionCollection2, IDisposable
             @Push.started -= instance.OnPush;
             @Push.performed -= instance.OnPush;
             @Push.canceled -= instance.OnPush;
+            @Atack.started -= instance.OnAtack;
+            @Atack.performed -= instance.OnAtack;
+            @Atack.canceled -= instance.OnAtack;
         }
 
         /// <summary>
@@ -1544,5 +1587,12 @@ public partial class @Controls: IInputActionCollection2, IDisposable
         /// <seealso cref="UnityEngine.InputSystem.InputAction.performed" />
         /// <seealso cref="UnityEngine.InputSystem.InputAction.canceled" />
         void OnPush(InputAction.CallbackContext context);
+        /// <summary>
+        /// Method invoked when associated input action "Atack" is either <see cref="UnityEngine.InputSystem.InputAction.started" />, <see cref="UnityEngine.InputSystem.InputAction.performed" /> or <see cref="UnityEngine.InputSystem.InputAction.canceled" />.
+        /// </summary>
+        /// <seealso cref="UnityEngine.InputSystem.InputAction.started" />
+        /// <seealso cref="UnityEngine.InputSystem.InputAction.performed" />
+        /// <seealso cref="UnityEngine.InputSystem.InputAction.canceled" />
+        void OnAtack(InputAction.CallbackContext context);
     }
 }

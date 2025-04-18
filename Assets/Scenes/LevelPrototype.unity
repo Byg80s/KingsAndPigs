@@ -16693,7 +16693,7 @@ Transform:
   m_GameObject: {fileID: 519128817}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -22.1, y: -1.9199998, z: 0}
+  m_LocalPosition: {x: -21.81, y: -1.9199998, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -16832,7 +16832,7 @@ Transform:
   m_GameObject: {fileID: 519420028}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 23.424498, y: 2.85563, z: -10}
+  m_LocalPosition: {x: 22.362228, y: 2.85059, z: -10}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -72895,7 +72895,7 @@ Transform:
   m_GameObject: {fileID: 1683850580}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -17.81, y: -1.92, z: 0}
+  m_LocalPosition: {x: -17.99, y: -1.92, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -78176,7 +78176,7 @@ Rigidbody2D:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1782462178}
-  m_BodyType: 0
+  m_BodyType: 1
   m_Simulated: 1
   m_UseFullKinematicContacts: 0
   m_UseAutoMass: 0
@@ -78191,7 +78191,7 @@ Rigidbody2D:
   m_ExcludeLayers:
     serializedVersion: 2
     m_Bits: 0
-  m_Interpolate: 0
+  m_Interpolate: 1
   m_SleepingMode: 1
   m_CollisionDetection: 0
   m_Constraints: 4
@@ -78222,14 +78222,14 @@ MonoBehaviour:
   _currentLife: 0
   Lfoot: {fileID: 329983792}
   Rfoot: {fileID: 909071276}
-  RayDetectPlayer: 0
+  RayGround: 0.5
   _isNocked: 0
   _isCanNocked: 0
   _KnockForce: {x: 0, y: 0}
   _knockDuration: 0
   GroundLayer:
     serializedVersion: 2
-    m_Bits: 0
+    m_Bits: 128
   PlayerLayer:
     serializedVersion: 2
     m_Bits: 64
@@ -78237,7 +78237,7 @@ MonoBehaviour:
   m_Way:
   - {fileID: 1683850581}
   - {fileID: 519128818}
-  _index: 0
+  _index: 1
   _speedMove: 3
 --- !u!1 &1812981608
 GameObject:

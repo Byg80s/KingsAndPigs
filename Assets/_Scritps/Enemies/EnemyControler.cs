@@ -58,7 +58,7 @@ public class EnemyControler : MonoBehaviour
     [SerializeField] private Transform Lfoot;
     [SerializeField] private Transform Rfoot;
 
-    [SerializeField] private float RayDetectPlayer;
+    [SerializeField] private float RayGround;
     //Knock Settings
     [Header("parameters Knock")]
     [SerializeField] private bool _isNocked;
@@ -99,12 +99,13 @@ public class EnemyControler : MonoBehaviour
         _idFall = Animator.StringToHash("_isWall");
         _idKnock = Animator.StringToHash("_knockback");
         _idPsuh = Animator.StringToHash("_isPush");
-        playerFollow = GameObject.FindGameObjectWithTag("Player");
-        newPlayer = playerFollow.GetComponent<Transform>();
+        newPlayer = GameManager.instance.PlayerControler.transform;
+        _index = 0;
     }
 
     void Update()
     {
+
         Animations();
     }
     private void FixedUpdate()
@@ -112,7 +113,9 @@ public class EnemyControler : MonoBehaviour
         if (_isNocked) return;
         CheckColision();
         EnemiIA();
-        Move();
+        // Move();
+        if (!_PlayerDetected)
+            WatPointsMove();
     }
 
 
@@ -120,7 +123,6 @@ public class EnemyControler : MonoBehaviour
     private void Animations()
     {
         m_animator.SetBool(_idGround, _isGrounded);
-        m_animator.SetBool(_idPsuh, _isPushed);
     }
 
     //Check Ground
@@ -134,8 +136,8 @@ public class EnemyControler : MonoBehaviour
 
     private void HandleGround()
     {
-        LfootRay = Physics2D.Raycast(Lfoot.position, Vector2.down, RayDetectPlayer, GroundLayer);
-        RfootRay = Physics2D.Raycast(Rfoot.position, Vector2.down, RayDetectPlayer, GroundLayer);
+        LfootRay = Physics2D.Raycast(Lfoot.position, Vector2.down, RayGround, GroundLayer);
+        RfootRay = Physics2D.Raycast(Rfoot.position, Vector2.down, RayGround, GroundLayer);
 
         if (LfootRay || RfootRay)
         {
@@ -158,7 +160,7 @@ public class EnemyControler : MonoBehaviour
 
 
 
-         _PlayerDetected = Physics2D.OverlapCircle(newPlayer.position, _playerRay, PlayerLayer);
+        _PlayerDetected = Physics2D.OverlapCircle(transform.position, _playerRay, PlayerLayer);
 
     }
 
@@ -223,7 +225,7 @@ public class EnemyControler : MonoBehaviour
     {
 
 
-        if (m_Way.Length == 0) return;
+     if (m_Way.Length == 0) return;
 
 
         transform.position = Vector2.MoveTowards(transform.position, m_Way[_index].transform.position, _speed * Time.deltaTime);
@@ -240,10 +242,11 @@ public class EnemyControler : MonoBehaviour
         {
             _index = 0;
         }
+
     }
 
     //IEnumerators
-   
+
     IEnumerator WaitKnock(float time)
     {
         _isNocked = true;

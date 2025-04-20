@@ -344,11 +344,6 @@ public class PlayerController : MonoBehaviour
     }
     private void OnDrawGizmos()
     {
-        //   Gizmos.DrawLine(m_transform.position, new Vector2(m_transform.position.x + (_rayWall * _direction), m_transform.position.y));
-        //  Gizmos.color = new Color(1f, 0, 0, 0.7f);
-        // Gizmos.DrawCube(m_collider.bounds.center, m_collider.bounds.size);
-        // Gizmos.color = new Color(0f, 1f, 0, 0.7f);
-        // Gizmos.DrawCube(HitBoxCollider.bounds.center, HitBoxCollider.bounds.size);
         Gizmos.color = new Color(1f, 1f, 0, 0.7f);
         Gizmos.DrawCube(m_colliderChildren[0].bounds.center, m_colliderChildren[0].bounds.size);
         Gizmos.color = new Color(0f, 1f, 0, 0.7f);
@@ -364,4 +359,5 @@ public class PlayerController : MonoBehaviour
             
         }
     }
+ 
 }

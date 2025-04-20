@@ -10,6 +10,7 @@ GameObject:
   m_Component:
   - component: {fileID: 9166191431359893907}
   - component: {fileID: 5288423109862564644}
+  - component: {fileID: 3176074449466883504}
   m_Layer: 16
   m_Name: HitBox
   m_TagString: HitBoxEnemy
@@ -45,7 +46,7 @@ BoxCollider2D:
   m_Material: {fileID: 0}
   m_IncludeLayers:
     serializedVersion: 2
-    m_Bits: 0
+    m_Bits: 32768
   m_ExcludeLayers:
     serializedVersion: 2
     m_Bits: 0
@@ -78,6 +79,18 @@ BoxCollider2D:
   m_AutoTiling: 0
   m_Size: {x: 0.52863216, y: 0.5129199}
   m_EdgeRadius: 0
+--- !u!114 &3176074449466883504
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 635579477411342661}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 1ef14fe7aeb41b24b8cb690e8b9a36d4, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &4115527659283050799
 GameObject:
   m_ObjectHideFlags: 0
@@ -119,7 +132,8 @@ GameObject:
   m_Component:
   - component: {fileID: 769524347033071139}
   - component: {fileID: 1748438287479447610}
-  m_Layer: 16
+  - component: {fileID: 7389188835552410248}
+  m_Layer: 17
   m_Name: HurtBox
   m_TagString: HurtBoxEnemy
   m_Icon: {fileID: 0}
@@ -187,6 +201,18 @@ BoxCollider2D:
   m_AutoTiling: 0
   m_Size: {x: 1.3692775, y: 0.7216613}
   m_EdgeRadius: 0
+--- !u!114 &7389188835552410248
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5542342958514481289}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: bcacbb065fa37ee41ac4f4deec9115f0, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &6169261018607900832
 GameObject:
   m_ObjectHideFlags: 0

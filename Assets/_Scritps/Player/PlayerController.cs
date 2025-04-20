@@ -57,6 +57,7 @@ public class PlayerController : MonoBehaviour
     private int _idKnock;
     private int _idPsuh;
     private int _idAttack;
+    private int _idSwitch;
 
 
     //RayCast Ground
@@ -87,7 +88,7 @@ public class PlayerController : MonoBehaviour
 
     private void Awake()
     {
-        
+
         m_rb = GetComponent<Rigidbody2D>();
         m_ginput = GetComponent<GatherInput>();
         m_animator = GetComponent<Animator>();
@@ -103,21 +104,23 @@ public class PlayerController : MonoBehaviour
         _idKnock = Animator.StringToHash("_knockback");
         _idPsuh = Animator.StringToHash("_isPush");
         _idAttack = Animator.StringToHash("_isAtack");
+        _idSwitch = Animator.StringToHash("_isPushButton");
 
         m_colliderChildren[0].enabled = false;
         m_colliderChildren[1].enabled = false;
 
         _counterExtraJumps = _extraJumps;
-
+    
 
 
     }
-   
-    
+
+
     void Update()
     {
         Animations();
         DamageNeedDead();
+     
     }
     private void FixedUpdate()
     {
@@ -127,9 +130,7 @@ public class PlayerController : MonoBehaviour
         BlockInputs();
         Move();
         if (!_isPushed) Jump();
-        if (_isGrounded) PushObject();
-        Attack();
-
+    
     }
 
 
@@ -140,6 +141,11 @@ public class PlayerController : MonoBehaviour
         m_animator.SetBool(_idGround, _isGrounded);
         m_animator.SetBool(_idFall, _wallDetected);
         m_animator.SetBool(_idPsuh, _isPushed);
+
+        if (_isGrounded) PushObject();
+        Attack();
+
+
     }
 
     //Check Ground
@@ -311,10 +317,10 @@ public class PlayerController : MonoBehaviour
     }
     public void Died()
     {
-       
+
         GameObject DeathVfxPrefab = Instantiate(DeathVfx, transform.position, Quaternion.identity);
         Destroy(gameObject);
-       
+
     }
     public void ExitLevel()
     {
@@ -342,6 +348,7 @@ public class PlayerController : MonoBehaviour
             Died();
         }
     }
+  
     private void OnDrawGizmos()
     {
         Gizmos.color = new Color(1f, 1f, 0, 0.7f);
@@ -351,13 +358,6 @@ public class PlayerController : MonoBehaviour
         Gizmos.color = new Color(1f, 0, 0, 0.7f);
         Gizmos.DrawCube(m_colliderChildren[2].bounds.center, m_colliderChildren[2].bounds.size);
     }
-    private void OnTriggerEnter2D(Collider2D collision)
-    {
-        if (collision.gameObject.CompareTag("HitBoxEnemy"))
-        {
-            GameManager.instance.CurrentLife--;  
-            
-        }
-    }
- 
+   
+   
 }

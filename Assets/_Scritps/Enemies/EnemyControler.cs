@@ -49,6 +49,8 @@ public class EnemyControler : MonoBehaviour
 
     [Header("Live system")]
     [SerializeField] private int _actualLife;
+    public int ActualLife { get => _actualLife; set => _actualLife = value; }
+
     [SerializeField] private int _currentLife;
 
     // Raycast Variables
@@ -103,6 +105,7 @@ public class EnemyControler : MonoBehaviour
 
 
 
+
     //START
     void Start()
     {
@@ -121,6 +124,7 @@ public class EnemyControler : MonoBehaviour
     {
         Animations();
         EnemiIaNoPhysics();
+        Dead();
     }
     private void FixedUpdate()
     {
@@ -130,6 +134,11 @@ public class EnemyControler : MonoBehaviour
         CheckColision();
         if (m_PlayerTransform != null) EnemiIaWithPhysic();
         //  KnockBack();
+    }
+    void Dead()
+    {
+        if(_actualLife<=0)
+            Destroy(gameObject);
     }
     void ChangeRigidBodyType()
     {
@@ -375,20 +384,6 @@ public class EnemyControler : MonoBehaviour
 
     private void OnTriggerEnter2D(Collider2D collision)
     {
-        if (collision.CompareTag("HitBox"))
-        {
-
-            //  m_colliderChildren[1].isTrigger = true;
-            Debug.Log("Is damage recibe");
-            KnockBack();
-            _actualLife--;
-            _actualLife -= _currentLife;
-            //  _currentLife += _actualLife;
-            if (_actualLife <= 0)
-                Destroy(gameObject);
-
-        }
-
 
         //This is ok
         if (collision.CompareTag("HurtBox"))
@@ -397,7 +392,7 @@ public class EnemyControler : MonoBehaviour
 
 
             m_colliderChildren[0].isTrigger = true;
-            Debug.Log("done damage");
+           
 
         }
         if (m_colliderChildren[0].isTrigger)

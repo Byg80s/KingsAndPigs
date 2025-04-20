@@ -23,7 +23,8 @@ public class GameManager : MonoBehaviour
     public int CurrentLife { get => _CurrentLife; set => _CurrentLife = value; }
     [SerializeField] private int _ActualLife;
     public int ActualLife { get => _ActualLife; set => _ActualLife = value; }
-
+    [SerializeField] private int _NumberOfLives;
+    public int NumberOfLives { get => _NumberOfLives; set => _NumberOfLives = value; }
 
     public PlayerController PlayerControler => _playerControler;
     [SerializeField] private int _timeRespawn;

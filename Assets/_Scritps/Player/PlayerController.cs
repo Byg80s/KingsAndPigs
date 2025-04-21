@@ -3,7 +3,6 @@ using System.Collections;
 using System.Collections.Generic;
 using Unity.VisualScripting;
 using UnityEngine;
-using static UnityEditor.Experimental.GraphView.GraphView;
 
 public class PlayerController : MonoBehaviour
 {
@@ -85,7 +84,7 @@ public class PlayerController : MonoBehaviour
     [Header("Player Inside Door VFX")]
     [SerializeField] private GameObject IndoorVfx;
 
-
+    private bool attack;
     private void Awake()
     {
 
@@ -110,7 +109,7 @@ public class PlayerController : MonoBehaviour
         m_colliderChildren[1].enabled = false;
 
         _counterExtraJumps = _extraJumps;
-    
+
 
 
     }
@@ -120,7 +119,7 @@ public class PlayerController : MonoBehaviour
     {
         Animations();
         DamageNeedDead();
-     
+
     }
     private void FixedUpdate()
     {
@@ -130,7 +129,7 @@ public class PlayerController : MonoBehaviour
         BlockInputs();
         Move();
         if (!_isPushed) Jump();
-    
+
     }
 
 
@@ -141,7 +140,6 @@ public class PlayerController : MonoBehaviour
         m_animator.SetBool(_idGround, _isGrounded);
         m_animator.SetBool(_idFall, _wallDetected);
         m_animator.SetBool(_idPsuh, _isPushed);
-
         if (_isGrounded) PushObject();
         Attack();
 
@@ -154,12 +152,13 @@ public class PlayerController : MonoBehaviour
 
 
         HandleWall();
+
         HandleWallDeslice();
         HandleGround();
     }
 
 
-
+    //Detected ground and configure double jump
     private void HandleGround()
     {
         LfootRay = Physics2D.Raycast(Lfoot.position, Vector2.down, rayGround, GroundLayer);
@@ -176,34 +175,30 @@ public class PlayerController : MonoBehaviour
             _isGrounded = false;
         }
     }
+    #region WallDetect 
+    //If wall is detected is posible jump in wall and deslice slowly
     private void HandleWallDeslice()
     {
         _canWallDesliced = _wallDetected;
-
-
         if (!_canWallDesliced) return;
         _canDoubleJumped = false;
-
         _speedDeslice = m_ginput.Value.y < 0 ? 1 : 0.5f;
         m_rb.linearVelocity = new Vector2(m_rb.linearVelocityX, m_rb.linearVelocityY * _speedDeslice);
-
     }
+    // If press Z button Pad detecte the wall
     private void HandleWall()
-
     {
-        _wallDetected = Physics2D.Raycast(m_transform.position, Vector2.right * _direction, _rayWall, GroundLayer);
+        if (m_ginput.IsWall)
+            _wallDetected = Physics2D.Raycast(m_transform.position, Vector2.right * _direction, _rayWall, GroundLayer);
+        else _wallDetected = false;
     }
-
+    #endregion
     //Movement directional
 
     private void Move()
     {
-
-
         if (_wallDetected && !_isGrounded) return;
         if (_isWallJumping) return;
-
-
         Flip();
         m_rb.linearVelocity = new Vector2(_speed * m_ginput.Value.x, m_rb.linearVelocity.y);
     }
@@ -211,12 +206,10 @@ public class PlayerController : MonoBehaviour
     // Flip Player
     private void Flip()
     {
-        if (m_ginput.Value.x * _direction < 0 && !GameManager.instance.blockInputs)
+        if (m_ginput.Value.x * _direction < 0 )//&& !GameManager.instance.blockInputs)
         {
-
             HandleDirection();
         }
-
     }
 
     private void HandleDirection()
@@ -232,18 +225,14 @@ public class PlayerController : MonoBehaviour
         {
             if (_isGrounded)
             {
-
                 m_rb.linearVelocity = new Vector2(_speed * m_ginput.Value.x, _jumpForce);
                 _canDoubleJumped = true;
             }
             else if (_wallDetected) WallJump();
 
             else if (_counterExtraJumps > 0 && _canDoubleJumped) DoubleJump();
-
         }
-
         m_ginput.IsJumping = false;
-
     }
     private void WallJump()
     {
@@ -255,7 +244,6 @@ public class PlayerController : MonoBehaviour
 
     private void DoubleJump()
     {
-
         m_rb.linearVelocity = new Vector2(_speed * m_ginput.Value.x, _jumpForce);
         if (_canDoubleJumped)
             _counterExtraJumps--;
@@ -265,15 +253,18 @@ public class PlayerController : MonoBehaviour
         StartCoroutine(WaitKnock(_knockDuration));
         m_rb.linearVelocity = new Vector2(_KnockForce.x * -_direction, _KnockForce.y);
         m_animator.SetTrigger(_idKnock);
-
     }
     public void Attack()
     {
+        AnimatorStateInfo state = m_animator.GetCurrentAnimatorStateInfo(0);
 
-        if (m_ginput.Atack)
+        if (state.IsName("Atack"))
+            attack = true;
+        else
+            attack = false;
+        if (attack)
         {
             m_colliderChildren[1].enabled = true;
-            m_animator.SetTrigger(_idAttack);
         }
         else
         {
@@ -281,6 +272,8 @@ public class PlayerController : MonoBehaviour
         }
 
     }
+
+    // this need checked and remove GameManager.instance
     private void PushObject()
     {
         if (m_ginput.Push)
@@ -348,7 +341,7 @@ public class PlayerController : MonoBehaviour
             Died();
         }
     }
-  
+
     private void OnDrawGizmos()
     {
         Gizmos.color = new Color(1f, 1f, 0, 0.7f);
@@ -358,6 +351,6 @@ public class PlayerController : MonoBehaviour
         Gizmos.color = new Color(1f, 0, 0, 0.7f);
         Gizmos.DrawCube(m_colliderChildren[2].bounds.center, m_colliderChildren[2].bounds.size);
     }
-   
-   
+
+
 }

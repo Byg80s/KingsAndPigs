@@ -18,12 +18,21 @@ public class GatherInput : MonoBehaviour
     [SerializeField] private bool _isAtack;
     public bool Atack { get => _isAtack; set => _isAtack = value; }
 
+    [SerializeField] private bool _isWall;
+    public bool IsWall { get => _isWall; set => _isWall = value; }
+
+
+
+    //Components
+    private Animator _animator;
+
 
 
     // FIRST CALL
     private void Awake()
     {
         _controls = new Controls();
+        _animator = GetComponent<Animator>();
     }
 
 
@@ -36,8 +45,10 @@ public class GatherInput : MonoBehaviour
         _controls.Player.Jump.canceled += StopJump;
         _controls.Player.Push.performed += StarPush;
         _controls.Player.Push.canceled += StopPush;
-        _controls.Player.Atack.performed += StartAtack;
-        _controls.Player.Atack.canceled += StoptAtack;
+        _controls.Player.Atack.started += StartAtack;
+        _controls.Player.Wall.performed += StartWallPos;
+        _controls.Player.Wall.canceled += StopWallPos;
+
         _controls.Player.Enable();
 
     }
@@ -77,11 +88,20 @@ public class GatherInput : MonoBehaviour
     //Action Attack
     private void StartAtack(InputAction.CallbackContext context)
     {
-        Atack = true;
+        _animator.SetTrigger("_isAtack");
+       // Atack =!Atack;
     }
     private void StoptAtack(InputAction.CallbackContext context)
     {
         Atack = false;
+    }
+    private void StartWallPos(InputAction.CallbackContext context)
+    {
+        IsWall = true;
+    }
+    private void StopWallPos(InputAction.CallbackContext context)
+    {
+        IsWall = false;
     }
     //DISABLE CONTROLS SYSTEM PLAYER
     private void OnDisable()
@@ -92,8 +112,9 @@ public class GatherInput : MonoBehaviour
         _controls.Player.Jump.canceled -= StopJump;
         _controls.Player.Push.performed -= StarPush;
         _controls.Player.Push.canceled -= StopPush;
-        _controls.Player.Atack.performed -= StartAtack;
-        _controls.Player.Atack.canceled -= StoptAtack;
+        _controls.Player.Atack.started -= StartAtack;
+        _controls.Player.Wall.performed -= StartWallPos;
+        _controls.Player.Wall.canceled -= StopWallPos;
         _controls.Player.Disable();
     }
 }

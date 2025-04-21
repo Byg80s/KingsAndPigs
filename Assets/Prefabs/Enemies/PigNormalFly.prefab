@@ -238,27 +238,26 @@ MonoBehaviour:
   - {fileID: 5764446484414337294}
   _speed: 1.5
   _isGrounded: 0
-  _distanceChange: 0.2
-  _usePhysics: 1
+  waitTiemAtack: 0
+  movementFoPhysics: 1
+  _isWaitMovement: 0
+  timeWaitPatrol: 5
   checkPlayerDetection: 0
   _isAtacking: 0
+  _distanceChangeFollowPlayer: 0
   _radiusDetectPlayer: 6
   _radiusAtackPlayer: 0.5
-  _distance: 0
-  _fly: 0
-  _isPushed: 0
-  _rayWall: 0
-  _isMove: 0
-  TypeEnemie: 1
+  _distanceChange: 0.2
+  TypeEnemie: 0
   EnemyStates: 0
   _actualLife: 10
   _currentLife: 0
   Lfoot: {fileID: 7656342058878898052}
   Rfoot: {fileID: 8008980043492437089}
-  RayGround: 0.5
+  RayGround: 2
   _isNocked: 0
   _isCanNocked: 0
-  _KnockForce: {x: 0.5, y: 3}
+  _KnockForce: {x: 3, y: 0.5}
   _knockDuration: 0.1
   GroundLayer:
     serializedVersion: 2
@@ -266,15 +265,12 @@ MonoBehaviour:
   PlayerLayer:
     serializedVersion: 2
     m_Bits: 64
+  _speedMove: 2.5
   _ignoreWayPoints: 0
   m_Way:
   - {fileID: 0}
   - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
   _index: 1
-  _speedMove: 2.5
 --- !u!1 &4323404605432090085
 GameObject:
   m_ObjectHideFlags: 0
@@ -285,6 +281,7 @@ GameObject:
   m_Component:
   - component: {fileID: 3112560106642958781}
   - component: {fileID: 5708138810404790375}
+  - component: {fileID: 3789586677406990895}
   m_Layer: 16
   m_Name: HitBox
   m_TagString: HitBoxEnemy
@@ -353,6 +350,18 @@ BoxCollider2D:
   m_AutoTiling: 0
   m_Size: {x: 0.52863216, y: 0.54444814}
   m_EdgeRadius: 0
+--- !u!114 &3789586677406990895
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4323404605432090085}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 1ef14fe7aeb41b24b8cb690e8b9a36d4, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &7133939100947698055
 GameObject:
   m_ObjectHideFlags: 0
@@ -394,7 +403,8 @@ GameObject:
   m_Component:
   - component: {fileID: 296248964900645729}
   - component: {fileID: 5764446484414337294}
-  m_Layer: 16
+  - component: {fileID: 4792620752720055868}
+  m_Layer: 17
   m_Name: HurtBox
   m_TagString: HurtBoxEnemy
   m_Icon: {fileID: 0}
@@ -462,3 +472,15 @@ BoxCollider2D:
   m_AutoTiling: 0
   m_Size: {x: 0.485404, y: 0.5411737}
   m_EdgeRadius: 0
+--- !u!114 &4792620752720055868
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8179236983383474111}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: bcacbb065fa37ee41ac4f4deec9115f0, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 

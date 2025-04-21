@@ -642,6 +642,15 @@ public partial class @Controls: IInputActionCollection2, IDisposable
                     ""processors"": """",
                     ""interactions"": """",
                     ""initialStateCheck"": false
+                },
+                {
+                    ""name"": ""Wall"",
+                    ""type"": ""Button"",
+                    ""id"": ""b9bc8732-a048-4dd1-b2bc-caf5a7346e18"",
+                    ""expectedControlType"": """",
+                    ""processors"": """",
+                    ""interactions"": """",
+                    ""initialStateCheck"": false
                 }
             ],
             ""bindings"": [
@@ -901,7 +910,7 @@ public partial class @Controls: IInputActionCollection2, IDisposable
                 {
                     ""name"": """",
                     ""id"": ""ed8116fd-31f6-4571-994c-e6be8ee151fe"",
-                    ""path"": ""<Gamepad>/rightTrigger"",
+                    ""path"": ""<Gamepad>/leftTrigger"",
                     ""interactions"": """",
                     ""processors"": """",
                     ""groups"": "";Gamepad"",
@@ -928,6 +937,28 @@ public partial class @Controls: IInputActionCollection2, IDisposable
                     ""processors"": """",
                     ""groups"": "";Gamepad"",
                     ""action"": ""Atack"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""08d06f1e-d3fb-4e6e-b2b8-0db9aea7c87b"",
+                    ""path"": ""<Gamepad>/rightTrigger"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": "";Gamepad"",
+                    ""action"": ""Wall"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""43e1d791-682a-47ce-86fa-eb42125f8588"",
+                    ""path"": ""<Keyboard>/c"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""Wall"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": false
                 }
@@ -1015,6 +1046,7 @@ public partial class @Controls: IInputActionCollection2, IDisposable
         m_Player_Move = m_Player.FindAction("Move", throwIfNotFound: true);
         m_Player_Push = m_Player.FindAction("Push", throwIfNotFound: true);
         m_Player_Atack = m_Player.FindAction("Atack", throwIfNotFound: true);
+        m_Player_Wall = m_Player.FindAction("Wall", throwIfNotFound: true);
     }
 
     ~@Controls()
@@ -1295,6 +1327,7 @@ public partial class @Controls: IInputActionCollection2, IDisposable
     private readonly InputAction m_Player_Move;
     private readonly InputAction m_Player_Push;
     private readonly InputAction m_Player_Atack;
+    private readonly InputAction m_Player_Wall;
     /// <summary>
     /// Provides access to input actions defined in input action map "Player".
     /// </summary>
@@ -1322,6 +1355,10 @@ public partial class @Controls: IInputActionCollection2, IDisposable
         /// Provides access to the underlying input action "Player/Atack".
         /// </summary>
         public InputAction @Atack => m_Wrapper.m_Player_Atack;
+        /// <summary>
+        /// Provides access to the underlying input action "Player/Wall".
+        /// </summary>
+        public InputAction @Wall => m_Wrapper.m_Player_Wall;
         /// <summary>
         /// Provides access to the underlying input action map instance.
         /// </summary>
@@ -1360,6 +1397,9 @@ public partial class @Controls: IInputActionCollection2, IDisposable
             @Atack.started += instance.OnAtack;
             @Atack.performed += instance.OnAtack;
             @Atack.canceled += instance.OnAtack;
+            @Wall.started += instance.OnWall;
+            @Wall.performed += instance.OnWall;
+            @Wall.canceled += instance.OnWall;
         }
 
         /// <summary>
@@ -1383,6 +1423,9 @@ public partial class @Controls: IInputActionCollection2, IDisposable
             @Atack.started -= instance.OnAtack;
             @Atack.performed -= instance.OnAtack;
             @Atack.canceled -= instance.OnAtack;
+            @Wall.started -= instance.OnWall;
+            @Wall.performed -= instance.OnWall;
+            @Wall.canceled -= instance.OnWall;
         }
 
         /// <summary>
@@ -1594,5 +1637,12 @@ public partial class @Controls: IInputActionCollection2, IDisposable
         /// <seealso cref="UnityEngine.InputSystem.InputAction.performed" />
         /// <seealso cref="UnityEngine.InputSystem.InputAction.canceled" />
         void OnAtack(InputAction.CallbackContext context);
+        /// <summary>
+        /// Method invoked when associated input action "Wall" is either <see cref="UnityEngine.InputSystem.InputAction.started" />, <see cref="UnityEngine.InputSystem.InputAction.performed" /> or <see cref="UnityEngine.InputSystem.InputAction.canceled" />.
+        /// </summary>
+        /// <seealso cref="UnityEngine.InputSystem.InputAction.started" />
+        /// <seealso cref="UnityEngine.InputSystem.InputAction.performed" />
+        /// <seealso cref="UnityEngine.InputSystem.InputAction.canceled" />
+        void OnWall(InputAction.CallbackContext context);
     }
 }

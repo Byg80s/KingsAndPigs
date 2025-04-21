@@ -407,11 +407,13 @@ MonoBehaviour:
   _isGrounded: 0
   waitTiemAtack: 5
   movementFoPhysics: 1
+  _isWaitMovement: 0
+  timeWaitPatrol: 3
   checkPlayerDetection: 0
   _isAtacking: 0
   _distanceChangeFollowPlayer: 0
-  _radiusDetectPlayer: 3
-  _radiusAtackPlayer: 0.5
+  _radiusDetectPlayer: 2.31
+  _radiusAtackPlayer: 0.44
   _distanceChange: 0.2
   TypeEnemie: 0
   EnemyStates: 0
@@ -422,7 +424,7 @@ MonoBehaviour:
   RayGround: 0.5
   _isNocked: 0
   _isCanNocked: 0
-  _KnockForce: {x: 0.5, y: 3}
+  _KnockForce: {x: 3, y: 0.5}
   _knockDuration: 1
   GroundLayer:
     serializedVersion: 2

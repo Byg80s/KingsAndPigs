@@ -21,6 +21,9 @@ TagManager:
   - HitBoxEnemy
   - HurtBoxEnemy
   - Switch
+  - EarthWave
+  - BombsZone
+  - Bomb
   layers:
   - Default
   - TransparentFX
@@ -40,10 +43,10 @@ TagManager:
   - HurtBoxPlayer
   - HitBoxEnemie
   - HurtBoxEnemie
-  - 
-  - 
-  - 
-  - 
+  - HitBoxBombs
+  - HurtBoxBombs
+  - HitBoms
+  - HurtBoms
   - 
   - 
   - 

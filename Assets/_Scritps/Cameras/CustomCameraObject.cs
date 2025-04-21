@@ -70,7 +70,6 @@ public class CustomCameraObject : MonoBehaviour
                 _SpriteRenderer.enabled = true;
             }
         
-            Debug.Log("IS ENABLE. " + _SpriteRenderer.enabled);
             StartCoroutine(UnblockInput(_TimeBlockInputs));
         }
       
@@ -79,12 +78,12 @@ public class CustomCameraObject : MonoBehaviour
     {
         yield return new WaitForSeconds(time);
         _enabled = true;
-        _gameManager.blockInputs = true;
+      //  _gameManager.blockInputs = true;
     }
     IEnumerator UnblockInput(float time)
     {
         yield return new WaitForSeconds(_TimeBlockInputs);
-        _gameManager.blockInputs = false;
+     //   _gameManager.blockInputs = false;
         _Composer.TargetOffset.y = 0f;
         _Composer.TargetOffset.x = 0f;
         Destroy(_firstCamera);

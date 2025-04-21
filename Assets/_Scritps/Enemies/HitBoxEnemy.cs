@@ -8,9 +8,13 @@ public class HitBoxEnemy : MonoBehaviour
 
         if (collision.CompareTag("HurtBox"))
         {
-            collision.GetComponentInParent <PlayerController>().KnockBack();
+
+            collision.GetComponentInParent<PlayerController>().KnockBack();
         }
         Debug.Log("The Player Have Damage");
+        //This is ok
+
 
     }
+
 }

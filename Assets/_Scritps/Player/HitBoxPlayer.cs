@@ -33,7 +33,7 @@ public class HitBoxPlayer : MonoBehaviour
 
     IEnumerator TimeAnimation()
     {
-        yield return new WaitForSeconds(3);
+        yield return new WaitForSeconds(2);
         m_anim.SetBool("_isPushButton", false);
     }
 

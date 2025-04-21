@@ -293,7 +293,7 @@ public class EnemyControler : MonoBehaviour
 
     void FollowPlayerNoPhysics()
     {
-        if (m_PlayerTransform != null)
+        if (m_PlayerTransform != null || _actualLife > 0)
         {
 
 
@@ -438,7 +438,7 @@ public class EnemyControler : MonoBehaviour
         switch (TypeEnemie)
         {
             case EnemiesTypes.Melee:
-                if (m_PlayerTransform != null && _actualLife > 0)
+                if (m_PlayerTransform != null || _actualLife > 0)
                 {
                     Vector3 PlayerPos = m_PlayerTransform.position;
                     Vector3 DirectionFollow = (PlayerPos - transform.position);
@@ -457,10 +457,10 @@ public class EnemyControler : MonoBehaviour
                 break;
             case EnemiesTypes.Boss:
 
-                if (m_PlayerTransform != null && _actualLife > 0)
+                if (m_PlayerTransform != null || _actualLife > 0)
                 {
-                 
-                   
+
+
                     float direction = Mathf.Sign(m_PlayerTransform.position.x - transform.position.x);//transform.position.normalized);
                     m_rb.linearVelocity = new Vector2(direction * _speedMove, m_rb.linearVelocity.y);
 
@@ -475,7 +475,7 @@ public class EnemyControler : MonoBehaviour
                         _makeBomb.activeBombs = false;
                     }
                 }
-              break;
+                break;
         }
     }
 

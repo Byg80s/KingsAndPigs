@@ -19,14 +19,22 @@ public class PlayerController : MonoBehaviour
 
     //Values
     [Header("Parameters Movement")]
+    [Tooltip("Define the speed run player")]
     [SerializeField] private float _speed;
+    [Tooltip("block or unlook the movement of player")]
+    [SerializeField] private bool _canMove;
+    [Tooltip("Time of delay of block movement")]
+    [SerializeField] private float _moveDelay;
     private int _direction = 1;
 
     [Header("Parameters Jump")]
+    [Tooltip("Force of Jump Player")]
     [SerializeField] private float _jumpForce;
+    [Tooltip("Number of jumps extra")]
     [SerializeField] private int _extraJumps;
     [SerializeField] private int _counterExtraJumps;
     [SerializeField] private bool _isGrounded;
+    [Tooltip("Permit doubleJump")]
     [SerializeField] private bool _canDoubleJumped;
 
     [Header("Parameters Push Action")]
@@ -91,6 +99,8 @@ public class PlayerController : MonoBehaviour
         m_rb = GetComponent<Rigidbody2D>();
         m_ginput = GetComponent<GatherInput>();
         m_animator = GetComponent<Animator>();
+        _canMove = false;
+        StartCoroutine(BlockMovement(_moveDelay));
 
     }
 
@@ -102,7 +112,7 @@ public class PlayerController : MonoBehaviour
         _idFall = Animator.StringToHash("_isWall");
         _idKnock = Animator.StringToHash("_knockback");
         _idPsuh = Animator.StringToHash("_isPush");
-        _idAttack = Animator.StringToHash("_isAtack");
+        _idAttack = Animator.StringToHash("_isAttack");
         _idSwitch = Animator.StringToHash("_isPushButton");
 
         m_colliderChildren[0].enabled = false;
@@ -123,13 +133,13 @@ public class PlayerController : MonoBehaviour
     }
     private void FixedUpdate()
     {
+        if (!_canMove) return;
         if (_isNocked) return;
         CheckColision();
         //Block Player Movement
         BlockInputs();
         Move();
         if (!_isPushed) Jump();
-
     }
 
 
@@ -142,17 +152,12 @@ public class PlayerController : MonoBehaviour
         m_animator.SetBool(_idPsuh, _isPushed);
         if (_isGrounded) PushObject();
         Attack();
-
-
     }
 
     //Check Ground
     private void CheckColision()
     {
-
-
         HandleWall();
-
         HandleWallDeslice();
         HandleGround();
     }
@@ -197,6 +202,7 @@ public class PlayerController : MonoBehaviour
 
     private void Move()
     {
+        if (!_canMove) return;
         if (_wallDetected && !_isGrounded) return;
         if (_isWallJumping) return;
         Flip();
@@ -206,7 +212,7 @@ public class PlayerController : MonoBehaviour
     // Flip Player
     private void Flip()
     {
-        if (m_ginput.Value.x * _direction < 0 )//&& !GameManager.instance.blockInputs)
+        if (m_ginput.Value.x * _direction < 0)//&& !GameManager.instance.blockInputs)
         {
             HandleDirection();
         }
@@ -258,7 +264,7 @@ public class PlayerController : MonoBehaviour
     {
         AnimatorStateInfo state = m_animator.GetCurrentAnimatorStateInfo(0);
 
-        if (state.IsName("Atack"))
+        if (state.IsName("Attack"))
             attack = true;
         else
             attack = false;
@@ -307,6 +313,11 @@ public class PlayerController : MonoBehaviour
         yield return new WaitForSeconds(time);
         _isNocked = false;
         //_isCanNocked = true;
+    }
+    IEnumerator BlockMovement(float time)
+    {
+        yield return new WaitForSeconds(time);
+        _canMove = true;
     }
     public void Died()
     {

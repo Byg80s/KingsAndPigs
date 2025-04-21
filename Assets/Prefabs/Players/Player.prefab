@@ -210,6 +210,7 @@ MonoBehaviour:
   _push: 0
   _value: {x: 0, y: 0}
   _isAtack: 0
+  _isWall: 0
 --- !u!114 &4686432058646086302
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -228,6 +229,8 @@ MonoBehaviour:
   - {fileID: 8787334002572988505}
   - {fileID: 3810170619298769002}
   _speed: 5
+  _canMove: 0
+  _moveDelay: 0.77
   _jumpForce: 10
   _extraJumps: 1
   _counterExtraJumps: 0
@@ -235,12 +238,12 @@ MonoBehaviour:
   _canDoubleJumped: 1
   _isPushed: 0
   _wallDetected: 0
-  _canWallDesliced: 1
-  _rayWall: 0.3
+  _canWallDesliced: 0
+  _rayWall: 0.35
   _speedDeslice: 0
-  _wallJumpForce: {x: 5, y: 8}
+  _wallJumpForce: {x: 5, y: 10}
   _isWallJumping: 0
-  _wallTimeDetection: 0.8
+  _wallTimeDetection: 0.4
   _isMove: 0
   Lfoot: {fileID: 6562869596952090669}
   Rfoot: {fileID: 449993926364153832}
@@ -255,7 +258,6 @@ MonoBehaviour:
   _isPotion: 0
   DeathVfx: {fileID: 6623422932010929671, guid: c45d70e95a5760446940d0acae821e5b, type: 3}
   IndoorVfx: {fileID: 8821653136501827335, guid: 60fe51efd4be83a418877315718c3863, type: 3}
-  _HitBox: {fileID: 7072469008768849505}
 --- !u!95 &7119266980768476404
 Animator:
   serializedVersion: 7
@@ -462,7 +464,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f59bdac37f3df4147a7edbe5ef0cf512, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _animActivated: 0
+  m_anim: {fileID: 0}
 --- !u!1 &6483184154342959503
 GameObject:
   m_ObjectHideFlags: 0

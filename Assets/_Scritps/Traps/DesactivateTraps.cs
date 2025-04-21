@@ -5,7 +5,7 @@ public class DesactivateTraps : MonoBehaviour
 {
     [SerializeField] private bool ActivateTimeDiscount;
     [SerializeField] private int numberDesactivation;
-    [SerializeField] private bool numberDeactivation;
+    private bool numberDeactivation;
     [SerializeField] private float timeDesactivate, newTime;
 
 

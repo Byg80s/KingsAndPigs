@@ -18595,7 +18595,7 @@ Camera:
   far clip plane: 1000
   field of view: 34
   orthographic: 1
-  orthographic size: 4.21875
+  orthographic size: 6.96875
   m_Depth: -1
   m_CullingMask:
     serializedVersion: 2
@@ -18620,7 +18620,7 @@ Transform:
   m_GameObject: {fileID: 519420028}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 22.482006, y: 2.23176, z: -10}
+  m_LocalPosition: {x: 22.58636, y: 2.23132, z: -10}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -23703,7 +23703,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   ActivateTimeDiscount: 0
   numberDesactivation: 1
-  numberDeactivation: 0
   timeDesactivate: 40
   newTime: 0
 --- !u!61 &572372343
@@ -29009,6 +29008,7 @@ MonoBehaviour:
   _cineMachineCamera: {fileID: 1157945540}
   _Composer: {fileID: 0}
   _firstCamera: {fileID: 626811611}
+  m_playerControler: {fileID: 0}
   _gameObject: {fileID: 0}
   _SpriteRenderer: {fileID: 0}
   _name: View01
@@ -72477,7 +72477,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   ActivateTimeDiscount: 0
   numberDesactivation: 0
-  numberDeactivation: 0
   timeDesactivate: 10
   newTime: 0
 --- !u!1 &773901393
@@ -72545,7 +72544,7 @@ MonoBehaviour:
   _moveSpeed: 5
   _indexWaipointTrapSnife: 0
   isDeadZone: 0
-  _DesactivationTraps: 00000000
+  _DesactivationTraps: 000000
   x: 0
 --- !u!1001 &813415867
 PrefabInstance:
@@ -72665,26 +72664,30 @@ PrefabInstance:
       propertyPath: Door
       value: 
       objectReference: {fileID: 1438344978}
-    - target: {fileID: 4686432058646086302, guid: ecfb3063d2ac76941b4f40e58a7c8a02, type: 3}
-      propertyPath: _rayWall
-      value: 0.35
-      objectReference: {fileID: 0}
-    - target: {fileID: 4686432058646086302, guid: ecfb3063d2ac76941b4f40e58a7c8a02, type: 3}
-      propertyPath: _isWallJumping
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 4686432058646086302, guid: ecfb3063d2ac76941b4f40e58a7c8a02, type: 3}
-      propertyPath: _canWallDesliced
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 4686432058646086302, guid: ecfb3063d2ac76941b4f40e58a7c8a02, type: 3}
-      propertyPath: _wallJumpForce.y
-      value: 10
-      objectReference: {fileID: 0}
-    - target: {fileID: 4686432058646086302, guid: ecfb3063d2ac76941b4f40e58a7c8a02, type: 3}
-      propertyPath: _wallTimeDetection
-      value: 0.4
-      objectReference: {fileID: 0}
+    - target: {fileID: 2626509331626969570, guid: ecfb3063d2ac76941b4f40e58a7c8a02, type: 3}
+      propertyPath: DoorOpen
+      value: 
+      objectReference: {fileID: 1812981608}
+    - target: {fileID: 2626509331626969570, guid: ecfb3063d2ac76941b4f40e58a7c8a02, type: 3}
+      propertyPath: DoorClose
+      value: 
+      objectReference: {fileID: 868438971}
+    - target: {fileID: 2626509331626969570, guid: ecfb3063d2ac76941b4f40e58a7c8a02, type: 3}
+      propertyPath: DoorRespawn
+      value: 
+      objectReference: {fileID: 1438344978}
+    - target: {fileID: 2626509331626969570, guid: ecfb3063d2ac76941b4f40e58a7c8a02, type: 3}
+      propertyPath: animatorOpenDoor
+      value: 
+      objectReference: {fileID: 1812981610}
+    - target: {fileID: 2626509331626969570, guid: ecfb3063d2ac76941b4f40e58a7c8a02, type: 3}
+      propertyPath: animatorCloseDoor
+      value: 
+      objectReference: {fileID: 868438973}
+    - target: {fileID: 2626509331626969570, guid: ecfb3063d2ac76941b4f40e58a7c8a02, type: 3}
+      propertyPath: animatorRespawnDoor
+      value: 
+      objectReference: {fileID: 1438344980}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
@@ -72835,7 +72838,7 @@ GameObject:
   - component: {fileID: 868438972}
   m_Layer: 0
   m_Name: EntraceDoor
-  m_TagString: RespawnDoor
+  m_TagString: EntranceDoor
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -88317,7 +88320,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   ActivateTimeDiscount: 0
   numberDesactivation: 2
-  numberDeactivation: 0
   timeDesactivate: 40
   newTime: 0
 --- !u!61 &1117474901
@@ -94479,50 +94481,6 @@ Transform:
   m_CorrespondingSourceObject: {fileID: 2664324023847738153, guid: 8239e5579b7b0474991fa36544e2ba52, type: 3}
   m_PrefabInstance: {fileID: 1456931896}
   m_PrefabAsset: {fileID: 0}
---- !u!1 &1466532785 stripped
-GameObject:
-  m_CorrespondingSourceObject: {fileID: 7948054506630058904, guid: c1db15538aeb9474aa7d1e9e90136adc, type: 3}
-  m_PrefabInstance: {fileID: 7130765252949200468}
-  m_PrefabAsset: {fileID: 0}
---- !u!50 &1466532788
-Rigidbody2D:
-  serializedVersion: 5
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1466532785}
-  m_BodyType: 2
-  m_Simulated: 1
-  m_UseFullKinematicContacts: 0
-  m_UseAutoMass: 0
-  m_Mass: 1
-  m_LinearDamping: 0
-  m_AngularDamping: 0.05
-  m_GravityScale: 1
-  m_Material: {fileID: 0}
-  m_IncludeLayers:
-    serializedVersion: 2
-    m_Bits: 0
-  m_ExcludeLayers:
-    serializedVersion: 2
-    m_Bits: 0
-  m_Interpolate: 0
-  m_SleepingMode: 1
-  m_CollisionDetection: 0
-  m_Constraints: 0
---- !u!114 &1466532789
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1466532785}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 8afecea693048114bae1b9886f7f57fc, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!4 &1471519528 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 4091361675245602924, guid: 8dc0eda23fd47ac4296b1a6789aea289, type: 3}
@@ -105421,7 +105379,7 @@ GameObject:
   - component: {fileID: 1812981609}
   m_Layer: 0
   m_Name: ExitDoor
-  m_TagString: RespawnDoor
+  m_TagString: ExirDoor
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -106998,6 +106956,7 @@ MonoBehaviour:
   _cineMachineCamera: {fileID: 1157945540}
   _Composer: {fileID: 0}
   _firstCamera: {fileID: 2041117945}
+  m_playerControler: {fileID: 0}
   _gameObject: {fileID: 381459172}
   _SpriteRenderer: {fileID: 381459174}
   _name: Portal
@@ -112480,10 +112439,6 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 0}
     m_Modifications:
-    - target: {fileID: 1191580152123056889, guid: c1db15538aeb9474aa7d1e9e90136adc, type: 3}
-      propertyPath: m_LocalPosition.y
-      value: 2.97
-      objectReference: {fileID: 0}
     - target: {fileID: 3116607356691700786, guid: c1db15538aeb9474aa7d1e9e90136adc, type: 3}
       propertyPath: m_LocalPosition.x
       value: -48.15498
@@ -112524,45 +112479,14 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
-    - target: {fileID: 6550909259774206816, guid: c1db15538aeb9474aa7d1e9e90136adc, type: 3}
-      propertyPath: m_LocalPosition.y
-      value: -4.76
-      objectReference: {fileID: 0}
-    - target: {fileID: 7405598664543103540, guid: c1db15538aeb9474aa7d1e9e90136adc, type: 3}
-      propertyPath: _activeBombs
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 7405598664543103540, guid: c1db15538aeb9474aa7d1e9e90136adc, type: 3}
-      propertyPath: numberOfBombs
-      value: 6
-      objectReference: {fileID: 0}
     - target: {fileID: 7942926482424344640, guid: c1db15538aeb9474aa7d1e9e90136adc, type: 3}
       propertyPath: m_Name
       value: BossZone
       objectReference: {fileID: 0}
-    - target: {fileID: 9198940454299816868, guid: c1db15538aeb9474aa7d1e9e90136adc, type: 3}
-      propertyPath: m_Size.y
-      value: 1.5860424
-      objectReference: {fileID: 0}
-    - target: {fileID: 9198940454299816868, guid: c1db15538aeb9474aa7d1e9e90136adc, type: 3}
-      propertyPath: m_Offset.y
-      value: 0.2930212
-      objectReference: {fileID: 0}
-    - target: {fileID: 9198940454299816868, guid: c1db15538aeb9474aa7d1e9e90136adc, type: 3}
-      propertyPath: m_IsTrigger
-      value: 0
-      objectReference: {fileID: 0}
     m_RemovedComponents: []
-    m_RemovedGameObjects:
-    - {fileID: 7235963937925236968, guid: c1db15538aeb9474aa7d1e9e90136adc, type: 3}
+    m_RemovedGameObjects: []
     m_AddedGameObjects: []
-    m_AddedComponents:
-    - targetCorrespondingSourceObject: {fileID: 7948054506630058904, guid: c1db15538aeb9474aa7d1e9e90136adc, type: 3}
-      insertIndex: -1
-      addedObject: {fileID: 1466532789}
-    - targetCorrespondingSourceObject: {fileID: 7948054506630058904, guid: c1db15538aeb9474aa7d1e9e90136adc, type: 3}
-      insertIndex: -1
-      addedObject: {fileID: 1466532788}
+    m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: c1db15538aeb9474aa7d1e9e90136adc, type: 3}
 --- !u!1660057539 &9223372036854775807
 SceneRoots:

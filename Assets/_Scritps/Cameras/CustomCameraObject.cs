@@ -9,6 +9,7 @@ public class CustomCameraObject : MonoBehaviour
     [SerializeField] private CinemachineCamera _cineMachineCamera;
     [SerializeField] private CinemachinePositionComposer _Composer;
     [SerializeField] private GameObject _firstCamera;
+    [SerializeField] private PlayerController m_playerControler;
 
 
     //extra, is no for this script, is only for check
@@ -30,9 +31,9 @@ public class CustomCameraObject : MonoBehaviour
         _gameManager = GameManager.instance;
         _Composer =_cineMachineCamera.GetComponent<CinemachinePositionComposer>();
         _gameObject = GameObject.FindGameObjectWithTag(_name);
+        m_playerControler= _gameObject.GetComponent<PlayerController>();
 
-      
-        _SpriteRenderer= _gameObject.GetComponent<SpriteRenderer>();
+        _SpriteRenderer = _gameObject.GetComponent<SpriteRenderer>();
         _SpriteRenderer.enabled = false;
         
 
@@ -86,6 +87,7 @@ public class CustomCameraObject : MonoBehaviour
      //   _gameManager.blockInputs = false;
         _Composer.TargetOffset.y = 0f;
         _Composer.TargetOffset.x = 0f;
+       // GetComponent<PlayerController>().BlockInputs();
         Destroy(_firstCamera);
 
     }

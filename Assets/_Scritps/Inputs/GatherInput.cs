@@ -45,7 +45,7 @@ public class GatherInput : MonoBehaviour
         _controls.Player.Jump.canceled += StopJump;
         _controls.Player.Push.performed += StarPush;
         _controls.Player.Push.canceled += StopPush;
-        _controls.Player.Atack.started += StartAtack;
+        _controls.Player.Atack.started += StartAttack;
         _controls.Player.Wall.performed += StartWallPos;
         _controls.Player.Wall.canceled += StopWallPos;
 
@@ -86,12 +86,12 @@ public class GatherInput : MonoBehaviour
         Push = false;
     }
     //Action Attack
-    private void StartAtack(InputAction.CallbackContext context)
+    private void StartAttack(InputAction.CallbackContext context)
     {
-        _animator.SetTrigger("_isAtack");
+        _animator.SetTrigger("_isAttack");
        // Atack =!Atack;
     }
-    private void StoptAtack(InputAction.CallbackContext context)
+    private void StoptAttack(InputAction.CallbackContext context)
     {
         Atack = false;
     }
@@ -112,7 +112,7 @@ public class GatherInput : MonoBehaviour
         _controls.Player.Jump.canceled -= StopJump;
         _controls.Player.Push.performed -= StarPush;
         _controls.Player.Push.canceled -= StopPush;
-        _controls.Player.Atack.started -= StartAtack;
+        _controls.Player.Atack.started -= StartAttack;
         _controls.Player.Wall.performed -= StartWallPos;
         _controls.Player.Wall.canceled -= StopWallPos;
         _controls.Player.Disable();

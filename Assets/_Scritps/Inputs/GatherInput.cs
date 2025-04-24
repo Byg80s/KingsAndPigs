@@ -21,6 +21,9 @@ public class GatherInput : MonoBehaviour
     [SerializeField] private bool _isWall;
     public bool IsWall { get => _isWall; set => _isWall = value; }
 
+    [SerializeField] private bool _IsTake;
+    public bool IsTake { get => _IsTake; set => _IsTake = value; }
+
 
 
     //Components
@@ -48,6 +51,8 @@ public class GatherInput : MonoBehaviour
         _controls.Player.Atack.started += StartAttack;
         _controls.Player.Wall.performed += StartWallPos;
         _controls.Player.Wall.canceled += StopWallPos;
+        _controls.Player.Take.performed += StartTake;
+        _controls.Player.Take.canceled += StopTake;
 
         _controls.Player.Enable();
 
@@ -89,7 +94,7 @@ public class GatherInput : MonoBehaviour
     private void StartAttack(InputAction.CallbackContext context)
     {
         _animator.SetTrigger("_isAttack");
-       // Atack =!Atack;
+        // Atack =!Atack;
     }
     private void StoptAttack(InputAction.CallbackContext context)
     {
@@ -103,6 +108,14 @@ public class GatherInput : MonoBehaviour
     {
         IsWall = false;
     }
+    private void StartTake(InputAction.CallbackContext context)
+    {
+        IsTake = true;
+    }
+    private void StopTake(InputAction.CallbackContext context)
+    {
+        IsTake = false;
+    }
     //DISABLE CONTROLS SYSTEM PLAYER
     private void OnDisable()
     {
@@ -115,6 +128,8 @@ public class GatherInput : MonoBehaviour
         _controls.Player.Atack.started -= StartAttack;
         _controls.Player.Wall.performed -= StartWallPos;
         _controls.Player.Wall.canceled -= StopWallPos;
+        _controls.Player.Take.performed -= StartTake;
+        _controls.Player.Take.canceled -= StopTake;
         _controls.Player.Disable();
     }
 }

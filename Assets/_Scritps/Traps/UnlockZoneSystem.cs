@@ -4,17 +4,20 @@ public class UnlockZoneSystem : MonoBehaviour
 {
     [Header("Parameters for open zone")]
     [SerializeField] private float _timeSpeedUnlock;
-    [SerializeField] private bool _activeParticles;
     [SerializeField] private float _positionInX;
     [SerializeField] private float _positionInY;
-    [SerializeField] private int _indexOfNeedSwitchDesactivate;
+    [Tooltip("Array of Switches need for open")]
+    [SerializeField] private SwitchActions[] switches;
     [SerializeField] private bool _open;
     [SerializeField] DirectionList _directions;
+
+
 
     // Update is called once per frame
     void Update()
     {
-        StatesDesactivateSwitches();
+        
+        CheckSwitches();
         if (_open) Unlock();
     }
 
@@ -64,20 +67,23 @@ public class UnlockZoneSystem : MonoBehaviour
 
         }
     }
-    void StatesDesactivateSwitches()
+    public void CheckSwitches()
     {
 
-        for (int i = 0; i < GameManager.instance.DesactivationTraps.Length ; i++)
+        foreach (var switches2 in switches)
         {
-            if (GameManager.instance.DesactivationTraps[_indexOfNeedSwitchDesactivate - 1] == true) 
-            { 
-                Debug.Log("Its Unlock");
-                _open = true;
-            }
-            else
-            {
-                _open = false;
-            }
+            if (!switches2.IsActivated) return;
+
         }
+
+        OpenDoor();
     }
+    void OpenDoor()
+    {
+        _open = true;
+        Debug.Log("Door Open");
+        // animate
+       
+    }
+  
 }

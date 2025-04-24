@@ -651,6 +651,15 @@ public partial class @Controls: IInputActionCollection2, IDisposable
                     ""processors"": """",
                     ""interactions"": """",
                     ""initialStateCheck"": false
+                },
+                {
+                    ""name"": ""Take"",
+                    ""type"": ""Button"",
+                    ""id"": ""b8dc63ae-90d9-46c3-8031-4e5d996f1b9c"",
+                    ""expectedControlType"": """",
+                    ""processors"": """",
+                    ""interactions"": """",
+                    ""initialStateCheck"": false
                 }
             ],
             ""bindings"": [
@@ -961,6 +970,28 @@ public partial class @Controls: IInputActionCollection2, IDisposable
                     ""action"": ""Wall"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""8de80d2e-70c1-4712-a033-b52588ac5ec3"",
+                    ""path"": ""<Keyboard>/e"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""Take"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""fa31e348-a69e-402b-a359-f00683831b65"",
+                    ""path"": ""<Gamepad>/leftShoulder"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""Take"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
                 }
             ]
         }
@@ -1047,6 +1078,7 @@ public partial class @Controls: IInputActionCollection2, IDisposable
         m_Player_Push = m_Player.FindAction("Push", throwIfNotFound: true);
         m_Player_Atack = m_Player.FindAction("Atack", throwIfNotFound: true);
         m_Player_Wall = m_Player.FindAction("Wall", throwIfNotFound: true);
+        m_Player_Take = m_Player.FindAction("Take", throwIfNotFound: true);
     }
 
     ~@Controls()
@@ -1328,6 +1360,7 @@ public partial class @Controls: IInputActionCollection2, IDisposable
     private readonly InputAction m_Player_Push;
     private readonly InputAction m_Player_Atack;
     private readonly InputAction m_Player_Wall;
+    private readonly InputAction m_Player_Take;
     /// <summary>
     /// Provides access to input actions defined in input action map "Player".
     /// </summary>
@@ -1359,6 +1392,10 @@ public partial class @Controls: IInputActionCollection2, IDisposable
         /// Provides access to the underlying input action "Player/Wall".
         /// </summary>
         public InputAction @Wall => m_Wrapper.m_Player_Wall;
+        /// <summary>
+        /// Provides access to the underlying input action "Player/Take".
+        /// </summary>
+        public InputAction @Take => m_Wrapper.m_Player_Take;
         /// <summary>
         /// Provides access to the underlying input action map instance.
         /// </summary>
@@ -1400,6 +1437,9 @@ public partial class @Controls: IInputActionCollection2, IDisposable
             @Wall.started += instance.OnWall;
             @Wall.performed += instance.OnWall;
             @Wall.canceled += instance.OnWall;
+            @Take.started += instance.OnTake;
+            @Take.performed += instance.OnTake;
+            @Take.canceled += instance.OnTake;
         }
 
         /// <summary>
@@ -1426,6 +1466,9 @@ public partial class @Controls: IInputActionCollection2, IDisposable
             @Wall.started -= instance.OnWall;
             @Wall.performed -= instance.OnWall;
             @Wall.canceled -= instance.OnWall;
+            @Take.started -= instance.OnTake;
+            @Take.performed -= instance.OnTake;
+            @Take.canceled -= instance.OnTake;
         }
 
         /// <summary>
@@ -1644,5 +1687,12 @@ public partial class @Controls: IInputActionCollection2, IDisposable
         /// <seealso cref="UnityEngine.InputSystem.InputAction.performed" />
         /// <seealso cref="UnityEngine.InputSystem.InputAction.canceled" />
         void OnWall(InputAction.CallbackContext context);
+        /// <summary>
+        /// Method invoked when associated input action "Take" is either <see cref="UnityEngine.InputSystem.InputAction.started" />, <see cref="UnityEngine.InputSystem.InputAction.performed" /> or <see cref="UnityEngine.InputSystem.InputAction.canceled" />.
+        /// </summary>
+        /// <seealso cref="UnityEngine.InputSystem.InputAction.started" />
+        /// <seealso cref="UnityEngine.InputSystem.InputAction.performed" />
+        /// <seealso cref="UnityEngine.InputSystem.InputAction.canceled" />
+        void OnTake(InputAction.CallbackContext context);
     }
 }

@@ -6,8 +6,9 @@ public class HurtBoxPlayer : MonoBehaviour
     {
         if (collision.CompareTag("HitBoxEnemy"))
         {
-            GameManager.instance.CurrentLife--;
-            GameManager.instance.NumberOfLives--;
+
+            GetComponentInParent<PlayerController>().KnockBack();
+            GetComponentInParent<PlayerController>().CurrentLife--;
 
 
         }

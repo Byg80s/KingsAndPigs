@@ -4,17 +4,29 @@ public class HitBoxEnemy : MonoBehaviour
 {
     private void OnTriggerEnter2D(Collider2D collision)
     {
-
-
         if (collision.CompareTag("HurtBox"))
         {
-
             collision.GetComponentInParent<PlayerController>().KnockBack();
+          
         }
-        Debug.Log("The Player Have Damage");
-        //This is ok
+    }
+    private void OnTriggerExit2D(Collider2D collision)
+    {
+     
+        if (collision.CompareTag("HurtBox"))
+        {
+            collision.GetComponentInParent<PlayerController>().KnockBack();
+            collision.GetComponentInParent<PlayerController>().CurrentLife--;
 
+        }
+    }
+    private void OnTriggerStay2D(Collider2D collision)
+    {
+        if (collision.CompareTag("HurtBox"))
+        {
+            collision.GetComponentInParent<PlayerController>().KnockBack();
+
+        }
 
     }
-
 }

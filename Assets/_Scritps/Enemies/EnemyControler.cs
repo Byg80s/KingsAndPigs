@@ -150,8 +150,8 @@ public class EnemyControler : MonoBehaviour
         ChangeRigidBodyType();
         CheckColision();
         StatesOfAnimationEnemy();
-        if (m_PlayerTransform != null || _actualLife > 0) EnemiIaWithPhysic();
-        //  KnockBack();
+        if (m_PlayerTransform != null) EnemiIaWithPhysic();// || _actualLife > 0
+
     }
     void Dead()
     {
@@ -293,7 +293,7 @@ public class EnemyControler : MonoBehaviour
 
     void FollowPlayerNoPhysics()
     {
-        if (m_PlayerTransform != null || _actualLife > 0)
+        if (m_PlayerTransform != null )//|| _actualLife > 0)
         {
 
 
@@ -308,11 +308,11 @@ public class EnemyControler : MonoBehaviour
             switch (TypeEnemie)
             {
                 case EnemiesTypes.Melee:
-                    if (_PlayerDetected && _isGrounded)
+                    if (_PlayerDetected && _isGrounded && _actualLife > 0)
                         transform.position = Vector2.MoveTowards(transform.position, new Vector2(m_PlayerTransform.position.x, transform.position.y), _speedMove * Time.deltaTime);
                     break;
                 case EnemiesTypes.Ranged:
-                    if (_PlayerDetected)
+                    if (_PlayerDetected && _actualLife > 0)
 
                         transform.position = Vector2.MoveTowards(transform.position, m_PlayerTransform.position, _speedMove * Time.deltaTime);
                     break;
@@ -336,35 +336,23 @@ public class EnemyControler : MonoBehaviour
 
                 if (m_Way.Length == 0) return;
 
-                Vector3 WayPonits = m_Way[_index].position;
-                Vector3 direction = (WayPonits - transform.position);
+                if (_isWaitMovement) return;
+
+                Vector3 target = m_Way[_index].position;
+                Vector3 direction = target - transform.position;
 
                 if (direction.magnitude < _distanceChange)
                 {
-                    EnemyStates = EnemyEstates.wait;
                     StartCoroutine(TimeWaitAfterMove(timeWaitPatrol));
-                    _index = (_index + 1) % m_Way.Length;
-                    WayPonits = m_Way[_index].position;
-                    direction = (WayPonits - transform.position);
-
+                    return;
                 }
 
-                if (!_isWaitMovement)
-                {
-                    // Physic movement
-                    Vector3 VelocityNeed = direction.normalized * _speedMove;
-                    m_rb.linearVelocity = new Vector3(VelocityNeed.x, m_rb.linearVelocity.y);
-                    // flip
-                    if (VelocityNeed.x > 0 && _flip)
-                    {
-                        Flip();
-                    }
-                    else if (VelocityNeed.x < 0 && !_flip)
-                    {
-                        Flip();
-                    }
-                }
+                Vector3 velocity = direction.normalized * _speedMove;
+                m_rb.linearVelocity = new Vector2(velocity.x, m_rb.linearVelocity.y);
 
+                if (velocity.x > 0 && _flip) Flip();
+                else if (velocity.x < 0 && !_flip) Flip();
+             
                 break;
             case EnemiesTypes.Ranged:
 
@@ -401,17 +389,25 @@ public class EnemyControler : MonoBehaviour
 
         }
     }
-    IEnumerator TimeWaitAfterMove(int time)
+   
+    IEnumerator TimeWaitAfterMove(float time)
     {
-
+       
         _isWaitMovement = true;
+        EnemyStates = EnemyEstates.wait;
+        m_rb.linearVelocity = Vector2.zero;
+
         yield return new WaitForSeconds(time);
 
-        //    Flip();
-        EnemyStates = EnemyEstates.patrol;
+        _index = (_index + 1) % m_Way.Length;
         _isWaitMovement = false;
-
+        EnemyStates = EnemyEstates.patrol; 
     }
+
+    //
+    /// 
+
+
     // Copy security movement physics
 
     /*  void WayPointsUsePhysics()

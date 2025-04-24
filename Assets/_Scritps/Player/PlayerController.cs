@@ -12,17 +12,42 @@ public class PlayerController : MonoBehaviour
     [SerializeField] private Transform m_transform;
     [SerializeField] private Collider2D[] m_colliderChildren;
 
+    //Detectbox
+    [Header("Parameters Detect boxes")]
+    //    private Collider2D[] m_DetectBox;
+    private DistanceJoint2D m_joint;
+    [Tooltip("Select Layer box")]
+    [SerializeField] private LayerMask _layerPull;
+    [Tooltip("Distance detect a box")]
+    [SerializeField] private float distanceToBox;
+    [Tooltip("Force need for move the box")]
+    [SerializeField] private float _pushForce;
+    private GameObject heldObject;
+    private Rigidbody2D heldRb;
+
     private Rigidbody2D m_rb;
     private GatherInput m_ginput;
     private Animator m_animator;
 
+    [Tooltip("Life Player")]
+    [SerializeField] private int _currentLife;
+    public int CurrentLife { get => _currentLife; set => _currentLife = value; }
+    [Tooltip("Max Lifes Of Player")]
+    [SerializeField] private int _maxLife;
+    public int maxLife { get => _maxLife; set => _maxLife = value; }
+
+    [SerializeField] private int _actualLife;
+    public int actualLife { get => _actualLife; set => _actualLife = value; }
 
     //Values
     [Header("Parameters Movement")]
-    [Tooltip("Define the speed run player")]
+
     [SerializeField] private float _speed;
+    [Tooltip("Define the speed run player")]
+    [SerializeField] private float _normalSpeed;
     [Tooltip("block or unlook the movement of player")]
     [SerializeField] private bool _canMove;
+    public bool canMove { get => _canMove; set => _canMove = value; }
     [Tooltip("Time of delay of block movement")]
     [SerializeField] private float _moveDelay;
     private int _direction = 1;
@@ -36,9 +61,13 @@ public class PlayerController : MonoBehaviour
     [SerializeField] private bool _isGrounded;
     [Tooltip("Permit doubleJump")]
     [SerializeField] private bool _canDoubleJumped;
+    private bool _permitJumper;
 
-    [Header("Parameters Push Action")]
+    [Header("Parameters Actions Push And Pull")]
     [SerializeField] private bool _isPushed;
+    [SerializeField] private bool _isPull;
+    [Tooltip("This paramemeter is for define de radius for detect the objects posible take")]
+    [SerializeField] private float _radiusDetectPull;
 
     [Header("Parameters Wall detection")]
     [SerializeField] private bool _wallDetected;
@@ -93,6 +122,8 @@ public class PlayerController : MonoBehaviour
     [SerializeField] private GameObject IndoorVfx;
 
     private bool attack;
+
+
     private void Awake()
     {
 
@@ -101,6 +132,7 @@ public class PlayerController : MonoBehaviour
         m_animator = GetComponent<Animator>();
         _canMove = false;
         StartCoroutine(BlockMovement(_moveDelay));
+
 
     }
 
@@ -119,8 +151,13 @@ public class PlayerController : MonoBehaviour
         m_colliderChildren[1].enabled = false;
 
         _counterExtraJumps = _extraJumps;
-
-
+        _permitJumper = true;
+        m_joint = GetComponent<DistanceJoint2D>();
+        m_joint.enabled = false;
+        //  m_DetectBox = GetComponent<Collider2D[]>();
+        heldObject = GetComponent<GameObject>();
+        heldObject = GameObject.FindGameObjectWithTag("Box");
+        heldRb = heldObject.GetComponentInParent<Rigidbody2D>();
 
     }
 
@@ -150,8 +187,8 @@ public class PlayerController : MonoBehaviour
         m_animator.SetBool(_idGround, _isGrounded);
         m_animator.SetBool(_idFall, _wallDetected);
         m_animator.SetBool(_idPsuh, _isPushed);
-        if (_isGrounded) PushObject();
         Attack();
+
     }
 
     //Check Ground
@@ -160,6 +197,9 @@ public class PlayerController : MonoBehaviour
         HandleWall();
         HandleWallDeslice();
         HandleGround();
+        HandleObjects();
+        if (_isGrounded) PushAndPullObjects();
+
     }
 
 
@@ -227,7 +267,7 @@ public class PlayerController : MonoBehaviour
     //Jump
     private void Jump()
     {
-        if (m_ginput.IsJumping)
+        if (m_ginput.IsJumping && _permitJumper)
         {
             if (_isGrounded)
             {
@@ -262,6 +302,7 @@ public class PlayerController : MonoBehaviour
     }
     public void Attack()
     {
+
         AnimatorStateInfo state = m_animator.GetCurrentAnimatorStateInfo(0);
 
         if (state.IsName("Attack"))
@@ -278,26 +319,96 @@ public class PlayerController : MonoBehaviour
         }
 
     }
-
-    // this need checked and remove GameManager.instance
-    private void PushObject()
+    /// <summary>Pull Object </summary>
+    private void HandleObjects()
     {
-        if (m_ginput.Push)
+        if (m_ginput.IsTake)
+        {
+            RaycastHit2D HitTake = Physics2D.Raycast(transform.position, transform.localScale, distanceToBox, _layerPull);
+            if (HitTake.collider != null)
+            {
 
+                if (heldObject.CompareTag("Box"))
+                {
+                    Debug.DrawLine(transform.position, heldObject.transform.position, Color.red);
+                    heldRb.bodyType = RigidbodyType2D.Dynamic;
+                    heldRb.AddForce(transform.position * _pushForce);
+                }
+            }
+           
+
+        }
+      
+        /*      if (m_ginput.IsTake)
+            {
+                m_DetectBox = Physics2D.OverlapCircleAll(transform.position, _radiusDetectPull);
+                foreach (var detectForPull in m_DetectBox)
+                {
+                    if (detectForPull.CompareTag("Box"))
+                    {
+                        m_joint.connectedBody = detectForPull.attachedRigidbody;
+                        m_joint.enabled = true;
+                        _isPull = true;
+                        break;
+                    }
+                }
+            }
+
+            else
+            {
+                m_joint.enabled = false;
+                _isPull = false;
+            }
+        */
+
+    }
+
+
+    private void PushAndPullObjects()
+    {
+       
+
+        if (m_ginput.Push)
         {
             _isPushed = true;
-            m_colliderChildren[0].enabled = true;
-            m_colliderChildren[0].isTrigger = false;
-            GameManager.instance.IsPushAction = true;
+            RaycastHit2D HitPush = Physics2D.Raycast(transform.position, transform.localScale, distanceToBox, _layerPull);
 
+            if (HitPush.collider != null)
+            {
+                if (heldObject.CompareTag("Box"))
+                {
+                    Debug.DrawLine(transform.position, heldObject.transform.position, Color.blue);
+                    heldRb.bodyType = RigidbodyType2D.Dynamic;
+                    heldRb.AddForce(transform.position * _pushForce);
+                }
+            }
         }
         else
         {
-            m_colliderChildren[0].enabled = false;
             _isPushed = false;
-            m_colliderChildren[0].isTrigger = true;
-            GameManager.instance.IsPushAction = false;
+            heldRb.bodyType = RigidbodyType2D.Static;
         }
+     
+        #region OLD PUSH METHOD
+        /*  if (m_ginput.Push)
+
+          {
+              _isPushed = true;
+
+              m_colliderChildren[0].enabled = true;
+              m_colliderChildren[0].isTrigger = false;
+              GameManager.instance.IsPushAction = true;
+          }
+          else
+          {
+              _isPushed = false;
+              m_colliderChildren[0].enabled = false;
+              m_colliderChildren[0].isTrigger = true;
+              GameManager.instance.IsPushAction = false;
+          }
+        */
+
+        #endregion
     }
     //IEnumerators
     IEnumerator WaitReturnTime(float time)
@@ -342,13 +453,20 @@ public class PlayerController : MonoBehaviour
         {
             m_rb.bodyType = RigidbodyType2D.Dynamic;
         }
-
+        /////////////////////// check this /////////////////////
+    }
+    void ActualNumberOfLife()
+    {
+        if (CurrentLife <= 0) maxLife--;
     }
     private void DamageNeedDead()
     {
-        if (GameManager.instance.CurrentLife <= 0)
+        if (CurrentLife <= 0)// GameManager.instance.CurrentLife <= 0)
         {
+
             GameManager.instance.ReSpawnPlayer();
+            CurrentLife = actualLife;
+            ActualNumberOfLife();
             Died();
         }
     }
@@ -362,6 +480,19 @@ public class PlayerController : MonoBehaviour
         Gizmos.color = new Color(1f, 0, 0, 0.7f);
         Gizmos.DrawCube(m_colliderChildren[2].bounds.center, m_colliderChildren[2].bounds.size);
     }
-
+    private void OnTriggerEnter2D(Collider2D collision)
+    {
+        if (collision.CompareTag("Watter"))
+        {
+            _speed = 1f;
+            _permitJumper = false; //POSIBLE IN FUTURE CHANGE THIS FOR DOWN JUMPFORCE
+            //NEDD ADD ANIMATION SWINNING AND CONTER FOR DEAD IF MORE TIME IN WATER
+        }
+    }
+    private void OnTriggerExit2D(Collider2D collision)
+    {
+        _speed = _normalSpeed;
+        _permitJumper = true;
+    }
 
 }

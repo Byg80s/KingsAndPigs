@@ -19,10 +19,12 @@ public class GameManager : MonoBehaviour
     public bool IsPushAction { get => _isPushAction; set => _isPushAction = value; }
 
     [Header("Live Player")]
-    [SerializeField] private int _CurrentLife;
-    public int CurrentLife { get => _CurrentLife; set => _CurrentLife = value; }
+    [Tooltip("This is the maxim lifes")]
     [SerializeField] private int _ActualLife;
     public int ActualLife { get => _ActualLife; set => _ActualLife = value; }
+    [Tooltip("This is the current life in this moment")]
+    [SerializeField] private int _CurrentLive;
+    public int CurrentLive { get => _CurrentLive; set => _CurrentLive = value; }
     [SerializeField] private int _NumberOfLives;
     public int NumberOfLives { get => _NumberOfLives; set => _NumberOfLives = value; }
 
@@ -59,13 +61,14 @@ public class GameManager : MonoBehaviour
 
     [SerializeField] private bool isDeadZone;
     public bool IsDeadZone { get => isDeadZone; set => isDeadZone = value; }
-
+/*
     [Header("Activate Traps")]
     [SerializeField] private bool[] _DesactivationTraps;
     public bool[] DesactivationTraps { get => _DesactivationTraps; set => _DesactivationTraps = value; }
 
     [Header("Event Open Ground")]
     [SerializeField] private int x;
+*/
     #endregion
 
 
@@ -89,8 +92,10 @@ public class GameManager : MonoBehaviour
         virtualCamera.Follow = newPlayer.transform;
         newPlayer.name = "Player";
         _playerControler = newPlayer.GetComponent<PlayerController>();
-        CurrentLife = ActualLife;
+        _playerControler.CurrentLife = ActualLife;
 
+        //Check this
+        _playerControler.maxLife = NumberOfLives;
     }
 
     IEnumerator RespawnPlayerCorotineIfExit(int time)
@@ -100,6 +105,8 @@ public class GameManager : MonoBehaviour
         virtualCamera.Follow = newPlayer.transform;
         newPlayer.name = "Player";
         _playerControler = newPlayer.GetComponent<PlayerController>();
+        _playerControler.CurrentLife= CurrentLive;
+
     }
     public void AddCristals() => _cristalCollected++;
     public bool CrystalsHaveRandomLook() => CrystalsHaveRandomLook1;

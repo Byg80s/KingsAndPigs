@@ -12,7 +12,6 @@ GameObject:
   - component: {fileID: 3338419381026776751}
   - component: {fileID: 2652126650149147706}
   - component: {fileID: 914458539129996309}
-  - component: {fileID: 2038899797586443867}
   m_Layer: 6
   m_Name: ExitDoorPlayerVFX
   m_TagString: Untagged
@@ -124,18 +123,3 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 28a2baf410fa85e46af87fa7450d6230, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
---- !u!114 &2038899797586443867
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 8821653136501827335}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 3b1b53d9c29a3064aafba1a5e61c126f, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  Door: {fileID: 0}
-  animatorEntranceDoor: {fileID: 0}
-  _FindTag: RespawnDoor

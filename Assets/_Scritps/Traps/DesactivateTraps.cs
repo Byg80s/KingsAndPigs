@@ -7,6 +7,13 @@ public class DesactivateTraps : MonoBehaviour
     [SerializeField] private int numberDesactivation;
     private bool numberDeactivation;
     [SerializeField] private float timeDesactivate, newTime;
+    [SerializeField] private bool _isActivated=false;
+    public bool IsActivated { get => _isActivated; set => _isActivated = value; }
+    private UnlockZoneSystem door;
+
+   
+
+    //need animator
 
 
     private void Start()
@@ -15,33 +22,40 @@ public class DesactivateTraps : MonoBehaviour
     }
     private void OnTriggerEnter2D(Collider2D other)
     {
-        if (other.gameObject.CompareTag("Player"))
+        if (other.CompareTag("HitBox") && !_isActivated)
         {
-            GameManager.instance.DesactivationTraps[numberDesactivation] = true;
-        }
+            _isActivated = true;
 
+            door.CheckSwitches();
+            // Opcional: animation, sound, etc.
+        }
     }
+
+
     private void Update()
     {
-        DesactivateButton();
+        //DesactivateButton();
     }
 
     //If ActivateTimeButton is enable in the inspector  the counter is run. If no is active the button no is desactivated
-    void DesactivateButton()
+   /* void DesactivateButton()
     {
         if (ActivateTimeDiscount)
         {
-            if (GameManager.instance.DesactivationTraps[numberDesactivation])
-            {
-                Debug.Log("Is activate");
-                timeDesactivate -= Time.deltaTime;
-            }
-            else if (timeDesactivate <= 0)
-            {
-                GameManager.instance.DesactivationTraps[numberDesactivation] = false;
-                timeDesactivate = newTime;
-                Debug.Log("Is desactivate");
-            }
+               if (GameManager.instance.DesactivationTraps[numberDesactivation])
+               {
+                   Debug.Log("Is activate");
+                   timeDesactivate -= Time.deltaTime;
+               }
+               else if (timeDesactivate <= 0)
+               {
+                   GameManager.instance.DesactivationTraps[numberDesactivation] = false;
+                   timeDesactivate = newTime;
+                   Debug.Log("Is desactivate");
+               }
         }
-    }
+    }*/
+  //  public bool isActivated = false;
+
 }
+

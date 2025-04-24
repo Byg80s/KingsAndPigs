@@ -140,7 +140,7 @@ CapsuleCollider2D:
   m_Material: {fileID: 0}
   m_IncludeLayers:
     serializedVersion: 2
-    m_Bits: 256
+    m_Bits: 8192
   m_ExcludeLayers:
     serializedVersion: 2
     m_Bits: 0
@@ -228,6 +228,9 @@ MonoBehaviour:
   - {fileID: 7047724495918851251}
   - {fileID: 8787334002572988505}
   - {fileID: 3810170619298769002}
+  _currentLife: 10
+  _maxLife: 3
+  _actualLife: 10
   _speed: 5
   _canMove: 0
   _moveDelay: 0.77
@@ -250,7 +253,7 @@ MonoBehaviour:
   rayGround: 0.5
   _isNocked: 0
   _isCanNocked: 1
-  _KnockForce: {x: 2, y: 2}
+  _KnockForce: {x: 2, y: 0.1}
   _knockDuration: 0.3
   GroundLayer:
     serializedVersion: 2
@@ -292,9 +295,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 3b1b53d9c29a3064aafba1a5e61c126f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  Door: {fileID: 0}
-  animatorEntranceDoor: {fileID: 0}
-  _FindTag: RespawnDoor
+  DoorRespawn: {fileID: 0}
+  animatorRespawnDoor: {fileID: 0}
+  DoorOpen: {fileID: 0}
+  animatorOpenDoor: {fileID: 0}
 --- !u!1 &1899714211544418918
 GameObject:
   m_ObjectHideFlags: 0

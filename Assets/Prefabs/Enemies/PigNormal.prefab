@@ -412,9 +412,11 @@ MonoBehaviour:
   checkPlayerDetection: 0
   _isAtacking: 0
   _distanceChangeFollowPlayer: 0
+  _radiusDetectPlayerForAtackRangeType01: 0
+  _radiusDetectPlayerForAtackRangeType02: 0
   _radiusDetectPlayer: 2.31
   _radiusAtackPlayer: 0.44
-  _distanceChange: 0.2
+  _distanceChange: 0.3
   TypeEnemie: 0
   EnemyStates: 0
   _actualLife: 3
@@ -426,6 +428,7 @@ MonoBehaviour:
   _isCanNocked: 0
   _KnockForce: {x: 3, y: 0.5}
   _knockDuration: 1
+  _makeBomb: {fileID: 0}
   GroundLayer:
     serializedVersion: 2
     m_Bits: 128
@@ -451,7 +454,7 @@ CapsuleCollider2D:
   m_Material: {fileID: 0}
   m_IncludeLayers:
     serializedVersion: 2
-    m_Bits: 64
+    m_Bits: 0
   m_ExcludeLayers:
     serializedVersion: 2
     m_Bits: 0

@@ -401,7 +401,7 @@ BoxCollider2D:
   m_Material: {fileID: 0}
   m_IncludeLayers:
     serializedVersion: 2
-    m_Bits: 128
+    m_Bits: 0
   m_ExcludeLayers:
     serializedVersion: 2
     m_Bits: 0
@@ -463,7 +463,7 @@ MonoBehaviour:
   _radiusDetectPlayer: 8.48
   _radiusAtackPlayer: 1.53
   _distanceChange: 0.2
-  TypeEnemie: 0
+  TypeEnemie: 4
   EnemyStates: 0
   _actualLife: 10
   _currentLife: 0

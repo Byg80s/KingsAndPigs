@@ -5,14 +5,12 @@ public class DoorEvents : MonoBehaviour
 
 
     [SerializeField] private GameObject DoorRespawn;
-    [SerializeField] private GameObject DoorClose;
-    [SerializeField] private GameObject DoorOpen;
     [SerializeField] private Animator animatorRespawnDoor;
-    [SerializeField] private Animator animatorCloseDoor;
+    [SerializeField] private GameObject DoorOpen;
     [SerializeField] private Animator animatorOpenDoor;
-    [SerializeField] private string _FindTag;
-    public string FindTag { get => _FindTag; set => _FindTag = value; }
 
+    // [SerializeField] private Animator animatorCloseDoor;
+    // [SerializeField] private GameObject DoorClose;
     private int _idRespawnDoor;
     private int _idOpenDoor;
     private int _idCloseDoor;
@@ -21,14 +19,16 @@ public class DoorEvents : MonoBehaviour
     private void OnEnable()
     {
         _idRespawnDoor = Animator.StringToHash("_RespawnDoor");
-        _idOpenDoor = Animator.StringToHash("_RespawnDoor");
-        _idCloseDoor = Animator.StringToHash("_RespawnDoor");
         DoorRespawn = GameObject.FindGameObjectWithTag("RespawnDoor");
-        DoorClose = GameObject.FindGameObjectWithTag("ExirDoor");
-        DoorOpen = GameObject.FindGameObjectWithTag("EntranceDoor");
         animatorRespawnDoor = DoorRespawn.GetComponent<Animator>();
-        animatorCloseDoor = DoorClose.GetComponent<Animator>();
+        _idOpenDoor = Animator.StringToHash("_RespawnDoor");
+        DoorOpen = GameObject.FindGameObjectWithTag("EntranceDoor");
         animatorOpenDoor = DoorOpen.GetComponent<Animator>();
+        //  _idCloseDoor = Animator.StringToHash("_RespawnDoor");
+
+        //DoorClose = GameObject.FindGameObjectWithTag("ExirDoor");
+        //    animatorCloseDoor = DoorClose.GetComponent<Animator>();
+
 
     }
     void Start()
@@ -41,13 +41,13 @@ public class DoorEvents : MonoBehaviour
     {
         animatorRespawnDoor.SetTrigger(_idRespawnDoor);
     }
-    public void CloseDoor()
-    {
-        animatorCloseDoor.SetTrigger(_idCloseDoor);
-    }
+    /*   public void CloseDoor()
+     {
+         animatorCloseDoor.SetTrigger(_idCloseDoor);
+     }     
+    */
     public void OpenDoor()
     {
         animatorOpenDoor.SetTrigger(_idOpenDoor);
     }
-
 }

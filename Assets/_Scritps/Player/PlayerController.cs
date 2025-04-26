@@ -24,6 +24,7 @@ public class PlayerController : MonoBehaviour
     [SerializeField] private float _pushForce;
     private GameObject heldObject;
     private Rigidbody2D heldRb;
+    private bool _noIsNull;
 
     private Rigidbody2D m_rb;
     private GatherInput m_ginput;
@@ -48,6 +49,7 @@ public class PlayerController : MonoBehaviour
     [Tooltip("block or unlook the movement of player")]
     [SerializeField] private bool _canMove;
     public bool canMove { get => _canMove; set => _canMove = value; }
+
     [Tooltip("Time of delay of block movement")]
     [SerializeField] private float _moveDelay;
     private int _direction = 1;
@@ -65,6 +67,8 @@ public class PlayerController : MonoBehaviour
 
     [Header("Parameters Actions Push And Pull")]
     [SerializeField] private bool _isPushed;
+    public bool IsPushed { get => _isPushed; set => _isPushed = value; }
+
     [SerializeField] private bool _isPull;
     [Tooltip("This paramemeter is for define de radius for detect the objects posible take")]
     [SerializeField] private float _radiusDetectPull;
@@ -322,73 +326,75 @@ public class PlayerController : MonoBehaviour
     /// <summary>Pull Object </summary>
     private void HandleObjects()
     {
-        if (m_ginput.IsTake)
-        {
-            RaycastHit2D HitTake = Physics2D.Raycast(transform.position, transform.localScale, distanceToBox, _layerPull);
-            if (HitTake.collider != null)
-            {
+        /* 
+       if (m_ginput.IsTake)
+       {
+           RaycastHit2D HitTake = Physics2D.Raycast(transform.position, transform.localScale, distanceToBox, _layerPull);
+           if (HitTake.collider != null)
+           {
 
-                if (heldObject.CompareTag("Box"))
-                {
-                    Debug.DrawLine(transform.position, heldObject.transform.position, Color.red);
-                    heldRb.bodyType = RigidbodyType2D.Dynamic;
-                    heldRb.AddForce(transform.position * _pushForce);
-                }
-            }
-           
+               if (heldObject.CompareTag("Box"))
+               {
+                   Debug.DrawLine(transform.position, heldObject.transform.position, Color.red);
+                   heldRb.bodyType = RigidbodyType2D.Dynamic;
+                   heldRb.AddForce(transform.position * _pushForce);
+               }
+           }
 
-        }
-      
-        /*      if (m_ginput.IsTake)
-            {
-                m_DetectBox = Physics2D.OverlapCircleAll(transform.position, _radiusDetectPull);
-                foreach (var detectForPull in m_DetectBox)
-                {
-                    if (detectForPull.CompareTag("Box"))
-                    {
-                        m_joint.connectedBody = detectForPull.attachedRigidbody;
-                        m_joint.enabled = true;
-                        _isPull = true;
-                        break;
-                    }
-                }
-            }
 
-            else
-            {
-                m_joint.enabled = false;
-                _isPull = false;
-            }
-        */
+       }
+
+       /*      if (m_ginput.IsTake)
+           {
+               m_DetectBox = Physics2D.OverlapCircleAll(transform.position, _radiusDetectPull);
+               foreach (var detectForPull in m_DetectBox)
+               {
+                   if (detectForPull.CompareTag("Box"))
+                   {
+                       m_joint.connectedBody = detectForPull.attachedRigidbody;
+                       m_joint.enabled = true;
+                       _isPull = true;
+                       break;
+                   }
+               }
+           }
+
+           else
+           {
+               m_joint.enabled = false;
+               _isPull = false;
+           }
+       */
 
     }
 
 
     private void PushAndPullObjects()
     {
-       
+
 
         if (m_ginput.Push)
         {
             _isPushed = true;
-            RaycastHit2D HitPush = Physics2D.Raycast(transform.position, transform.localScale, distanceToBox, _layerPull);
+            /*   RaycastHit2D HitPush = Physics2D.Raycast(transform.position, transform.localScale, distanceToBox, _layerPull);
 
-            if (HitPush.collider != null)
-            {
-                if (heldObject.CompareTag("Box"))
-                {
-                    Debug.DrawLine(transform.position, heldObject.transform.position, Color.blue);
-                    heldRb.bodyType = RigidbodyType2D.Dynamic;
-                    heldRb.AddForce(transform.position * _pushForce);
-                }
-            }
+               if (HitPush.collider != null)
+               {
+                   _noIsNull = true;
+                   if (heldObject.CompareTag("Box"))
+                   {
+                       Debug.DrawLine(transform.position, heldObject.transform.position, Color.blue);
+                       heldRb.bodyType = RigidbodyType2D.Dynamic;
+                       heldRb.AddForce(transform.position * _pushForce);
+                   }
+            */
         }
         else
         {
-            _isPushed = false;
-            heldRb.bodyType = RigidbodyType2D.Static;
+           _isPushed = false;
+            //heldRb.bodyType = RigidbodyType2D.Static;
         }
-     
+
         #region OLD PUSH METHOD
         /*  if (m_ginput.Push)
 

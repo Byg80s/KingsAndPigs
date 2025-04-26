@@ -8,23 +8,32 @@ public class UnlockZoneSystem : MonoBehaviour
     [SerializeField] private float _positionInY;
     [Tooltip("Array of Switches need for open")]
     [SerializeField] private SwitchActions[] switches;
+    [Tooltip("Select 0 to choose open a door, select 1 to choose enable GameObject")]
+    [SerializeField] private int _selectOption;
     [SerializeField] private bool _open;
+    [SerializeField] private bool _show;
     [SerializeField] DirectionList _directions;
+    [SerializeField] private GameObject _ObjectMakeVisible;
+    //    [Tooltip("Input tag of GameObject new show")]
+    //   [SerializeField] private string _tagGameObject;
 
 
+    private void Start()
+    {
 
+        SelectGameObejct();
+    }
     // Update is called once per frame
     void Update()
     {
-        
-        CheckSwitches();
+
         if (_open) Unlock();
+        if (_show) MakeVisible();
+
     }
-
-
-    void Unlock()
+    private void Unlock()
     {
-
+        //this code change for animator of GameObject
 
         switch (_directions)
         {
@@ -67,6 +76,11 @@ public class UnlockZoneSystem : MonoBehaviour
 
         }
     }
+    private void MakeVisible()
+    {
+        Debug.Log("Make visible");
+        _ObjectMakeVisible.SetActive(true);
+    }
     public void CheckSwitches()
     {
 
@@ -76,14 +90,41 @@ public class UnlockZoneSystem : MonoBehaviour
 
         }
 
-        OpenDoor();
+        if (_selectOption == 0) OpenDoor();
+        else if (_selectOption == 1) ActiveGameObject();
+       
+
     }
-    void OpenDoor()
+    private void OpenDoor()
     {
         _open = true;
         Debug.Log("Door Open");
         // animate
-       
+
     }
-  
+    private void ActiveGameObject()
+    {
+        _show = true;
+        Debug.Log("Is visible");
+    }
+    private void SelectGameObejct()
+    {
+        switch (_selectOption)
+        {
+            case 0:
+                break;
+            case 1:
+               
+
+                if (_ObjectMakeVisible == null)
+                {
+                    Debug.Log("is null");
+                }
+                _ObjectMakeVisible.SetActive(false);
+
+                break;
+        }
+
+    }
+
 }

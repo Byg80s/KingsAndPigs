@@ -28,7 +28,6 @@ public class UnlockZoneSystem : MonoBehaviour
     {
 
         if (_open) Unlock();
-        if (_show) MakeVisible();
 
     }
     private void Unlock()
@@ -76,11 +75,7 @@ public class UnlockZoneSystem : MonoBehaviour
 
         }
     }
-    private void MakeVisible()
-    {
-        Debug.Log("Make visible");
-        _ObjectMakeVisible.SetActive(true);
-    }
+   
     public void CheckSwitches()
     {
 
@@ -105,6 +100,7 @@ public class UnlockZoneSystem : MonoBehaviour
     private void ActiveGameObject()
     {
         _show = true;
+        _ObjectMakeVisible.SetActive(true);
         Debug.Log("Is visible");
     }
     private void SelectGameObejct()
@@ -126,5 +122,6 @@ public class UnlockZoneSystem : MonoBehaviour
         }
 
     }
+   
 
 }

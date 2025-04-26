@@ -24,4 +24,5 @@ public class CheckPoint : MonoBehaviour
        _isActive = true;
         m_Anim.SetTrigger(_idIsActive);
     }
+
 }

@@ -4,7 +4,6 @@ using UnityEngine;
 
 public class CustomCameraObject : MonoBehaviour
 {
-    [SerializeField] private GameManager _gameManager;
     [Header("Cinemachine Components")]
     [SerializeField] private CinemachineCamera _cineMachineCamera;
     [SerializeField] private CinemachinePositionComposer _Composer;
@@ -28,7 +27,6 @@ public class CustomCameraObject : MonoBehaviour
 
     private void Start()
     {
-        _gameManager = GameManager.instance;
         _Composer =_cineMachineCamera.GetComponent<CinemachinePositionComposer>();
         _gameObject = GameObject.FindGameObjectWithTag(_name);
         m_playerControler= _gameObject.GetComponent<PlayerController>();
@@ -47,9 +45,6 @@ public class CustomCameraObject : MonoBehaviour
     private void OnTriggerEnter2D(Collider2D collision)
     {
         StartCoroutine(TimeOffSet(_TimeOffset));
-
-
-
     }
     private void OnTriggerExit2D(Collider2D collision)
     {
@@ -79,15 +74,12 @@ public class CustomCameraObject : MonoBehaviour
     {
         yield return new WaitForSeconds(time);
         _enabled = true;
-      //  _gameManager.blockInputs = true;
     }
     IEnumerator UnblockInput(float time)
     {
         yield return new WaitForSeconds(_TimeBlockInputs);
-     //   _gameManager.blockInputs = false;
         _Composer.TargetOffset.y = 0f;
         _Composer.TargetOffset.x = 0f;
-       // GetComponent<PlayerController>().BlockInputs();
         Destroy(_firstCamera);
 
     }

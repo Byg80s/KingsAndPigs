@@ -24,7 +24,11 @@ public class GatherInput : MonoBehaviour
     [SerializeField] private bool _IsTake;
     public bool IsTake { get => _IsTake; set => _IsTake = value; }
 
+    [SerializeField] private bool _isUp;
+    public bool UpPt { get => _isUp; set => _isUp = value; }
 
+    [SerializeField] private bool _isDown;
+    public bool DownPt { get => _isDown; set => _isDown = value; }
 
     //Components
     private Animator _animator;
@@ -53,6 +57,11 @@ public class GatherInput : MonoBehaviour
         _controls.Player.Wall.canceled += StopWallPos;
         _controls.Player.Take.performed += StartTake;
         _controls.Player.Take.canceled += StopTake;
+        _controls.Player.DownPlattform.performed += StartDownPlatfform;
+        _controls.Player.DownPlattform.canceled += StopDownPlatfform;
+        _controls.Player.UpPlattform.performed += StartUpPlatfform;
+        _controls.Player.UpPlattform.canceled += StopUpPlatfform;
+
 
         _controls.Player.Enable();
 
@@ -116,6 +125,22 @@ public class GatherInput : MonoBehaviour
     {
         IsTake = false;
     }
+    private void StartUpPlatfform(InputAction.CallbackContext context)
+    {
+        UpPt = true;
+    }
+    private void StopUpPlatfform(InputAction.CallbackContext context)
+    {
+        UpPt = false;
+    }
+    private void StartDownPlatfform(InputAction.CallbackContext context)
+    {
+        DownPt = true;
+    }
+    private void StopDownPlatfform(InputAction.CallbackContext context)
+    {
+        DownPt = false;
+    }
     //DISABLE CONTROLS SYSTEM PLAYER
     private void OnDisable()
     {
@@ -130,6 +155,10 @@ public class GatherInput : MonoBehaviour
         _controls.Player.Wall.canceled -= StopWallPos;
         _controls.Player.Take.performed -= StartTake;
         _controls.Player.Take.canceled -= StopTake;
+        _controls.Player.DownPlattform.performed -= StartDownPlatfform;
+        _controls.Player.DownPlattform.canceled -= StopDownPlatfform;
+        _controls.Player.UpPlattform.performed -= StartUpPlatfform;
+        _controls.Player.UpPlattform.canceled -= StopUpPlatfform;
         _controls.Player.Disable();
     }
 }

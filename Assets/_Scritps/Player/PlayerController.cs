@@ -60,7 +60,10 @@ public class PlayerController : MonoBehaviour
     [Tooltip("Number of jumps extra")]
     [SerializeField] private int _extraJumps;
     [SerializeField] private int _counterExtraJumps;
+
+    //chech this
     [SerializeField] private bool _isGrounded;
+    public   bool IsGrounded { get => _isGrounded; }
     [Tooltip("Permit doubleJump")]
     [SerializeField] private bool _canDoubleJumped;
     private bool _permitJumper;

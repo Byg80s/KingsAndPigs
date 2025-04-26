@@ -660,6 +660,24 @@ public partial class @Controls: IInputActionCollection2, IDisposable
                     ""processors"": """",
                     ""interactions"": """",
                     ""initialStateCheck"": false
+                },
+                {
+                    ""name"": ""DownPlattform"",
+                    ""type"": ""Button"",
+                    ""id"": ""454df859-9782-439f-982a-e4fd2973de45"",
+                    ""expectedControlType"": """",
+                    ""processors"": """",
+                    ""interactions"": """",
+                    ""initialStateCheck"": false
+                },
+                {
+                    ""name"": ""UpPlattform"",
+                    ""type"": ""Button"",
+                    ""id"": ""dcae8a26-43e3-4bb3-96f6-6a826a26f6f2"",
+                    ""expectedControlType"": """",
+                    ""processors"": """",
+                    ""interactions"": """",
+                    ""initialStateCheck"": false
                 }
             ],
             ""bindings"": [
@@ -977,7 +995,7 @@ public partial class @Controls: IInputActionCollection2, IDisposable
                     ""path"": ""<Keyboard>/e"",
                     ""interactions"": """",
                     ""processors"": """",
-                    ""groups"": """",
+                    ""groups"": "";Keyboard&Mouse"",
                     ""action"": ""Take"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": false
@@ -988,8 +1006,96 @@ public partial class @Controls: IInputActionCollection2, IDisposable
                     ""path"": ""<Gamepad>/leftShoulder"",
                     ""interactions"": """",
                     ""processors"": """",
-                    ""groups"": """",
+                    ""groups"": "";Gamepad"",
                     ""action"": ""Take"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""168e7d14-d775-4a09-8ce3-7e1e2de0ab64"",
+                    ""path"": ""<Gamepad>/leftStick/down"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": "";Gamepad"",
+                    ""action"": ""DownPlattform"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""6e40161c-21c9-42b6-874a-5791294a7de2"",
+                    ""path"": ""<Gamepad>/dpad/down"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": "";Gamepad"",
+                    ""action"": ""DownPlattform"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""d9af5075-a5a8-465e-b3fd-826fa62ff82a"",
+                    ""path"": ""<Keyboard>/downArrow"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": "";Keyboard&Mouse"",
+                    ""action"": ""DownPlattform"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""e8260496-6e5f-4f6e-a11a-b67384c0c8d2"",
+                    ""path"": ""<Keyboard>/s"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": "";Keyboard&Mouse"",
+                    ""action"": ""DownPlattform"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""73f369a0-fff8-4694-ac29-314629704bcf"",
+                    ""path"": ""<Gamepad>/dpad/up"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": "";Gamepad"",
+                    ""action"": ""UpPlattform"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""5a34114c-721c-43ad-a726-f48cd7c524d8"",
+                    ""path"": ""<Gamepad>/leftStick/up"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": "";Gamepad"",
+                    ""action"": ""UpPlattform"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""2a53da3c-0773-43d5-b785-b044498ac7de"",
+                    ""path"": ""<Keyboard>/w"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": "";Keyboard&Mouse"",
+                    ""action"": ""UpPlattform"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""11b6e45e-7178-438e-9229-8f5c46c7d370"",
+                    ""path"": ""<Keyboard>/upArrow"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": "";Keyboard&Mouse"",
+                    ""action"": ""UpPlattform"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": false
                 }
@@ -1079,6 +1185,8 @@ public partial class @Controls: IInputActionCollection2, IDisposable
         m_Player_Atack = m_Player.FindAction("Atack", throwIfNotFound: true);
         m_Player_Wall = m_Player.FindAction("Wall", throwIfNotFound: true);
         m_Player_Take = m_Player.FindAction("Take", throwIfNotFound: true);
+        m_Player_DownPlattform = m_Player.FindAction("DownPlattform", throwIfNotFound: true);
+        m_Player_UpPlattform = m_Player.FindAction("UpPlattform", throwIfNotFound: true);
     }
 
     ~@Controls()
@@ -1361,6 +1469,8 @@ public partial class @Controls: IInputActionCollection2, IDisposable
     private readonly InputAction m_Player_Atack;
     private readonly InputAction m_Player_Wall;
     private readonly InputAction m_Player_Take;
+    private readonly InputAction m_Player_DownPlattform;
+    private readonly InputAction m_Player_UpPlattform;
     /// <summary>
     /// Provides access to input actions defined in input action map "Player".
     /// </summary>
@@ -1396,6 +1506,14 @@ public partial class @Controls: IInputActionCollection2, IDisposable
         /// Provides access to the underlying input action "Player/Take".
         /// </summary>
         public InputAction @Take => m_Wrapper.m_Player_Take;
+        /// <summary>
+        /// Provides access to the underlying input action "Player/DownPlattform".
+        /// </summary>
+        public InputAction @DownPlattform => m_Wrapper.m_Player_DownPlattform;
+        /// <summary>
+        /// Provides access to the underlying input action "Player/UpPlattform".
+        /// </summary>
+        public InputAction @UpPlattform => m_Wrapper.m_Player_UpPlattform;
         /// <summary>
         /// Provides access to the underlying input action map instance.
         /// </summary>
@@ -1440,6 +1558,12 @@ public partial class @Controls: IInputActionCollection2, IDisposable
             @Take.started += instance.OnTake;
             @Take.performed += instance.OnTake;
             @Take.canceled += instance.OnTake;
+            @DownPlattform.started += instance.OnDownPlattform;
+            @DownPlattform.performed += instance.OnDownPlattform;
+            @DownPlattform.canceled += instance.OnDownPlattform;
+            @UpPlattform.started += instance.OnUpPlattform;
+            @UpPlattform.performed += instance.OnUpPlattform;
+            @UpPlattform.canceled += instance.OnUpPlattform;
         }
 
         /// <summary>
@@ -1469,6 +1593,12 @@ public partial class @Controls: IInputActionCollection2, IDisposable
             @Take.started -= instance.OnTake;
             @Take.performed -= instance.OnTake;
             @Take.canceled -= instance.OnTake;
+            @DownPlattform.started -= instance.OnDownPlattform;
+            @DownPlattform.performed -= instance.OnDownPlattform;
+            @DownPlattform.canceled -= instance.OnDownPlattform;
+            @UpPlattform.started -= instance.OnUpPlattform;
+            @UpPlattform.performed -= instance.OnUpPlattform;
+            @UpPlattform.canceled -= instance.OnUpPlattform;
         }
 
         /// <summary>
@@ -1694,5 +1824,19 @@ public partial class @Controls: IInputActionCollection2, IDisposable
         /// <seealso cref="UnityEngine.InputSystem.InputAction.performed" />
         /// <seealso cref="UnityEngine.InputSystem.InputAction.canceled" />
         void OnTake(InputAction.CallbackContext context);
+        /// <summary>
+        /// Method invoked when associated input action "DownPlattform" is either <see cref="UnityEngine.InputSystem.InputAction.started" />, <see cref="UnityEngine.InputSystem.InputAction.performed" /> or <see cref="UnityEngine.InputSystem.InputAction.canceled" />.
+        /// </summary>
+        /// <seealso cref="UnityEngine.InputSystem.InputAction.started" />
+        /// <seealso cref="UnityEngine.InputSystem.InputAction.performed" />
+        /// <seealso cref="UnityEngine.InputSystem.InputAction.canceled" />
+        void OnDownPlattform(InputAction.CallbackContext context);
+        /// <summary>
+        /// Method invoked when associated input action "UpPlattform" is either <see cref="UnityEngine.InputSystem.InputAction.started" />, <see cref="UnityEngine.InputSystem.InputAction.performed" /> or <see cref="UnityEngine.InputSystem.InputAction.canceled" />.
+        /// </summary>
+        /// <seealso cref="UnityEngine.InputSystem.InputAction.started" />
+        /// <seealso cref="UnityEngine.InputSystem.InputAction.performed" />
+        /// <seealso cref="UnityEngine.InputSystem.InputAction.canceled" />
+        void OnUpPlattform(InputAction.CallbackContext context);
     }
 }

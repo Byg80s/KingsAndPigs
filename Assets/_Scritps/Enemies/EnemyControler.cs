@@ -60,7 +60,7 @@ public class EnemyControler : MonoBehaviour
     [SerializeField] private EnemiesTypes TypeEnemie;
     [SerializeField] private EnemyEstates EnemyStates;
     [SerializeField] private EnemiesTypeDrop TypeDrop;
-    private bool _isIntancied=false;
+    private bool _isIntancied = false;
 
 
     [Header("Live system")]
@@ -105,14 +105,7 @@ public class EnemyControler : MonoBehaviour
     //Layers
     [Header("Layers")]
     [SerializeField] private LayerMask GroundLayer, PlayerLayer;
-    private void Awake()
-    {
 
-        m_rb = GetComponent<Rigidbody2D>();
-        m_animator = GetComponent<Animator>();
-
-
-    }
 
     //Comportament Enemie
     [Header("Parameters WayPoints")]
@@ -125,7 +118,11 @@ public class EnemyControler : MonoBehaviour
     private bool _flip;
 
 
-
+    private void Awake()
+    {
+        m_rb = GetComponent<Rigidbody2D>();
+        m_animator = GetComponent<Animator>();
+    }
 
 
 
@@ -425,23 +422,25 @@ public class EnemyControler : MonoBehaviour
         switch (TypeEnemie)
         {
             case EnemiesTypes.Melee:
-                if (m_PlayerTransform != null)
+                if (m_PlayerTransform != null) 
                 {
                     Vector3 PlayerPos = m_PlayerTransform.position;
-                    Vector3 DirectionFollow = (PlayerPos - transform.position);
-
-                    if (DirectionFollow.magnitude < _distanceChangeFollowPlayer)//!_isNocked &&
-                    {
-                        Flip();
-                        PlayerPos = m_Way[_index].position;
-                        DirectionFollow = (PlayerPos - transform.position);
-                    }
-
+                    Vector2 DirectionFollow = (PlayerPos - transform.position);
+                    #region OldCode
+                    /*    if (DirectionFollow.magnitude < _distanceChangeFollowPlayer)//!_isNocked &&
+                        {
+                            Flip();
+                            PlayerPos = m_Way[_index].position;
+                            DirectionFollow = (PlayerPos - transform.position);
+                        }
                     // Physic movement
 
-                    Vector3 VelocityNeedForGoPlayer = DirectionFollow.normalized * _speedMove * Time.fixedDeltaTime;
-                    m_rb.linearVelocity = new Vector3(VelocityNeedForGoPlayer.x, m_rb.linearVelocity.y);
+                    // Vector3 VelocityNeedForGoPlayer = DirectionFollow.normalized * _speedMove * Time.fixedDeltaTime;
+                    //  m_rb.linearVelocity = new Vector3(VelocityNeedForGoPlayer.x, m_rb.linearVelocity.y);
+                    */
+                    #endregion
 
+                    m_rb.linearVelocity = new Vector2(DirectionFollow.x * _speedMove * Time.fixedDeltaTime,0).normalized;
                 }
                 break;
             case EnemiesTypes.Boss:
@@ -570,8 +569,8 @@ public class EnemyControler : MonoBehaviour
     {
 
         yield return new WaitForSeconds(time);
-        if(!_isIntancied)
-        Instantiate(PrefabBox, transform.position, Quaternion.identity);
+        if (!_isIntancied)
+            Instantiate(PrefabBox, transform.position, Quaternion.identity);
         _isIntancied = true;
 
 

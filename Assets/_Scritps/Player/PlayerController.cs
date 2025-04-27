@@ -72,6 +72,8 @@ public class PlayerController : MonoBehaviour
     [SerializeField] private bool _isPushed;
     public bool IsPushed { get => _isPushed; set => _isPushed = value; }
 
+    private bool _isTake;
+    public bool IsTake { get => _isTake; set => _isTake = value; }
     [SerializeField] private bool _isPull;
     [Tooltip("This paramemeter is for define de radius for detect the objects posible take")]
     [SerializeField] private float _radiusDetectPull;
@@ -131,7 +133,7 @@ public class PlayerController : MonoBehaviour
     [SerializeField] private GameObject IndoorVfx;
 
     private bool attack;
-
+    
 
     private void Awake()
     {
@@ -331,6 +333,17 @@ public class PlayerController : MonoBehaviour
     /// <summary>Pull Object </summary>
     private void HandleObjects()
     {
+
+        if (m_ginput.IsTake)
+        {
+            _isTake = true;
+
+        }
+        else
+        {
+            _isTake = false;
+
+        }
         /* 
        if (m_ginput.IsTake)
        {

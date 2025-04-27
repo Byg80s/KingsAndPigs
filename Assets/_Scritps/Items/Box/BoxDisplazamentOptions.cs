@@ -16,6 +16,7 @@ public class BoxDisplazamentOptions : MonoBehaviour
     private Vector2 front;
     private Vector2 back;
     [SerializeField] private bool _isPushed;
+    [SerializeField] private bool _isTaked;
 
     private void Start()
     {
@@ -28,23 +29,21 @@ public class BoxDisplazamentOptions : MonoBehaviour
     }
     private void FixedUpdate()
     {
-        CheckIgPushPlayerButton();
-
+        if (!_isTaked) CheckIsPushPlayerButton();
+        if (!_isPushed) CheckIsTakePlayerButton();
     }
 
 
-    private void CheckIgPushPlayerButton()
+    private void CheckIsPushPlayerButton()
     {
 
         _isPushed = m_playerController.IsPushed;
 
-        if (m_pointDetect == null)return;
+        if (m_pointDetect == null) return;
         {
-          
-            hitRigth = Physics2D.Raycast(transform.position, front, _distanceToPlayer, m_layerMaskPlayer);
-            hitLeft = Physics2D.Raycast(transform.position, back, _distanceToPlayer, m_layerMaskPlayer);
+            CheckHitLayerMaskPlayer();
 
-            if (!_isPushed&&( hitLeft.collider != null && hitLeft.collider.CompareTag("Player") || hitRigth.collider != null && hitRigth.collider.CompareTag("Player")))
+            if (!_isPushed && (hitLeft.collider != null && hitLeft.collider.CompareTag("Player") || hitRigth.collider != null && hitRigth.collider.CompareTag("Player")))
             {
                 Debug.DrawLine(transform.position, m_pointDetect.transform.position, Color.blue);
                 m_rb.constraints = RigidbodyConstraints2D.FreezePositionX;
@@ -60,5 +59,34 @@ public class BoxDisplazamentOptions : MonoBehaviour
 
         }
 
+    }
+    private void CheckIsTakePlayerButton()
+    {
+        _isTaked = m_playerController.IsTake;
+
+        if (m_pointDetect == null) return;
+        {
+            CheckHitLayerMaskPlayer();
+            if (!_isTaked && (hitLeft.collider != null && hitLeft.collider.CompareTag("Player") || hitRigth.collider != null && hitRigth.collider.CompareTag("Player")))
+            {
+                Debug.DrawLine(transform.position, m_pointDetect.transform.position, Color.yellow);
+                Debug.Log(_isTaked);
+            }
+
+
+            else
+            {
+
+               
+                Debug.Log(_isTaked);
+                m_playerController.transform.position = m_pointDetect.transform.position;
+            }
+
+        }
+    }
+    private void CheckHitLayerMaskPlayer()
+    {
+        hitRigth = Physics2D.Raycast(transform.position, front, _distanceToPlayer, m_layerMaskPlayer);
+        hitLeft = Physics2D.Raycast(transform.position, back, _distanceToPlayer, m_layerMaskPlayer);
     }
 }

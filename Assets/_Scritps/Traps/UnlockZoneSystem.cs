@@ -67,11 +67,9 @@ public class UnlockZoneSystem : MonoBehaviour
                 transform.Translate(Vector2.left * _timeSpeedUnlock * Time.deltaTime);
                 if (transform.position.x < _positionInX)
                 {
-
                     Destroy(gameObject);
                 }
                 break;
-
 
         }
     }
@@ -93,15 +91,12 @@ public class UnlockZoneSystem : MonoBehaviour
     private void OpenDoor()
     {
         _open = true;
-        Debug.Log("Door Open");
         // animate
-
     }
     private void ActiveGameObject()
     {
         _show = true;
         _ObjectMakeVisible.SetActive(true);
-        Debug.Log("Is visible");
     }
     private void SelectGameObejct()
     {
@@ -109,16 +104,13 @@ public class UnlockZoneSystem : MonoBehaviour
         {
             case 0:
                 break;
-            case 1:
-               
-
+            case 1:             
                 if (_ObjectMakeVisible == null)
                 {
                     Debug.Log("is null");
                 }
                 _ObjectMakeVisible.SetActive(false);
-
-                break;
+               break;
         }
 
     }

@@ -163,9 +163,8 @@ public class PlayerController : MonoBehaviour
 
         _counterExtraJumps = _extraJumps;
         _permitJumper = true;
-        m_joint = GetComponent<DistanceJoint2D>();
-        m_joint.enabled = false;
-        //  m_DetectBox = GetComponent<Collider2D[]>();
+
+      
         heldObject = GetComponent<GameObject>();
         heldObject = GameObject.FindGameObjectWithTag("Box");
         heldRb = heldObject.GetComponentInParent<Rigidbody2D>();

@@ -45,7 +45,6 @@ public class SwitchActions : MonoBehaviour
     private void Start()
     {
 
-        //  _Composer = _cineMachineCamera.GetComponent<CinemachinePositionComposer>();
         newTime = timeDesactivate;
         m_anim = GetComponent<Animator>();
         _idSwitchOn = Animator.StringToHash(nameAnimator);
@@ -53,8 +52,6 @@ public class SwitchActions : MonoBehaviour
     }
     private void Update()
     {
-
-        //  EnableCamera();
     }
     private void OnTriggerEnter2D(Collider2D other)
     {

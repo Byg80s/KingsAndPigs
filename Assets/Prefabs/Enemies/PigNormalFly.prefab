@@ -113,7 +113,7 @@ SpriteRenderer:
   m_AutoUVMaxAngle: 89
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: -135027459
-  m_SortingLayer: 5
+  m_SortingLayer: 6
   m_SortingOrder: 0
   m_Sprite: {fileID: -6714613527932964215, guid: 6f60bee1ebff8da439c618a511f2dec6, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
@@ -188,7 +188,7 @@ BoxCollider2D:
   m_Material: {fileID: 0}
   m_IncludeLayers:
     serializedVersion: 2
-    m_Bits: 128
+    m_Bits: 0
   m_ExcludeLayers:
     serializedVersion: 2
     m_Bits: 0
@@ -245,11 +245,14 @@ MonoBehaviour:
   checkPlayerDetection: 0
   _isAtacking: 0
   _distanceChangeFollowPlayer: 0
-  _radiusDetectPlayer: 6
+  _radiusDetectPlayerForAtackRangeType01: 0
+  _radiusDetectPlayerForAtackRangeType02: 0
+  _radiusDetectPlayer: 2.11
   _radiusAtackPlayer: 0.5
   _distanceChange: 0.2
-  TypeEnemie: 0
+  TypeEnemie: 1
   EnemyStates: 0
+  TypeDrop: 0
   _actualLife: 10
   _currentLife: 0
   Lfoot: {fileID: 7656342058878898052}
@@ -259,6 +262,7 @@ MonoBehaviour:
   _isCanNocked: 0
   _KnockForce: {x: 3, y: 0.5}
   _knockDuration: 0.1
+  _makeBomb: {fileID: 0}
   GroundLayer:
     serializedVersion: 2
     m_Bits: 128
@@ -268,6 +272,10 @@ MonoBehaviour:
   _speedMove: 2.5
   _ignoreWayPoints: 0
   m_Way:
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
   - {fileID: 0}
   - {fileID: 0}
   _index: 1

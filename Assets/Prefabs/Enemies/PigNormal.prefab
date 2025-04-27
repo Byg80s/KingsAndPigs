@@ -189,7 +189,7 @@ BoxCollider2D:
   m_UsedByEffector: 0
   m_CompositeOperation: 0
   m_CompositeOrder: 0
-  m_Offset: {x: 0.08388829, y: -0.08266175}
+  m_Offset: {x: 0.055747986, y: -0.08266175}
   m_SpriteTilingProperty:
     border: {x: 0, y: 0, z: 0, w: 0}
     pivot: {x: 0, y: 0}
@@ -199,7 +199,7 @@ BoxCollider2D:
     drawMode: 0
     adaptiveTiling: 0
   m_AutoTiling: 0
-  m_Size: {x: 1.3692775, y: 0.7216613}
+  m_Size: {x: 0.93382263, y: 0.7216613}
   m_EdgeRadius: 0
 --- !u!114 &7389188835552410248
 MonoBehaviour:
@@ -326,7 +326,7 @@ SpriteRenderer:
   m_AutoUVMaxAngle: 89
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: -135027459
-  m_SortingLayer: 5
+  m_SortingLayer: 6
   m_SortingOrder: 0
   m_Sprite: {fileID: -6714613527932964215, guid: 6f60bee1ebff8da439c618a511f2dec6, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
@@ -411,7 +411,7 @@ MonoBehaviour:
   timeWaitPatrol: 3
   checkPlayerDetection: 0
   _isAtacking: 0
-  _distanceChangeFollowPlayer: 0
+  _distanceChangeFollowPlayer: 0.5
   _radiusDetectPlayerForAtackRangeType01: 0
   _radiusDetectPlayerForAtackRangeType02: 0
   _radiusDetectPlayer: 2.31
@@ -419,6 +419,7 @@ MonoBehaviour:
   _distanceChange: 0.3
   TypeEnemie: 0
   EnemyStates: 0
+  TypeDrop: 0
   _actualLife: 3
   _currentLife: 0
   Lfoot: {fileID: 3878240852954729587}
@@ -440,7 +441,7 @@ MonoBehaviour:
   m_Way:
   - {fileID: 0}
   - {fileID: 0}
-  _index: 1
+  _index: 0
 --- !u!70 &7302128901882345300
 CapsuleCollider2D:
   m_ObjectHideFlags: 0
@@ -454,7 +455,7 @@ CapsuleCollider2D:
   m_Material: {fileID: 0}
   m_IncludeLayers:
     serializedVersion: 2
-    m_Bits: 0
+    m_Bits: 1024
   m_ExcludeLayers:
     serializedVersion: 2
     m_Bits: 0

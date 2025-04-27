@@ -18,7 +18,11 @@ public class EnemyControler : MonoBehaviour
     private bool _PlayerIsInFirstZone;
     private bool _PlayerIsInSecondZone;
 
-
+    [Header("Pefabs drop")]
+    [SerializeField] private GameObject PrefabBox;
+    [SerializeField] private GameObject PrefabKey;
+    [SerializeField] private GameObject PrefabPotionHeal;
+    [SerializeField] private GameObject PrefabPotionMana;
 
 
     //Values
@@ -52,9 +56,11 @@ public class EnemyControler : MonoBehaviour
 
     [Header("Parameters Wall detection")]
 
-    [Header("Select Enemy type")]
+    [Header("Select Enemy type and Dropeds")]
     [SerializeField] private EnemiesTypes TypeEnemie;
     [SerializeField] private EnemyEstates EnemyStates;
+    [SerializeField] private EnemiesTypeDrop TypeDrop;
+    private bool _isIntancied=false;
 
 
     [Header("Live system")]
@@ -62,6 +68,9 @@ public class EnemyControler : MonoBehaviour
     public int ActualLife { get => _actualLife; set => _actualLife = value; }
 
     [SerializeField] private int _currentLife;
+
+    //only for check and need drop
+    private bool _isDead;
 
     // Raycast Variables
     RaycastHit2D LfootRay;
@@ -142,6 +151,8 @@ public class EnemyControler : MonoBehaviour
         Animations();
         if (_actualLife > 0) EnemiIaNoPhysics();
         Dead();
+        DropItemIfDeath();
+
     }
     private void FixedUpdate()
     {
@@ -150,13 +161,13 @@ public class EnemyControler : MonoBehaviour
         ChangeRigidBodyType();
         CheckColision();
         StatesOfAnimationEnemy();
-        if (m_PlayerTransform != null) EnemiIaWithPhysic();// || _actualLife > 0
+        if (m_PlayerTransform != null && _actualLife > 0) EnemiIaWithPhysic();// || _actualLife > 0
 
     }
     void Dead()
     {
-        if (_actualLife <= 0)
-            StartCoroutine(DeathDestroy());
+
+        if (_actualLife <= 0) StartCoroutine(DeathDestroy());
     }
     IEnumerator DeathDestroy()
     {
@@ -164,6 +175,7 @@ public class EnemyControler : MonoBehaviour
         m_colliderChildren[0].enabled = false;
         m_colliderChildren[1].enabled = false;
         m_rb.bodyType = RigidbodyType2D.Static;
+        _isDead = true;
         yield return new WaitForSeconds(2);
         Destroy(gameObject);
     }
@@ -293,7 +305,7 @@ public class EnemyControler : MonoBehaviour
 
     void FollowPlayerNoPhysics()
     {
-        if (m_PlayerTransform != null )//|| _actualLife > 0)
+        if (m_PlayerTransform != null)//|| _actualLife > 0)
         {
 
 
@@ -310,6 +322,7 @@ public class EnemyControler : MonoBehaviour
                 case EnemiesTypes.Melee:
                     if (_PlayerDetected && _isGrounded && _actualLife > 0)
                         transform.position = Vector2.MoveTowards(transform.position, new Vector2(m_PlayerTransform.position.x, transform.position.y), _speedMove * Time.deltaTime);
+
                     break;
                 case EnemiesTypes.Ranged:
                     if (_PlayerDetected && _actualLife > 0)
@@ -325,6 +338,7 @@ public class EnemyControler : MonoBehaviour
                 default:
                     break;
             }
+
         }
 
     }
@@ -352,7 +366,7 @@ public class EnemyControler : MonoBehaviour
 
                 if (velocity.x > 0 && _flip) Flip();
                 else if (velocity.x < 0 && !_flip) Flip();
-             
+
                 break;
             case EnemiesTypes.Ranged:
 
@@ -389,10 +403,10 @@ public class EnemyControler : MonoBehaviour
 
         }
     }
-   
+
     IEnumerator TimeWaitAfterMove(float time)
     {
-       
+
         _isWaitMovement = true;
         EnemyStates = EnemyEstates.wait;
         m_rb.linearVelocity = Vector2.zero;
@@ -401,45 +415,22 @@ public class EnemyControler : MonoBehaviour
 
         _index = (_index + 1) % m_Way.Length;
         _isWaitMovement = false;
-        EnemyStates = EnemyEstates.patrol; 
+        EnemyStates = EnemyEstates.patrol;
     }
 
-    //
-    /// 
 
 
-    // Copy security movement physics
-
-    /*  void WayPointsUsePhysics()
-    {
-        if (m_Way.Length == 0) return;
-
-        Vector3 WayPonits = m_Way[_index].position;
-        Vector3 direction = (WayPonits - transform.position);
-
-        if (direction.magnitude < _distanceChange)
-        {
-            Flip();
-            _index = (_index + 1) % m_Way.Length;
-            WayPonits = m_Way[_index].position;
-            direction = (WayPonits - transform.position);
-        }
-
-        // Physic movement
-        Vector3 VelocityNeed = direction.normalized * _speedMove;
-        m_rb.linearVelocity = new Vector3(VelocityNeed.x, m_rb.linearVelocity.y); // conserva velocidad vertical si usas gravedad
-    }*/
     void FollowPlayerWithPhysics()
     {
         switch (TypeEnemie)
         {
             case EnemiesTypes.Melee:
-                if (m_PlayerTransform != null || _actualLife > 0)
+                if (m_PlayerTransform != null)
                 {
                     Vector3 PlayerPos = m_PlayerTransform.position;
                     Vector3 DirectionFollow = (PlayerPos - transform.position);
 
-                    if (DirectionFollow.magnitude < _distanceChangeFollowPlayer)
+                    if (DirectionFollow.magnitude < _distanceChangeFollowPlayer)//!_isNocked &&
                     {
                         Flip();
                         PlayerPos = m_Way[_index].position;
@@ -447,13 +438,15 @@ public class EnemyControler : MonoBehaviour
                     }
 
                     // Physic movement
+
                     Vector3 VelocityNeedForGoPlayer = DirectionFollow.normalized * _speedMove * Time.fixedDeltaTime;
                     m_rb.linearVelocity = new Vector3(VelocityNeedForGoPlayer.x, m_rb.linearVelocity.y);
+
                 }
                 break;
             case EnemiesTypes.Boss:
 
-                if (m_PlayerTransform != null || _actualLife > 0)
+                if (m_PlayerTransform != null)
                 {
 
 
@@ -473,10 +466,51 @@ public class EnemyControler : MonoBehaviour
                 }
                 break;
         }
+
     }
 
 
+    void DropItemIfDeath()
+    {
 
+
+        switch (TypeDrop)
+        {
+
+            case EnemiesTypeDrop.Box:
+                if (_actualLife <= 0 && PrefabBox != null)
+                {
+                    StartCoroutine(TimeDropBox(1));
+                }
+
+                break;
+
+
+            case EnemiesTypeDrop.Key:
+                if (_actualLife <= 0 && PrefabBox != null)
+                {
+                    StartCoroutine(TimeDropKey(1));
+                }
+                break;
+
+            case EnemiesTypeDrop.PotionHealth:
+                if (_actualLife <= 0 && PrefabBox != null)
+                {
+                    StartCoroutine(TimeDropPotionHeal(1));
+                }
+                break;
+
+            case EnemiesTypeDrop.PotionMana:
+                if (_actualLife <= 0 && PrefabBox != null)
+                {
+                    StartCoroutine(TimerDropPotionMana(1));
+                }
+                break;
+
+            case EnemiesTypeDrop.Null: break;
+
+        }
+    }
 
     void WayPointsNoUsePhysics()
     {
@@ -532,8 +566,29 @@ public class EnemyControler : MonoBehaviour
         Gizmos.DrawCube(m_colliderChildren[1].bounds.center, m_colliderChildren[1].bounds.size);
 
     }
+    IEnumerator TimeDropBox(float time)
+    {
+
+        yield return new WaitForSeconds(time);
+        if(!_isIntancied)
+        Instantiate(PrefabBox, transform.position, Quaternion.identity);
+        _isIntancied = true;
 
 
+
+    }
+    IEnumerator TimeDropKey(float time)
+    {
+        yield return new WaitForSeconds(time);
+    }
+    IEnumerator TimeDropPotionHeal(float time)
+    {
+        yield return new WaitForSeconds(time);
+    }
+    IEnumerator TimerDropPotionMana(float time)
+    {
+        yield return new WaitForSeconds(time);
+    }
 
 }
 

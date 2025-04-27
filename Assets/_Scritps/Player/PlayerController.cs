@@ -112,6 +112,8 @@ public class PlayerController : MonoBehaviour
     //Knock Settings
     [Header("parameters Knock")]
     [SerializeField] private bool _isNocked;
+    public bool IsNocked { get => _isNocked; set => _isNocked = value; }
+
     [SerializeField] private bool _isCanNocked;
     [SerializeField] private Vector2 _KnockForce;
     [SerializeField] private float _knockDuration;
@@ -379,45 +381,15 @@ public class PlayerController : MonoBehaviour
         if (m_ginput.Push)
         {
             _isPushed = true;
-            /*   RaycastHit2D HitPush = Physics2D.Raycast(transform.position, transform.localScale, distanceToBox, _layerPull);
-
-               if (HitPush.collider != null)
-               {
-                   _noIsNull = true;
-                   if (heldObject.CompareTag("Box"))
-                   {
-                       Debug.DrawLine(transform.position, heldObject.transform.position, Color.blue);
-                       heldRb.bodyType = RigidbodyType2D.Dynamic;
-                       heldRb.AddForce(transform.position * _pushForce);
-                   }
-            */
+        
         }
         else
         {
            _isPushed = false;
-            //heldRb.bodyType = RigidbodyType2D.Static;
+           
         }
 
-        #region OLD PUSH METHOD
-        /*  if (m_ginput.Push)
-
-          {
-              _isPushed = true;
-
-              m_colliderChildren[0].enabled = true;
-              m_colliderChildren[0].isTrigger = false;
-              GameManager.instance.IsPushAction = true;
-          }
-          else
-          {
-              _isPushed = false;
-              m_colliderChildren[0].enabled = false;
-              m_colliderChildren[0].isTrigger = true;
-              GameManager.instance.IsPushAction = false;
-          }
-        */
-
-        #endregion
+      
     }
     //IEnumerators
     IEnumerator WaitReturnTime(float time)

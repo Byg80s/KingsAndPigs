@@ -82,7 +82,7 @@ SpriteRenderer:
   m_AutoUVMaxAngle: 89
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: -135027459
-  m_SortingLayer: 5
+  m_SortingLayer: 6
   m_SortingOrder: 0
   m_Sprite: {fileID: -672936780112406823, guid: 1e8fa08cff8599748ada9154c069357a, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
@@ -129,7 +129,7 @@ Rigidbody2D:
   m_Simulated: 1
   m_UseFullKinematicContacts: 0
   m_UseAutoMass: 0
-  m_Mass: 1
+  m_Mass: 10
   m_LinearDamping: 0
   m_AngularDamping: 0.05
   m_GravityScale: 1
@@ -143,7 +143,7 @@ Rigidbody2D:
   m_Interpolate: 1
   m_SleepingMode: 1
   m_CollisionDetection: 0
-  m_Constraints: 4
+  m_Constraints: 7
 --- !u!61 &2486506202079435533
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -157,7 +157,7 @@ BoxCollider2D:
   m_Material: {fileID: 0}
   m_IncludeLayers:
     serializedVersion: 2
-    m_Bits: 128
+    m_Bits: 0
   m_ExcludeLayers:
     serializedVersion: 2
     m_Bits: 0
@@ -207,12 +207,21 @@ MonoBehaviour:
   - {fileID: 154977013808639928}
   _speed: 1.5
   _isGrounded: 0
+  waitTiemAtack: 0
+  movementFoPhysics: 0
+  _isWaitMovement: 0
+  timeWaitPatrol: 0
   checkPlayerDetection: 0
   _isAtacking: 0
+  _distanceChangeFollowPlayer: 0
+  _radiusDetectPlayerForAtackRangeType01: 0
+  _radiusDetectPlayerForAtackRangeType02: 0
   _radiusDetectPlayer: 3
   _radiusAtackPlayer: 0.5
+  _distanceChange: 0
   TypeEnemie: 0
   EnemyStates: 0
+  TypeDrop: 0
   _actualLife: 10
   _currentLife: 0
   Lfoot: {fileID: 8907719924753838936}
@@ -222,6 +231,7 @@ MonoBehaviour:
   _isCanNocked: 0
   _KnockForce: {x: 0.5, y: 3}
   _knockDuration: 0.1
+  _makeBomb: {fileID: 0}
   GroundLayer:
     serializedVersion: 2
     m_Bits: 128
@@ -273,7 +283,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1598680109587066117}
   - component: {fileID: 6611700849781124096}
-  m_Layer: 16
+  m_Layer: 6
   m_Name: HitBox
   m_TagString: HitBoxEnemy
   m_Icon: {fileID: 0}
@@ -308,7 +318,7 @@ BoxCollider2D:
   m_Material: {fileID: 0}
   m_IncludeLayers:
     serializedVersion: 2
-    m_Bits: 0
+    m_Bits: 32768
   m_ExcludeLayers:
     serializedVersion: 2
     m_Bits: 0
@@ -351,7 +361,7 @@ GameObject:
   m_Component:
   - component: {fileID: 671353703239395236}
   - component: {fileID: 154977013808639928}
-  m_Layer: 16
+  m_Layer: 17
   m_Name: HurtBox
   m_TagString: HurtBoxEnemy
   m_Icon: {fileID: 0}

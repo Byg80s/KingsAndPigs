@@ -17,6 +17,8 @@ public class EnemyControler : MonoBehaviour
     private Transform m_PlayerTransform;
     private GameObject _BombPosition;
     private Transform m_BombsTransform;
+
+    //Detection Raycast
     private bool _PlayerDetected;
     private bool _PlayerIsInFirstZone;
     private bool _PlayerIsInSecondZone;
@@ -50,8 +52,11 @@ public class EnemyControler : MonoBehaviour
     [Tooltip("This parameter is only for Boos,you need chanche type enemy in the inspector, this use for change to range atack type 02")]
     [SerializeField] private float _radiusDetectPlayerForAtackRangeType02;
 
-    [Header("Bombs detection")]
+    [Header("Parameters bombs")]
     [SerializeField] private bool checkBombDetection;
+    [SerializeField] private float _isWaitWithBomb;
+    private bool _takeBomb;
+
 
     [Tooltip("Is radius range for detect the player")]
     [SerializeField] private float _radiusDetectPlayer;
@@ -106,7 +111,7 @@ public class EnemyControler : MonoBehaviour
     [SerializeField] private Transform Lfoot;
     [SerializeField] private Transform Rfoot;
     [SerializeField] private float RayGround;
-    
+
     //Knock Settings
     [Header("parameters Knock")]
     [SerializeField] private bool _isNocked;
@@ -214,8 +219,44 @@ public class EnemyControler : MonoBehaviour
     private void Animations()
     {
         m_animator.SetBool(_idGround, _isGrounded);
-    }
 
+    }
+    void StatesOfAnimationEnemy()
+    {
+        switch (EnemyStates)
+        {
+            case EnemyEstates.wait:
+                m_animator.SetBool(_idGround, true);
+                m_animator.SetBool(_isMove, false);
+                break;
+            case EnemyEstates.patrol:
+                m_animator.SetBool(_idGround, false);
+                m_animator.SetBool(_isMove, true);
+                break;
+            case EnemyEstates.takeBomb:
+                m_animator.SetBool(_idTakeBomb, true);
+                m_animator.SetBool(_idMoveWithBomb,true);
+                m_animator.SetBool(_idThrowBomb, false);
+                break;
+            case EnemyEstates.waitWithBomb:
+                m_animator.SetBool(_idleBomb, true);
+                m_animator.SetBool(_idMoveWithBomb, false);
+                m_animator.SetBool(_idThrowBomb, false);
+                break;
+            case EnemyEstates.patrolWithBomb:
+                m_animator.SetBool(_idleBomb, false);
+                m_animator.SetBool(_idMoveWithBomb, true);
+                m_animator.SetBool(_idThrowBomb, false);
+                break;
+            case EnemyEstates.throwBomb:
+                m_animator.SetBool(_idThrowBomb, true);
+                m_animator.SetBool(_idMoveWithBomb, false);
+                m_animator.SetBool(_idleBomb, false);
+
+                break;
+
+        }
+    }
     //Check Ground
     private void CheckColision()
     {
@@ -270,11 +311,11 @@ public class EnemyControler : MonoBehaviour
             _BombDetected = Physics2D.OverlapCircle(transform.position, _radiusToBomb, BombsLayer);
             if (_BombDetected)
             {
-                checkBombDetection=true;
+                checkBombDetection = true;
             }
             else
             {
-                checkBombDetection=false;
+                checkBombDetection = false;
             }
         }
         _BombPosition = GameObject.FindGameObjectWithTag("Bomb");
@@ -328,38 +369,43 @@ public class EnemyControler : MonoBehaviour
     void Atack()
     {
         if (_isAtacking)
-          {
-              m_colliderChildren[0].enabled = true;
-              m_animator.SetTrigger(_idAtack);
-          }
-          else
-          {
-              m_colliderChildren[0].enabled = false;
-          }
-
-        /*  
-           AnimatorStateInfo state = m_animator.GetCurrentAnimatorStateInfo(0);
-
-           if (state.IsName("_isAtack"))
-               _isAtacking = true;
-           else
-               _isAtacking = false;
-
-           if (_isAtacking)
-           {
-               m_colliderChildren[0].enabled = true;
-
-           }
-           else
-           {
-               m_colliderChildren[0].enabled = false;
-           }*/
+        {
+            m_colliderChildren[0].enabled = true;
+            m_animator.SetTrigger(_idAtack);
+        }
+        else
+        {
+            m_colliderChildren[0].enabled = false;
+        }
     }
     void AtackWithBomb()
     {
 
     }
 
+
+    void WayPointsNoUsePhysics()
+    {
+        //no physics
+        if (m_Way.Length == 0) return;
+        transform.position = Vector2.MoveTowards(transform.position, m_Way[_index].transform.position, _speed * Time.deltaTime);
+        if (Vector2.Distance(transform.position, m_Way[_index].transform.position) < 0.01f)
+        {
+
+            Flip();
+
+
+            _index += 1 % m_Way.Length;
+        }
+        if (_index >= m_Way.Length)
+        {
+            _index = 0;
+        }
+
+
+
+
+    }
     void FollowPlayerNoPhysics()
     {
         if (m_PlayerTransform != null)//|| _actualLife > 0)
@@ -432,20 +478,22 @@ public class EnemyControler : MonoBehaviour
 
                 if (_isWaitMovement) return;
 
-                Vector3 PlayerTarget = m_Way[_index].position;
-                Vector3 Newdirection = PlayerTarget - transform.position;
+                Vector3 WayPointsTarget = m_Way[_index].position;
+                Vector3 Newdirection = WayPointsTarget - transform.position;
 
-                if (Newdirection.magnitude < _distanceChange)
+
+             
+                if (Newdirection.magnitude < _distanceChange && _takeBomb)
                 {
-                    StartCoroutine(TimeWaitAfterMove(timeWaitPatrol));
+                    StartCoroutine(TimeWaitAfterMoveWithBombs(_isWaitWithBomb));
                     return;
                 }
-
-                Vector3 Newvelocity = Newdirection.normalized * _speedMove;
+                    Vector3 Newvelocity = Newdirection.normalized * _speedMove;
                 m_rb.linearVelocity = new Vector2(Newvelocity.x, m_rb.linearVelocity.y);
 
                 if (Newvelocity.x > 0 && _flip) Flip();
                 else if (Newvelocity.x < 0 && !_flip) Flip();
+
 
                 break;
             case EnemiesTypes.Flying:
@@ -460,46 +508,10 @@ public class EnemyControler : MonoBehaviour
                 break;
         }
     }
-    void StatesOfAnimationEnemy()
-    {
-        switch (EnemyStates)
-        {
-            case EnemyEstates.wait:
-                m_animator.SetBool(_idGround, true);
-                m_animator.SetBool(_isMove, false);
-                break;
-            case EnemyEstates.patrol:
-                m_animator.SetBool(_idGround, false);
-                m_animator.SetBool(_isMove, true);
-                break;
-            case EnemyEstates.waitWithBomb:
-                m_animator.SetBool(_idleBomb, true);
-                m_animator.SetBool(_idMoveWithBomb, false);
-                break;
-            case EnemyEstates.patrolWithBomb:
-                m_animator.SetBool(_idleBomb, false);
-                m_animator.SetBool(_idMoveWithBomb, true);
-                break;
-
-        }
-    }
-
-    IEnumerator TimeWaitAfterMove(float time)
-    {
-
-        _isWaitMovement = true;
-        EnemyStates = EnemyEstates.wait;
-        m_rb.linearVelocity = Vector2.zero;
-
-        yield return new WaitForSeconds(time);
-
-        _index = (_index + 1) % m_Way.Length;
-        _isWaitMovement = false;
-        EnemyStates = EnemyEstates.patrol;
-    }
 
 
 
+    //Follow player with Physics
     void FollowPlayerWithPhysics()
     {
         switch (TypeEnemie)
@@ -528,12 +540,10 @@ public class EnemyControler : MonoBehaviour
                 break;
             case EnemiesTypes.Ranged:
                 if (m_PlayerTransform != null)
-                {
-                    Vector3 PlayerPos = m_PlayerTransform.position;
-                    Vector2 DirectionFollow = (PlayerPos - transform.position);
-
-
-                    m_rb.linearVelocity = new Vector2(DirectionFollow.x * _speedMove * Time.fixedDeltaTime, 0).normalized;
+                {                    
+                    _PlayerDetected= false;
+                    m_rb.linearVelocity = Vector2.zero;
+                    EnemyStates=EnemyEstates.throwBomb;
                 }
                 break;
             case EnemiesTypes.Boss:
@@ -604,30 +614,50 @@ public class EnemyControler : MonoBehaviour
         }
     }
 
-    void WayPointsNoUsePhysics()
-    {
-        //no physics
-        if (m_Way.Length == 0) return;
-        transform.position = Vector2.MoveTowards(transform.position, m_Way[_index].transform.position, _speed * Time.deltaTime);
-        if (Vector2.Distance(transform.position, m_Way[_index].transform.position) < 0.01f)
-        {
 
-            Flip();
-
-
-            _index += 1 % m_Way.Length;
-        }
-        if (_index >= m_Way.Length)
-        {
-            _index = 0;
-        }
-
-
-
-
-    }
     //IEnumerators
 
+    // Timers enumerators for waypoints
+    #region TIMERS WAYPOINTS
+    IEnumerator TimeWaitTakeBomb(float time)
+    {
+        //_isWaitMovement=true;
+        EnemyStates = EnemyEstates.takeBomb;
+        m_rb.linearVelocity = Vector2.zero;
+        yield return new WaitForSeconds(time);
+
+        _index = (_index + 1) % m_Way.Length;
+        EnemyStates = EnemyEstates.waitWithBomb;     
+        //_isWaitMovement = false;
+        _takeBomb = false;
+    }
+    IEnumerator TimeWaitAfterMoveWithBombs(float time)
+    {
+        _isWaitMovement = true;
+        EnemyStates = EnemyEstates.waitWithBomb;
+        m_rb.linearVelocity = Vector2.zero;
+        yield return new WaitForSeconds(time);
+
+        _index = (_index + 1) % m_Way.Length;
+        _isWaitMovement = false;
+        EnemyStates = EnemyEstates.patrolWithBomb;
+    }
+    IEnumerator TimeWaitAfterMove(float time)
+    {
+        _isWaitMovement = true;
+        EnemyStates = EnemyEstates.wait;
+        m_rb.linearVelocity = Vector2.zero;
+
+        yield return new WaitForSeconds(time);
+
+        _index = (_index + 1) % m_Way.Length;
+        _isWaitMovement = false;
+        EnemyStates = EnemyEstates.patrol;
+    }
+
+
+    #endregion
+    #region TIMERS ENUMERATORS
     IEnumerator WaitKnock(float time)
     {
         _isNocked = true;
@@ -636,6 +666,31 @@ public class EnemyControler : MonoBehaviour
         _isNocked = false;
         _isCanNocked = true;
     }
+    IEnumerator TimeDropBox(float time)
+    {
+
+        yield return new WaitForSeconds(time);
+        if (!_isIntancied)
+            Instantiate(PrefabBox, transform.position, Quaternion.identity);
+        _isIntancied = true;
+
+
+
+    }
+    IEnumerator TimeDropKey(float time)
+    {
+        yield return new WaitForSeconds(time);
+    }
+    IEnumerator TimeDropPotionHeal(float time)
+    {
+        yield return new WaitForSeconds(time);
+    }
+    IEnumerator TimerDropPotionMana(float time)
+    {
+        yield return new WaitForSeconds(time);
+    }
+    #endregion
+    #region GIZMOS
     void OnDrawGizmosSelected()
     {
 
@@ -661,29 +716,19 @@ public class EnemyControler : MonoBehaviour
             Gizmos.color = Color.green;
             Gizmos.DrawWireSphere(transform.position, _radiusToBomb);
         }
-    }
-    IEnumerator TimeDropBox(float time)
-    {
-
-        yield return new WaitForSeconds(time);
-        if (!_isIntancied)
-            Instantiate(PrefabBox, transform.position, Quaternion.identity);
-        _isIntancied = true;
-
-
 
     }
-    IEnumerator TimeDropKey(float time)
+    #endregion
+
+
+    private void OnCollisionEnter2D(Collision2D collision)
     {
-        yield return new WaitForSeconds(time);
-    }
-    IEnumerator TimeDropPotionHeal(float time)
-    {
-        yield return new WaitForSeconds(time);
-    }
-    IEnumerator TimerDropPotionMana(float time)
-    {
-        yield return new WaitForSeconds(time);
+        if (collision.gameObject.CompareTag("Bomb"))
+        {
+            _takeBomb = true;
+            EnemyStates = EnemyEstates.takeBomb;
+            Debug.Log("bomb detected= " + _takeBomb);
+        }
     }
 
 }

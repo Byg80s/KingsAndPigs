@@ -12,12 +12,13 @@ public class UnlockZoneSystem : MonoBehaviour
     [SerializeField] private int _selectOption;
     [SerializeField] private bool _open;
     [SerializeField] private bool _show;
-    [SerializeField] private bool _animator;
     [SerializeField] DirectionList _directions;
     [SerializeField] private GameObject _ObjectMakeVisible;
     [Tooltip("Set name of Animation condition")]
     [SerializeField] private string _tagAnimator;
     [SerializeField] private Animator _Animator;
+    [SerializeField] private bool _animator;
+
     //    [Tooltip("Input tag of GameObject new show")]
     //   [SerializeField] private string _tagGameObject;
 
@@ -26,8 +27,12 @@ public class UnlockZoneSystem : MonoBehaviour
     {
 
         SelectGameObejct();
-        _Animator = GetComponent<Animator>();
-        _Animator.SetBool(_tagAnimator, false);
+
+        if (_Animator != null)
+        {
+            _Animator = GetComponent<Animator>();
+            _Animator.SetBool(_tagAnimator, false);
+        }
     }
     // Update is called once per frame
     void Update()
@@ -107,8 +112,8 @@ public class UnlockZoneSystem : MonoBehaviour
     }
     private void ActiveAnimation()
     {
-        _animator = true;
-        _Animator.SetBool(_tagAnimator, true);
+        if (_Animator != null)
+            _Animator.SetBool(_tagAnimator, true);
 
     }
     private void SelectGameObejct()
@@ -125,8 +130,8 @@ public class UnlockZoneSystem : MonoBehaviour
                 _ObjectMakeVisible.SetActive(false);
                 break;
             case 2:
-              
-                
+
+
 
                 break;
         }

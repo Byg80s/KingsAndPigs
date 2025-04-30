@@ -491,10 +491,15 @@ public class PlayerController : MonoBehaviour
     }
     private void OnTriggerStay2D(Collider2D collision)
     {
-        if (collision.CompareTag("LightLevelsForest"))
+        if (collision.CompareTag("LightLevelsForest"))// ADD TAG BOX BUT FIRT NEED CHECK IS ONLY IN THE FOREST
         {
             m_GameObjectsChildren[0].SetActive(true);
         }
-        else { m_GameObjectsChildren[0].SetActive(false); }
+
+
+        if (collision.CompareTag("LightLevels") || collision.CompareTag("Watter"))// ADD TAG BOX BUT FIRT NEED CHECK IS ONLY IN THE FOREST
+        {
+            m_GameObjectsChildren[0].SetActive(false);
+        }
     }
 }

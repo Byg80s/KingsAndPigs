@@ -2,7 +2,6 @@ using System;
 using System.Collections;
 using UnityEngine;
 using Unity.Cinemachine;
-using Unity.Android.Gradle;
 using UnityEngine.Rendering.Universal;
 
 public class GameManager : MonoBehaviour

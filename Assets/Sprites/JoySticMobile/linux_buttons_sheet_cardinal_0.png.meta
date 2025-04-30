@@ -1,0 +1,754 @@
+fileFormatVersion: 2
+guid: e5d93e2e619c4e747ad6891ad091762d
+TextureImporter:
+  internalIDToNameTable:
+  - first:
+      213: -3330905719641349867
+    second: linux_buttons_sheet_cardinal_0_0
+  - first:
+      213: -3654687430514195936
+    second: linux_buttons_sheet_cardinal_0_1
+  - first:
+      213: 8351734634389653797
+    second: linux_buttons_sheet_cardinal_0_2
+  - first:
+      213: -6258925697253314999
+    second: linux_buttons_sheet_cardinal_0_3
+  - first:
+      213: 7887409450446715304
+    second: linux_buttons_sheet_cardinal_0_4
+  - first:
+      213: -4378750770704595908
+    second: linux_buttons_sheet_cardinal_0_5
+  - first:
+      213: -5995736503484976323
+    second: linux_buttons_sheet_cardinal_0_6
+  - first:
+      213: 1629052174533396538
+    second: linux_buttons_sheet_cardinal_0_7
+  - first:
+      213: 433797468792158418
+    second: linux_buttons_sheet_cardinal_0_8
+  - first:
+      213: -8447022949347710470
+    second: linux_buttons_sheet_cardinal_0_9
+  - first:
+      213: 7768556956698458161
+    second: linux_buttons_sheet_cardinal_0_10
+  - first:
+      213: 6650512869560533322
+    second: linux_buttons_sheet_cardinal_0_11
+  - first:
+      213: -5325254648240508367
+    second: linux_buttons_sheet_cardinal_0_12
+  - first:
+      213: 7494240659501452272
+    second: linux_buttons_sheet_cardinal_0_13
+  - first:
+      213: 6196114455370722751
+    second: linux_buttons_sheet_cardinal_0_14
+  - first:
+      213: -7918531296139206350
+    second: linux_buttons_sheet_cardinal_0_15
+  - first:
+      213: -7489079424803079458
+    second: linux_buttons_sheet_cardinal_0_16
+  - first:
+      213: 6900753978472770569
+    second: linux_buttons_sheet_cardinal_0_17
+  - first:
+      213: 1668285154484677527
+    second: linux_buttons_sheet_cardinal_0_18
+  - first:
+      213: 1252948583178984148
+    second: linux_buttons_sheet_cardinal_0_19
+  - first:
+      213: 3686338371457178040
+    second: linux_buttons_sheet_cardinal_0_20
+  - first:
+      213: -2410022373615337011
+    second: linux_buttons_sheet_cardinal_0_21
+  - first:
+      213: 7936410365349999164
+    second: linux_buttons_sheet_cardinal_0_22
+  externalObjects: {}
+  serializedVersion: 13
+  mipmaps:
+    mipMapMode: 0
+    enableMipMap: 0
+    sRGBTexture: 1
+    linearTexture: 0
+    fadeOut: 0
+    borderMipMap: 0
+    mipMapsPreserveCoverage: 0
+    alphaTestReferenceValue: 0.5
+    mipMapFadeDistanceStart: 1
+    mipMapFadeDistanceEnd: 3
+  bumpmap:
+    convertToNormalMap: 0
+    externalNormalMap: 0
+    heightScale: 0.25
+    normalMapFilter: 0
+    flipGreenChannel: 0
+  isReadable: 0
+  streamingMipmaps: 0
+  streamingMipmapsPriority: 0
+  vTOnly: 0
+  ignoreMipmapLimit: 0
+  grayScaleToAlpha: 0
+  generateCubemap: 6
+  cubemapConvolution: 0
+  seamlessCubemap: 0
+  textureFormat: 1
+  maxTextureSize: 2048
+  textureSettings:
+    serializedVersion: 2
+    filterMode: 1
+    aniso: 1
+    mipBias: 0
+    wrapU: 1
+    wrapV: 1
+    wrapW: 1
+  nPOTScale: 0
+  lightmap: 0
+  compressionQuality: 50
+  spriteMode: 2
+  spriteExtrude: 1
+  spriteMeshType: 1
+  alignment: 0
+  spritePivot: {x: 0.5, y: 0.5}
+  spritePixelsToUnits: 100
+  spriteBorder: {x: 0, y: 0, z: 0, w: 0}
+  spriteGenerateFallbackPhysicsShape: 1
+  alphaUsage: 1
+  alphaIsTransparency: 1
+  spriteTessellationDetail: -1
+  textureType: 8
+  textureShape: 1
+  singleChannelComponent: 0
+  flipbookRows: 1
+  flipbookColumns: 1
+  maxTextureSizeSet: 0
+  compressionQualitySet: 0
+  textureFormatSet: 0
+  ignorePngGamma: 0
+  applyGammaDecoding: 0
+  swizzle: 50462976
+  cookieLightType: 0
+  platformSettings:
+  - serializedVersion: 4
+    buildTarget: DefaultTexturePlatform
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    ignorePlatformSupport: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  - serializedVersion: 4
+    buildTarget: Standalone
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    ignorePlatformSupport: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  - serializedVersion: 4
+    buildTarget: Android
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    ignorePlatformSupport: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  - serializedVersion: 4
+    buildTarget: WebGL
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    ignorePlatformSupport: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  - serializedVersion: 4
+    buildTarget: WindowsStoreApps
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    ignorePlatformSupport: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  spriteSheet:
+    serializedVersion: 2
+    sprites:
+    - serializedVersion: 2
+      name: linux_buttons_sheet_cardinal_0_0
+      rect:
+        serializedVersion: 2
+        x: 15
+        y: 159
+        width: 34
+        height: 34
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 511e57855ee36c1d0800000000000000
+      internalID: -3330905719641349867
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: linux_buttons_sheet_cardinal_0_1
+      rect:
+        serializedVersion: 2
+        x: 65
+        y: 177
+        width: 14
+        height: 14
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 022cd133521f74dc0800000000000000
+      internalID: -3654687430514195936
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: linux_buttons_sheet_cardinal_0_2
+      rect:
+        serializedVersion: 2
+        x: 81
+        y: 177
+        width: 14
+        height: 14
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 5294f1d866257e370800000000000000
+      internalID: 8351734634389653797
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: linux_buttons_sheet_cardinal_0_3
+      rect:
+        serializedVersion: 2
+        x: 96
+        y: 182
+        width: 10
+        height: 9
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 94ee6a35d34d329a0800000000000000
+      internalID: -6258925697253314999
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: linux_buttons_sheet_cardinal_0_4
+      rect:
+        serializedVersion: 2
+        x: 105
+        y: 182
+        width: 10
+        height: 9
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 8a97feb1b15b57d60800000000000000
+      internalID: 7887409450446715304
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: linux_buttons_sheet_cardinal_0_5
+      rect:
+        serializedVersion: 2
+        x: 114
+        y: 182
+        width: 10
+        height: 9
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: c344f28af5d8b33c0800000000000000
+      internalID: -4378750770704595908
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: linux_buttons_sheet_cardinal_0_6
+      rect:
+        serializedVersion: 2
+        x: 123
+        y: 182
+        width: 9
+        height: 9
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: d337fe6ba6ddacca0800000000000000
+      internalID: -5995736503484976323
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: linux_buttons_sheet_cardinal_0_7
+      rect:
+        serializedVersion: 2
+        x: 137
+        y: 169
+        width: 14
+        height: 14
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: a3804a7525e8b9610800000000000000
+      internalID: 1629052174533396538
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: linux_buttons_sheet_cardinal_0_8
+      rect:
+        serializedVersion: 2
+        x: 159
+        y: 159
+        width: 34
+        height: 34
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 2d8f1dfdf78250600800000000000000
+      internalID: 433797468792158418
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: linux_buttons_sheet_cardinal_0_9
+      rect:
+        serializedVersion: 2
+        x: 65
+        y: 162
+        width: 14
+        height: 14
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: af9ae8eb16526ca80800000000000000
+      internalID: -8447022949347710470
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: linux_buttons_sheet_cardinal_0_10
+      rect:
+        serializedVersion: 2
+        x: 81
+        y: 162
+        width: 14
+        height: 14
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 138b66d74657fcb60800000000000000
+      internalID: 7768556956698458161
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: linux_buttons_sheet_cardinal_0_11
+      rect:
+        serializedVersion: 2
+        x: 15
+        y: 111
+        width: 34
+        height: 34
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: a41c15c083e5b4c50800000000000000
+      internalID: 6650512869560533322
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: linux_buttons_sheet_cardinal_0_12
+      rect:
+        serializedVersion: 2
+        x: 63
+        y: 111
+        width: 34
+        height: 34
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 1327021ac15e816b0800000000000000
+      internalID: -5325254648240508367
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: linux_buttons_sheet_cardinal_0_13
+      rect:
+        serializedVersion: 2
+        x: 111
+        y: 111
+        width: 34
+        height: 34
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 0fb8fd27c24e00860800000000000000
+      internalID: 7494240659501452272
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: linux_buttons_sheet_cardinal_0_14
+      rect:
+        serializedVersion: 2
+        x: 159
+        y: 111
+        width: 34
+        height: 34
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: fbde80cc4450df550800000000000000
+      internalID: 6196114455370722751
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: linux_buttons_sheet_cardinal_0_15
+      rect:
+        serializedVersion: 2
+        x: 15
+        y: 79
+        width: 34
+        height: 18
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 2312fc68db9bb1290800000000000000
+      internalID: -7918531296139206350
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: linux_buttons_sheet_cardinal_0_16
+      rect:
+        serializedVersion: 2
+        x: 63
+        y: 79
+        width: 34
+        height: 18
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: edafce521f1711890800000000000000
+      internalID: -7489079424803079458
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: linux_buttons_sheet_cardinal_0_17
+      rect:
+        serializedVersion: 2
+        x: 114
+        y: 79
+        width: 28
+        height: 18
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 90cab318e2764cf50800000000000000
+      internalID: 6900753978472770569
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: linux_buttons_sheet_cardinal_0_18
+      rect:
+        serializedVersion: 2
+        x: 162
+        y: 79
+        width: 28
+        height: 18
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 79bed115280f62710800000000000000
+      internalID: 1668285154484677527
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: linux_buttons_sheet_cardinal_0_19
+      rect:
+        serializedVersion: 2
+        x: 15
+        y: 31
+        width: 34
+        height: 34
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 4da5636191e536110800000000000000
+      internalID: 1252948583178984148
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: linux_buttons_sheet_cardinal_0_20
+      rect:
+        serializedVersion: 2
+        x: 63
+        y: 31
+        width: 34
+        height: 34
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 8b9d890c731882330800000000000000
+      internalID: 3686338371457178040
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: linux_buttons_sheet_cardinal_0_21
+      rect:
+        serializedVersion: 2
+        x: 111
+        y: 31
+        width: 34
+        height: 34
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: dc10ae78b61ed8ed0800000000000000
+      internalID: -2410022373615337011
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: linux_buttons_sheet_cardinal_0_22
+      rect:
+        serializedVersion: 2
+        x: 159
+        y: 31
+        width: 34
+        height: 34
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: c323a6aad2bc32e60800000000000000
+      internalID: 7936410365349999164
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    outline: []
+    customData: 
+    physicsShape: []
+    bones: []
+    spriteID: 
+    internalID: 0
+    vertices: []
+    indices: 
+    edges: []
+    weights: []
+    secondaryTextures: []
+    spriteCustomMetadata:
+      entries: []
+    nameFileIdTable:
+      linux_buttons_sheet_cardinal_0_0: -3330905719641349867
+      linux_buttons_sheet_cardinal_0_1: -3654687430514195936
+      linux_buttons_sheet_cardinal_0_10: 7768556956698458161
+      linux_buttons_sheet_cardinal_0_11: 6650512869560533322
+      linux_buttons_sheet_cardinal_0_12: -5325254648240508367
+      linux_buttons_sheet_cardinal_0_13: 7494240659501452272
+      linux_buttons_sheet_cardinal_0_14: 6196114455370722751
+      linux_buttons_sheet_cardinal_0_15: -7918531296139206350
+      linux_buttons_sheet_cardinal_0_16: -7489079424803079458
+      linux_buttons_sheet_cardinal_0_17: 6900753978472770569
+      linux_buttons_sheet_cardinal_0_18: 1668285154484677527
+      linux_buttons_sheet_cardinal_0_19: 1252948583178984148
+      linux_buttons_sheet_cardinal_0_2: 8351734634389653797
+      linux_buttons_sheet_cardinal_0_20: 3686338371457178040
+      linux_buttons_sheet_cardinal_0_21: -2410022373615337011
+      linux_buttons_sheet_cardinal_0_22: 7936410365349999164
+      linux_buttons_sheet_cardinal_0_3: -6258925697253314999
+      linux_buttons_sheet_cardinal_0_4: 7887409450446715304
+      linux_buttons_sheet_cardinal_0_5: -4378750770704595908
+      linux_buttons_sheet_cardinal_0_6: -5995736503484976323
+      linux_buttons_sheet_cardinal_0_7: 1629052174533396538
+      linux_buttons_sheet_cardinal_0_8: 433797468792158418
+      linux_buttons_sheet_cardinal_0_9: -8447022949347710470
+  mipmapLimitGroupName: 
+  pSDRemoveMatte: 0
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 

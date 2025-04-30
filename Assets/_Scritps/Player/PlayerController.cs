@@ -11,6 +11,7 @@ public class PlayerController : MonoBehaviour
     //Components
     [SerializeField] private Transform m_transform;
     [SerializeField] private Collider2D[] m_colliderChildren;
+    [SerializeField] private GameObject[] m_GameObjectsChildren;
 
     //Detectbox
     [Header("Parameters Detect boxes")]
@@ -63,7 +64,7 @@ public class PlayerController : MonoBehaviour
 
     //chech this
     [SerializeField] private bool _isGrounded;
-    public   bool IsGrounded { get => _isGrounded; }
+    public bool IsGrounded { get => _isGrounded; }
     [Tooltip("Permit doubleJump")]
     [SerializeField] private bool _canDoubleJumped;
     private bool _permitJumper;
@@ -133,7 +134,7 @@ public class PlayerController : MonoBehaviour
     [SerializeField] private GameObject IndoorVfx;
 
     private bool attack;
-    
+
 
     private void Awake()
     {
@@ -160,11 +161,12 @@ public class PlayerController : MonoBehaviour
 
         m_colliderChildren[0].enabled = false;
         m_colliderChildren[1].enabled = false;
+        m_GameObjectsChildren[0].SetActive(false);
 
         _counterExtraJumps = _extraJumps;
         _permitJumper = true;
 
-      
+
         heldObject = GetComponent<GameObject>();
         heldObject = GameObject.FindGameObjectWithTag("Box");
         heldRb = heldObject.GetComponentInParent<Rigidbody2D>();
@@ -393,15 +395,15 @@ public class PlayerController : MonoBehaviour
         if (m_ginput.Push)
         {
             _isPushed = true;
-        
+
         }
         else
         {
-           _isPushed = false;
-           
+            _isPushed = false;
+
         }
 
-      
+
     }
     //IEnumerators
     IEnumerator WaitReturnTime(float time)
@@ -487,5 +489,12 @@ public class PlayerController : MonoBehaviour
         _speed = _normalSpeed;
         _permitJumper = true;
     }
-
+    private void OnTriggerStay2D(Collider2D collision)
+    {
+        if (collision.CompareTag("LightLevelsForest"))
+        {
+            m_GameObjectsChildren[0].SetActive(true);
+        }
+        else { m_GameObjectsChildren[0].SetActive(false); }
+    }
 }

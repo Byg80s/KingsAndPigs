@@ -111241,8 +111241,8 @@ GameObject:
   - component: {fileID: 323687434}
   - component: {fileID: 323687433}
   m_Layer: 7
-  m_Name: LevelForest
-  m_TagString: Untagged
+  m_Name: LightsLevelForest
+  m_TagString: LightLevelsForest
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -137424,7 +137424,7 @@ Camera:
   far clip plane: 1000
   field of view: 34
   orthographic: 1
-  orthographic size: 3.75
+  orthographic size: 4.625
   m_Depth: -1
   m_CullingMask:
     serializedVersion: 2
@@ -344363,18 +344363,6 @@ PrefabInstance:
       propertyPath: animatorRespawnDoor
       value: 
       objectReference: {fileID: 1438344980}
-    - target: {fileID: 8701660285836645822, guid: ecfb3063d2ac76941b4f40e58a7c8a02, type: 3}
-      propertyPath: m_Intensity
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 8701660285836645822, guid: ecfb3063d2ac76941b4f40e58a7c8a02, type: 3}
-      propertyPath: m_FalloffIntensity
-      value: 0.386
-      objectReference: {fileID: 0}
-    - target: {fileID: 8701660285836645822, guid: ecfb3063d2ac76941b4f40e58a7c8a02, type: 3}
-      propertyPath: m_PointLightOuterRadius
-      value: 1.83
-      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
@@ -397545,8 +397533,8 @@ GameObject:
   - component: {fileID: 1279186879}
   - component: {fileID: 1279186878}
   m_Layer: 7
-  m_Name: LevelCastle
-  m_TagString: Untagged
+  m_Name: LightsLevelCastle
+  m_TagString: LightLevels
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0

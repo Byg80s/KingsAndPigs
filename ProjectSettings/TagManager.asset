@@ -29,6 +29,8 @@ TagManager:
   - CheckPoint
   - Platform
   - Ligth
+  - LightLevels
+  - LightLevelsForest
   layers:
   - Default
   - TransparentFX

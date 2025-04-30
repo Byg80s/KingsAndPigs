@@ -232,6 +232,8 @@ MonoBehaviour:
   - {fileID: 7047724495918851251}
   - {fileID: 8787334002572988505}
   - {fileID: 3810170619298769002}
+  m_GameObjectsChildren:
+  - {fileID: 9046273250100119141}
   _layerPull:
     serializedVersion: 2
     m_Bits: 8388608
@@ -5514,7 +5516,7 @@ MonoBehaviour:
   m_ComponentVersion: 2
   m_LightType: 3
   m_BlendStyleIndex: 0
-  m_FalloffIntensity: 0.5
+  m_FalloffIntensity: 0.386
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_Intensity: 1
   m_LightVolumeIntensity: 1
@@ -5540,7 +5542,7 @@ MonoBehaviour:
   m_PointLightInnerAngle: 360
   m_PointLightOuterAngle: 360
   m_PointLightInnerRadius: 0
-  m_PointLightOuterRadius: 1
+  m_PointLightOuterRadius: 1.83
   m_ShapeLightParametricSides: 5
   m_ShapeLightParametricAngleOffset: 0
   m_ShapeLightParametricRadius: 1

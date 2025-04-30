@@ -12,8 +12,12 @@ public class UnlockZoneSystem : MonoBehaviour
     [SerializeField] private int _selectOption;
     [SerializeField] private bool _open;
     [SerializeField] private bool _show;
+    [SerializeField] private bool _animator;
     [SerializeField] DirectionList _directions;
     [SerializeField] private GameObject _ObjectMakeVisible;
+    [Tooltip("Set name of Animation condition")]
+    [SerializeField] private string _tagAnimator;
+    [SerializeField] private Animator _Animator;
     //    [Tooltip("Input tag of GameObject new show")]
     //   [SerializeField] private string _tagGameObject;
 
@@ -22,6 +26,8 @@ public class UnlockZoneSystem : MonoBehaviour
     {
 
         SelectGameObejct();
+        _Animator = GetComponent<Animator>();
+        _Animator.SetBool(_tagAnimator, false);
     }
     // Update is called once per frame
     void Update()
@@ -73,7 +79,7 @@ public class UnlockZoneSystem : MonoBehaviour
 
         }
     }
-   
+
     public void CheckSwitches()
     {
 
@@ -85,8 +91,8 @@ public class UnlockZoneSystem : MonoBehaviour
 
         if (_selectOption == 0) OpenDoor();
         else if (_selectOption == 1) ActiveGameObject();
-        else if (_selectOption == 2) ActiveGameObject();
-       
+        else if (_selectOption == 2) ActiveAnimation();
+
 
     }
     private void OpenDoor()
@@ -101,6 +107,8 @@ public class UnlockZoneSystem : MonoBehaviour
     }
     private void ActiveAnimation()
     {
+        _animator = true;
+        _Animator.SetBool(_tagAnimator, true);
 
     }
     private void SelectGameObejct()
@@ -109,19 +117,21 @@ public class UnlockZoneSystem : MonoBehaviour
         {
             case 0:
                 break;
-            case 1:             
+            case 1:
                 if (_ObjectMakeVisible == null)
                 {
                     Debug.Log("is null");
                 }
                 _ObjectMakeVisible.SetActive(false);
-               break;
+                break;
             case 2:
+              
+                
 
                 break;
         }
 
     }
-   
+
 
 }

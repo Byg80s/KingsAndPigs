@@ -13,7 +13,6 @@ GameObject:
   - component: {fileID: 3756711875594653783}
   - component: {fileID: 7676008502779521268}
   - component: {fileID: 5018082269598200567}
-  - component: {fileID: 7838311511623731030}
   m_Layer: 23
   m_Name: Box
   m_TagString: Box
@@ -180,34 +179,15 @@ MonoBehaviour:
   m_pointDetect: {fileID: 0}
   _distanceToPlayer: 0.5
   _distanceToGround: 0.5
+  pullSpeed: 0
   m_layerMaskPlayer:
     serializedVersion: 2
     m_Bits: 64
   m_layerMaskGround:
     serializedVersion: 2
     m_Bits: 128
-  m_fixedJoint: {fileID: 0}
   _isPushed: 0
   _isTaked: 0
---- !u!255 &7838311511623731030
-FixedJoint2D:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 4934550939747380250}
-  m_Enabled: 0
-  serializedVersion: 4
-  m_EnableCollision: 0
-  m_ConnectedRigidBody: {fileID: 0}
-  m_BreakForce: Infinity
-  m_BreakTorque: Infinity
-  m_BreakAction: 3
-  m_AutoConfigureConnectedAnchor: 1
-  m_Anchor: {x: 0, y: 0}
-  m_ConnectedAnchor: {x: -131.26315, y: 28.300117}
-  m_DampingRatio: 0
-  m_Frequency: 0
 --- !u!1 &7063828311515925584
 GameObject:
   m_ObjectHideFlags: 0
@@ -253,7 +233,7 @@ BoxCollider2D:
   m_Material: {fileID: 0}
   m_IncludeLayers:
     serializedVersion: 2
-    m_Bits: 0
+    m_Bits: 128
   m_ExcludeLayers:
     serializedVersion: 2
     m_Bits: 0

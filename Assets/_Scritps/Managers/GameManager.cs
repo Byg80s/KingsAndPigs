@@ -2,6 +2,8 @@ using System;
 using System.Collections;
 using UnityEngine;
 using Unity.Cinemachine;
+using Unity.Android.Gradle;
+using UnityEngine.Rendering.Universal;
 
 public class GameManager : MonoBehaviour
 {
@@ -61,15 +63,17 @@ public class GameManager : MonoBehaviour
 
     [SerializeField] private bool isDeadZone;
     public bool IsDeadZone { get => isDeadZone; set => isDeadZone = value; }
-/*
-    [Header("Activate Traps")]
-    [SerializeField] private bool[] _DesactivationTraps;
-    public bool[] DesactivationTraps { get => _DesactivationTraps; set => _DesactivationTraps = value; }
+    /*
+        [Header("Activate Traps")]
+        [SerializeField] private bool[] _DesactivationTraps;
+        public bool[] DesactivationTraps { get => _DesactivationTraps; set => _DesactivationTraps = value; }
 
-    [Header("Event Open Ground")]
-    [SerializeField] private int x;
-*/
+        [Header("Event Open Ground")]
+        [SerializeField] private int x;
+    */
     #endregion
+    [Tooltip("Global light")]
+    [SerializeField] private Light2D ligthOptions;
 
 
     private void Awake()
@@ -88,12 +92,8 @@ public class GameManager : MonoBehaviour
     IEnumerator RespawnPlayerCorotineIfDie(int time)
     {
         yield return new WaitForSeconds(time);
-        GameObject newPlayer = Instantiate(_PlayerPrefab, _PlayerRespawnPoint.position, Quaternion.identity);
-        virtualCamera.Follow = newPlayer.transform;
-        newPlayer.name = "Player";
-        _playerControler = newPlayer.GetComponent<PlayerController>();
+        RespawnPlayer(_PlayerPrefab, _PlayerRespawnPoint, "Player");
         _playerControler.CurrentLife = ActualLife;
-
         //Check this
         _playerControler.maxLife = NumberOfLives;
     }
@@ -101,21 +101,28 @@ public class GameManager : MonoBehaviour
     IEnumerator RespawnPlayerCorotineIfExit(int time)
     {
         yield return new WaitForSeconds(time);
-        GameObject newPlayer = Instantiate(_PlayerPrefab, _PlayerExitLevelPoint.position, Quaternion.identity);
+        RespawnPlayer(_PlayerPrefab, _PlayerExitLevelPoint, "Player");
+        _playerControler.CurrentLife = CurrentLive;
+    }
+    private void RespawnPlayer(GameObject Prefab, Transform PointRespawn, string Prefabtag)
+    {
+        GameObject newPlayer = Instantiate(Prefab, PointRespawn.position, Quaternion.identity);
         virtualCamera.Follow = newPlayer.transform;
-        newPlayer.name = "Player";
+        newPlayer.name = Prefabtag;
         _playerControler = newPlayer.GetComponent<PlayerController>();
-        _playerControler.CurrentLife= CurrentLive;
-
     }
     public void AddCristals() => _cristalCollected++;
     public bool CrystalsHaveRandomLook() => CrystalsHaveRandomLook1;
     // public bool ActivateTrapSnife() => ActivateTrapSnife1;
     public int NumbersOfWayPoints() => IndexWaipointTrapSnife;
-
     public bool BlockInputs() => blockInputs;
     public float TimerInputsBlockRespawn() => TimeBlockInputsRespawn;
     public bool DeadZoneActivate() => IsDeadZone;
+    public void GlobalLigth(float ligth)
+    {
+        ligthOptions.intensity = ligth;
+    }
+  
 
 
 }

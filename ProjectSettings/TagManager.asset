@@ -28,6 +28,7 @@ TagManager:
   - Watter
   - CheckPoint
   - Platform
+  - Ligth
   layers:
   - Default
   - TransparentFX

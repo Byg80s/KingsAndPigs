@@ -3,6 +3,7 @@ using System.Collections;
 using System.Collections.Generic;
 using Unity.VisualScripting;
 using UnityEngine;
+using UnityEngine.EventSystems;
 
 public class EnemyControler : MonoBehaviour
 {
@@ -14,9 +15,12 @@ public class EnemyControler : MonoBehaviour
     [SerializeField] private Collider2D[] m_colliderChildren;
     private GameObject _PlayerPosition;
     private Transform m_PlayerTransform;
+    private GameObject _BombPosition;
+    private Transform m_BombsTransform;
     private bool _PlayerDetected;
     private bool _PlayerIsInFirstZone;
     private bool _PlayerIsInSecondZone;
+    private bool _BombDetected;
 
     [Header("Pefabs drop")]
     [SerializeField] private GameObject PrefabBox;
@@ -46,12 +50,17 @@ public class EnemyControler : MonoBehaviour
     [Tooltip("This parameter is only for Boos,you need chanche type enemy in the inspector, this use for change to range atack type 02")]
     [SerializeField] private float _radiusDetectPlayerForAtackRangeType02;
 
+    [Header("Bombs detection")]
+    [SerializeField] private bool checkBombDetection;
+
     [Tooltip("Is radius range for detect the player")]
     [SerializeField] private float _radiusDetectPlayer;
     [Tooltip("Is radius range for enemy atacks")]
     [SerializeField] private float _radiusAtackPlayer;
     [Tooltip("Is de distance to detect the Waiponts")]
     [SerializeField] private float _distanceChange;
+    [Tooltip("Is radius range od detect the bombs")]
+    [SerializeField] private float _radiusToBomb;
     [Header("Parameters Push Action")]
 
     [Header("Parameters Wall detection")]
@@ -76,7 +85,7 @@ public class EnemyControler : MonoBehaviour
     RaycastHit2D LfootRay;
     RaycastHit2D RfootRay;
 
-    // Id Animations
+    // Id Normal Animations
     private int _idSpeed;
     private int _idGround;
     private int _idFall;
@@ -85,7 +94,11 @@ public class EnemyControler : MonoBehaviour
     private int _idAtack;
     private int _idDead;
     private int _isMove;
-
+    // Id Bomb Animations
+    private int _idTakeBomb;
+    private int _idMoveWithBomb;
+    private int _idThrowBomb;
+    private int _idleBomb;
 
     //RayCast Ground
     [Tooltip("This are the gameobjects for check distance of ground")]
@@ -93,6 +106,7 @@ public class EnemyControler : MonoBehaviour
     [SerializeField] private Transform Lfoot;
     [SerializeField] private Transform Rfoot;
     [SerializeField] private float RayGround;
+    
     //Knock Settings
     [Header("parameters Knock")]
     [SerializeField] private bool _isNocked;
@@ -104,7 +118,7 @@ public class EnemyControler : MonoBehaviour
 
     //Layers
     [Header("Layers")]
-    [SerializeField] private LayerMask GroundLayer, PlayerLayer;
+    [SerializeField] private LayerMask GroundLayer, PlayerLayer, BombsLayer;
 
 
     //Comportament Enemie
@@ -130,6 +144,8 @@ public class EnemyControler : MonoBehaviour
     void Start()
     {
         _makeBomb = FindAnyObjectByType<InstantiateBombs>();
+
+        //Declare normal animations
         _idSpeed = Animator.StringToHash("_speed");
         _idGround = Animator.StringToHash("_isGround");
         _idFall = Animator.StringToHash("_isWall");
@@ -138,6 +154,12 @@ public class EnemyControler : MonoBehaviour
         _idAtack = Animator.StringToHash("_isAtack");
         _idDead = Animator.StringToHash("_isDeath");
         _isMove = Animator.StringToHash("_move");
+        //Declare bomb animations
+        _idTakeBomb = Animator.StringToHash("_takeBomb");
+        _idleBomb = Animator.StringToHash("isGroundBomb");
+        _idMoveWithBomb = Animator.StringToHash("_moveBomb");
+        _idThrowBomb = Animator.StringToHash("_atackBomb");
+
         _index = 0;
         m_colliderChildren[0].enabled = false;
         m_colliderChildren[1].enabled = true;
@@ -228,12 +250,10 @@ public class EnemyControler : MonoBehaviour
             if (_PlayerDetected)
             {
                 checkPlayerDetection = true;
-                //     Debug.Log("Is detected");
             }
             else
             {
                 checkPlayerDetection = false;
-                //   Debug.Log("No detcted");
             }
         }
 
@@ -243,7 +263,26 @@ public class EnemyControler : MonoBehaviour
             m_PlayerTransform = _PlayerPosition.transform;
         }
     }
-
+    void DetectBomb()
+    {
+        if (_BombPosition != null)
+        {
+            _BombDetected = Physics2D.OverlapCircle(transform.position, _radiusToBomb, BombsLayer);
+            if (_BombDetected)
+            {
+                checkBombDetection=true;
+            }
+            else
+            {
+                checkBombDetection=false;
+            }
+        }
+        _BombPosition = GameObject.FindGameObjectWithTag("Bomb");
+        if (_BombPosition != null)
+        {
+            m_BombsTransform = _BombPosition.transform;
+        }
+    }
     // Flip Enemy
     private void Flip()
     {
@@ -289,14 +328,35 @@ public class EnemyControler : MonoBehaviour
     void Atack()
     {
         if (_isAtacking)
-        {
-            m_colliderChildren[0].enabled = true;
-            m_animator.SetTrigger(_idAtack);
-        }
-        else
-        {
-            m_colliderChildren[0].enabled = false;
-        }
+          {
+              m_colliderChildren[0].enabled = true;
+              m_animator.SetTrigger(_idAtack);
+          }
+          else
+          {
+              m_colliderChildren[0].enabled = false;
+          }
+
+        /*  
+           AnimatorStateInfo state = m_animator.GetCurrentAnimatorStateInfo(0);
+
+           if (state.IsName("_isAtack"))
+               _isAtacking = true;
+           else
+               _isAtacking = false;
+
+           if (_isAtacking)
+           {
+               m_colliderChildren[0].enabled = true;
+
+           }
+           else
+           {
+               m_colliderChildren[0].enabled = false;
+           }*/
+    }
+    void AtackWithBomb()
+    {
 
     }
 
@@ -365,12 +425,27 @@ public class EnemyControler : MonoBehaviour
                 else if (velocity.x < 0 && !_flip) Flip();
 
                 break;
+
             case EnemiesTypes.Ranged:
 
-                //this need check
-                if (_PlayerDetected)
+                if (m_Way.Length == 0) return;
 
-                    transform.position = Vector2.MoveTowards(transform.position, m_PlayerTransform.position, _speedMove * Time.deltaTime);
+                if (_isWaitMovement) return;
+
+                Vector3 PlayerTarget = m_Way[_index].position;
+                Vector3 Newdirection = PlayerTarget - transform.position;
+
+                if (Newdirection.magnitude < _distanceChange)
+                {
+                    StartCoroutine(TimeWaitAfterMove(timeWaitPatrol));
+                    return;
+                }
+
+                Vector3 Newvelocity = Newdirection.normalized * _speedMove;
+                m_rb.linearVelocity = new Vector2(Newvelocity.x, m_rb.linearVelocity.y);
+
+                if (Newvelocity.x > 0 && _flip) Flip();
+                else if (Newvelocity.x < 0 && !_flip) Flip();
 
                 break;
             case EnemiesTypes.Flying:
@@ -397,6 +472,14 @@ public class EnemyControler : MonoBehaviour
                 m_animator.SetBool(_idGround, false);
                 m_animator.SetBool(_isMove, true);
                 break;
+            case EnemyEstates.waitWithBomb:
+                m_animator.SetBool(_idleBomb, true);
+                m_animator.SetBool(_idMoveWithBomb, false);
+                break;
+            case EnemyEstates.patrolWithBomb:
+                m_animator.SetBool(_idleBomb, false);
+                m_animator.SetBool(_idMoveWithBomb, true);
+                break;
 
         }
     }
@@ -422,7 +505,7 @@ public class EnemyControler : MonoBehaviour
         switch (TypeEnemie)
         {
             case EnemiesTypes.Melee:
-                if (m_PlayerTransform != null) 
+                if (m_PlayerTransform != null)
                 {
                     Vector3 PlayerPos = m_PlayerTransform.position;
                     Vector2 DirectionFollow = (PlayerPos - transform.position);
@@ -440,7 +523,17 @@ public class EnemyControler : MonoBehaviour
                     */
                     #endregion
 
-                    m_rb.linearVelocity = new Vector2(DirectionFollow.x * _speedMove * Time.fixedDeltaTime,0).normalized;
+                    m_rb.linearVelocity = new Vector2(DirectionFollow.x * _speedMove * Time.fixedDeltaTime, 0).normalized;
+                }
+                break;
+            case EnemiesTypes.Ranged:
+                if (m_PlayerTransform != null)
+                {
+                    Vector3 PlayerPos = m_PlayerTransform.position;
+                    Vector2 DirectionFollow = (PlayerPos - transform.position);
+
+
+                    m_rb.linearVelocity = new Vector2(DirectionFollow.x * _speedMove * Time.fixedDeltaTime, 0).normalized;
                 }
                 break;
             case EnemiesTypes.Boss:
@@ -563,7 +656,11 @@ public class EnemyControler : MonoBehaviour
         Gizmos.DrawCube(m_colliderChildren[0].bounds.center, m_colliderChildren[0].bounds.size);
         Gizmos.color = new Color(0f, 1f, 0, 1f);
         Gizmos.DrawCube(m_colliderChildren[1].bounds.center, m_colliderChildren[1].bounds.size);
-
+        if (TypeEnemie == EnemiesTypes.Ranged)
+        {
+            Gizmos.color = Color.green;
+            Gizmos.DrawWireSphere(transform.position, _radiusToBomb);
+        }
     }
     IEnumerator TimeDropBox(float time)
     {

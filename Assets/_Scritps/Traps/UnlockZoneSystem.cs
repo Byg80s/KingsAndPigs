@@ -8,7 +8,7 @@ public class UnlockZoneSystem : MonoBehaviour
     [SerializeField] private float _positionInY;
     [Tooltip("Array of Switches need for open")]
     [SerializeField] private SwitchActions[] switches;
-    [Tooltip("Select 0 to choose open a door, select 1 to choose enable GameObject")]
+    [Tooltip("Select 0 to choose open a door, select 1 to choose enable GameObject, select 2 to run animation")]
     [SerializeField] private int _selectOption;
     [SerializeField] private bool _open;
     [SerializeField] private bool _show;
@@ -85,6 +85,7 @@ public class UnlockZoneSystem : MonoBehaviour
 
         if (_selectOption == 0) OpenDoor();
         else if (_selectOption == 1) ActiveGameObject();
+        else if (_selectOption == 2) ActiveGameObject();
        
 
     }
@@ -97,6 +98,10 @@ public class UnlockZoneSystem : MonoBehaviour
     {
         _show = true;
         _ObjectMakeVisible.SetActive(true);
+    }
+    private void ActiveAnimation()
+    {
+
     }
     private void SelectGameObejct()
     {
@@ -111,6 +116,9 @@ public class UnlockZoneSystem : MonoBehaviour
                 }
                 _ObjectMakeVisible.SetActive(false);
                break;
+            case 2:
+
+                break;
         }
 
     }

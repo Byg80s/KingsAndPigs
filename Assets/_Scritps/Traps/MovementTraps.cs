@@ -9,9 +9,11 @@ public class MovementTraps : MonoBehaviour
     [SerializeField] private Transform[] m_Way;
     [SerializeField] private bool _Active;
     [SerializeField] private int _index;
-    [SerializeField] private int _speedMove;
+    [SerializeField] private float _speedMove;
     [SerializeField] private int _idActivated;
     [SerializeField] private bool needAnimation;
+    [SerializeField] private bool _fixInPlattform = false;
+    private PlayerController _playerController;
     private Animator m_anim;
     public int index { get => _index; set => _index = value; }
 
@@ -20,15 +22,16 @@ public class MovementTraps : MonoBehaviour
         m_anim = GetComponent<Animator>();
         index = 0;
         _idActivated = Animator.StringToHash("_isActived");
+        _playerController = GetComponent<PlayerController>();
     }
 
     private void Update()
     {
+
         IfActivateEvente();
-        if (needAnimation)
-        {
-            Animations();
-        }
+
+        if (needAnimation) Animations();
+
 
     }
     void Animations()
@@ -59,4 +62,27 @@ public class MovementTraps : MonoBehaviour
         }
     }
 
+    private void OnCollisionEnter2D(Collision2D collision)
+    {
+        if (collision.gameObject.CompareTag("Player")   && _fixInPlattform)
+        {
+            collision.gameObject.transform.parent = transform;
+        }
+        if (collision.gameObject.CompareTag("Box") && !_playerController.IsPushed)
+        {
+            collision.gameObject.transform.parent = transform;
+        }
+    }
+    private void OnCollisionExit2D(Collision2D collision)
+    {
+        if (collision.gameObject.CompareTag("Player") && _fixInPlattform)
+        {
+            collision.gameObject.transform.parent = null;
+        }
+        if (collision.gameObject.CompareTag("Box") && _playerController.IsPushed) 
+        {
+            collision.gameObject.transform.parent = null;
+        }
+
+    }
 }

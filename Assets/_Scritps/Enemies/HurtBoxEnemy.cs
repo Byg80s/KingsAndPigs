@@ -10,14 +10,6 @@ public class HurtBoxEnemy : MonoBehaviour
             GetComponentInParent<EnemyControler>().KnockBack();
             GetComponentInParent<EnemyControler>().ActualLife--;
             Debug.Log("Is damage recibe");
-        }
-
-
-
-
-
-
-       
-
+        } 
     }
 }

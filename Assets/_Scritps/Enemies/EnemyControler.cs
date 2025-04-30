@@ -45,6 +45,8 @@ public class EnemyControler : MonoBehaviour
     [SerializeField] private bool checkPlayerDetection;
     [Tooltip("This parameter is only for check the enemy is atacking the player")]
     [SerializeField] private bool _isAtacking;
+    [SerializeField] private bool _detectAttackRigthDirection;
+    [SerializeField] private bool _detectAttackLeftDirection;
     [Tooltip("This parameter is for change distance change follow player")]
     [SerializeField] private float _distanceChangeFollowPlayer;
     [Tooltip("This parameter is only for Boos,you need chanche type enemy in the inspector, this use for change to range atack type 01")]
@@ -119,6 +121,7 @@ public class EnemyControler : MonoBehaviour
     [SerializeField] private Vector2 _KnockForce;
     [SerializeField] private float _knockDuration;
     [SerializeField] private InstantiateBombs _makeBomb;
+    [SerializeField] private GameObject _bomb;
 
 
     //Layers
@@ -235,7 +238,7 @@ public class EnemyControler : MonoBehaviour
                 break;
             case EnemyEstates.takeBomb:
                 m_animator.SetBool(_idTakeBomb, true);
-                m_animator.SetBool(_idMoveWithBomb,true);
+                m_animator.SetBool(_idMoveWithBomb, true);
                 m_animator.SetBool(_idThrowBomb, false);
                 break;
             case EnemyEstates.waitWithBomb:
@@ -337,6 +340,7 @@ public class EnemyControler : MonoBehaviour
     public void KnockBack()
     {
         StartCoroutine(WaitKnock(_knockDuration));
+        //check this, hava a problem when follow player
         m_rb.linearVelocity = new Vector2(_KnockForce.x * -_direction, _KnockForce.y);
         m_animator.SetTrigger(_idKnock);
     }
@@ -455,8 +459,8 @@ public class EnemyControler : MonoBehaviour
 
                 if (_isWaitMovement) return;
 
-                Vector3 target = m_Way[_index].position;
-                Vector3 direction = target - transform.position;
+                Vector3 WayPointsTargetMelee = m_Way[_index].position;
+                Vector3 direction = WayPointsTargetMelee - transform.position;
 
                 if (direction.magnitude < _distanceChange)
                 {
@@ -478,17 +482,17 @@ public class EnemyControler : MonoBehaviour
 
                 if (_isWaitMovement) return;
 
-                Vector3 WayPointsTarget = m_Way[_index].position;
-                Vector3 Newdirection = WayPointsTarget - transform.position;
+                Vector3 WayPointsTargetRanged = m_Way[_index].position;
+                Vector3 Newdirection = WayPointsTargetRanged - transform.position;
 
 
-             
+
                 if (Newdirection.magnitude < _distanceChange && _takeBomb)
                 {
                     StartCoroutine(TimeWaitAfterMoveWithBombs(_isWaitWithBomb));
                     return;
                 }
-                    Vector3 Newvelocity = Newdirection.normalized * _speedMove;
+                Vector3 Newvelocity = Newdirection.normalized * _speedMove;
                 m_rb.linearVelocity = new Vector2(Newvelocity.x, m_rb.linearVelocity.y);
 
                 if (Newvelocity.x > 0 && _flip) Flip();
@@ -519,8 +523,12 @@ public class EnemyControler : MonoBehaviour
             case EnemiesTypes.Melee:
                 if (m_PlayerTransform != null)
                 {
-                    Vector3 PlayerPos = m_PlayerTransform.position;
-                    Vector2 DirectionFollow = (PlayerPos - transform.position);
+
+                    //    Vector3 PlayerPosMelee = m_PlayerTransform.position;
+                    //   Vector2 DirectionFollowMelee = (PlayerPosMelee - transform.position);
+                    float PlayerPosMelee = Mathf.Sign(m_PlayerTransform.position.x - transform.position.x);
+                    m_rb.linearVelocity = new Vector2(PlayerPosMelee * _speedMove * Time.fixedDeltaTime, m_rb.linearVelocity.y);
+
                     #region OldCode
                     /*    if (DirectionFollow.magnitude < _distanceChangeFollowPlayer)//!_isNocked &&
                         {
@@ -535,15 +543,27 @@ public class EnemyControler : MonoBehaviour
                     */
                     #endregion
 
-                    m_rb.linearVelocity = new Vector2(DirectionFollow.x * _speedMove * Time.fixedDeltaTime, 0).normalized;
+
                 }
                 break;
             case EnemiesTypes.Ranged:
                 if (m_PlayerTransform != null)
-                {                    
-                    _PlayerDetected= false;
-                    m_rb.linearVelocity = Vector2.zero;
-                    EnemyStates=EnemyEstates.throwBomb;
+                {
+                    if (!_isAtacking)
+                    {
+                        _PlayerDetected = false;
+                        m_rb.linearVelocity = Vector2.zero;
+                        EnemyStates = EnemyEstates.throwBomb;
+                        
+                      //  Instantiate(_bomb, m_PlayerTransform.position, Quaternion.identity);
+                        
+                    }
+                    else
+                    {
+                        _PlayerDetected = true;
+                        float PlayerPosRanged = Mathf.Sign(m_PlayerTransform.position.x - transform.position.x);
+                        m_rb.linearVelocity = new Vector2(PlayerPosRanged * _speedMove * Time.fixedDeltaTime, m_rb.linearVelocity.y);
+                    }
                 }
                 break;
             case EnemiesTypes.Boss:
@@ -627,7 +647,7 @@ public class EnemyControler : MonoBehaviour
         yield return new WaitForSeconds(time);
 
         _index = (_index + 1) % m_Way.Length;
-        EnemyStates = EnemyEstates.waitWithBomb;     
+        EnemyStates = EnemyEstates.waitWithBomb;
         //_isWaitMovement = false;
         _takeBomb = false;
     }

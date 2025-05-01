@@ -16,7 +16,6 @@ public class GameManager : MonoBehaviour
     [SerializeField] private Transform _PlayerRespawnPosition;
     [SerializeField] private Transform _PlayerExitLevelPoint;
     [SerializeField] internal PlayerController PlayerControler;
-  //  public PlayerController PlayerControler => PlayerControler;
 
     [Header("Live Player")]
     [Tooltip("This is the maxim lifes")]
@@ -30,12 +29,14 @@ public class GameManager : MonoBehaviour
     public bool blockInputs { get => _blockInputs; set => _blockInputs = value; }
     [SerializeField] private float _timeBlockInputsRespawn;
     public float TimeBlockInputsRespawn { get => _timeBlockInputsRespawn; set => _timeBlockInputsRespawn = value; }
-
+    #endregion
+    #region ENEMY SETTINGS
     [Header("Enemy Settings")]
     [SerializeField] private bool _detectedPlayerIsGround;
     public bool DetectedPlayerIsGround { get => _detectedPlayerIsGround; set => _detectedPlayerIsGround = value; }
-
     #endregion
+
+
     #region CRISTALS MANAGER
     [Header("Cristals Manager")]
     [SerializeField] private bool _CrystalsHaveRandomLook;
@@ -45,17 +46,7 @@ public class GameManager : MonoBehaviour
     public int CristalCollected => _cristalCollected;
     [SerializeField] private int _CrystalsHaveRandom;
     #endregion  
-    #region TRAPS PARAMETERS
-    //Traps
-    [Header("Parameters and WaitPoint Traps")]
-    [SerializeField] private float _moveSpeed;
-    public float MoveSpeed { get => _moveSpeed; }
 
-
-    [SerializeField] private bool isDeadZone;
-    public bool IsDeadZone { get => isDeadZone; set => isDeadZone = value; }
-
-    #endregion
     [Tooltip("Global light")]
     [SerializeField] private Light2D ligthOptions;
 
@@ -107,7 +98,6 @@ public class GameManager : MonoBehaviour
     public bool CrystalsHaveRandomLook() => CrystalsHaveRandomLook1;
     public bool BlockInputs() => blockInputs;
     public float TimerInputsBlockRespawn() => TimeBlockInputsRespawn;
-    public bool DeadZoneActivate() => IsDeadZone;
     public void GlobalLigth(float ligth)
     {
         ligthOptions.intensity = ligth;

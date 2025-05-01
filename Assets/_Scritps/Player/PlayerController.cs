@@ -59,13 +59,11 @@ public class PlayerController : MonoBehaviour
     [Tooltip("Number of jumps extra")]
     [SerializeField] private int _extraJumps;
     [SerializeField] private int _counterExtraJumps;
-
-    //chech this
     [SerializeField] private bool _isGrounded;
     public bool IsGrounded { get => _isGrounded; }
     [Tooltip("Permit doubleJump")]
     [SerializeField] private bool _canDoubleJumped;
-    private bool _permitJumper;
+    private bool _permitJumper=true;
 
     [Header("Parameters Actions Push And Pull")]
     [SerializeField] private bool _isPushed;
@@ -95,13 +93,13 @@ public class PlayerController : MonoBehaviour
     RaycastHit2D RfootRay;
 
     // Id Animations
-    private int _idSpeed;
-    private int _idGround;
-    private int _idFall;
-    private int _idKnock;
-    private int _idPsuh;
-    private int _idAttack;
-    private int _idSwitch;
+    private readonly int _idSpeed = Animator.StringToHash("_speed");
+    private readonly int _idGround = Animator.StringToHash("_isGround");
+    private readonly int _idFall = Animator.StringToHash("_isWall");
+    private readonly int _idKnock = Animator.StringToHash("_knockback");
+    private readonly int _idPsuh = Animator.StringToHash("_isPush");
+    private readonly int _idAttack = Animator.StringToHash("_isAttack");
+    private readonly int _idSwitch = Animator.StringToHash("_isPushButton");
 
 
     //RayCast Ground
@@ -139,28 +137,20 @@ public class PlayerController : MonoBehaviour
         m_rb = GetComponent<Rigidbody2D>();
         m_ginput = GetComponent<GatherInput>();
         m_animator = GetComponent<Animator>();
-       // canMove = true;
         
+
     }
 
 
     //START
     void Start()
     {
-        _idSpeed = Animator.StringToHash("_speed");
-        _idGround = Animator.StringToHash("_isGround");
-        _idFall = Animator.StringToHash("_isWall");
-        _idKnock = Animator.StringToHash("_knockback");
-        _idPsuh = Animator.StringToHash("_isPush");
-        _idAttack = Animator.StringToHash("_isAttack");
-        _idSwitch = Animator.StringToHash("_isPushButton");
-
         m_colliderChildren[0].enabled = false;
         m_colliderChildren[1].enabled = false;
         m_GameObjectsChildren[0].SetActive(false);
 
         _counterExtraJumps = _extraJumps;
-        _permitJumper = true;
+    //    _permitJumper = true;
 
 
         heldObject = GetComponent<GameObject>();
@@ -183,11 +173,7 @@ public class PlayerController : MonoBehaviour
         }
 
     }
-    private void StartCheckPoint()
-    {
-        m_animator.Play("Idle");
-
-    }
+    private void StartCheckPoint() => m_animator.Play("Idle");   
 
     void Update()
     {

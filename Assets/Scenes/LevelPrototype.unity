@@ -339020,7 +339020,7 @@ MonoBehaviour:
   PlayerControler: {fileID: 0}
   ActualLife: 10
   CurrentLive: 0
-  _NumberOfLives: 0
+  NumberOfLives: 0
   _timeRespawn: 1
   _blockInputs: 0
   _timeBlockInputsRespawn: 2
@@ -339029,7 +339029,6 @@ MonoBehaviour:
   _cristalCollected: 0
   _CrystalsHaveRandom: 0
   _moveSpeed: 5
-  _indexWaipointTrapSnife: 0
   isDeadZone: 0
   ligthOptions: {fileID: 619394801}
   _hasCheckPointActive: 0

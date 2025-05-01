@@ -15,8 +15,6 @@ public class PlayerController : MonoBehaviour
 
     //Detectbox
     [Header("Parameters Detect boxes")]
-    //    private Collider2D[] m_DetectBox;
-    private DistanceJoint2D m_joint;
     [Tooltip("Select Layer box")]
     [SerializeField] private LayerMask _layerPull;
     [Tooltip("Distance detect a box")]
@@ -138,15 +136,13 @@ public class PlayerController : MonoBehaviour
 
     private void Awake()
     {
-
         m_rb = GetComponent<Rigidbody2D>();
         m_ginput = GetComponent<GatherInput>();
         m_animator = GetComponent<Animator>();
-        _canMove = false;
-        StartCoroutine(BlockMovement(_moveDelay));
-
-
+       // canMove = true;
+        
     }
+
 
     //START
     void Start()
@@ -170,9 +166,28 @@ public class PlayerController : MonoBehaviour
         heldObject = GetComponent<GameObject>();
         heldObject = GameObject.FindGameObjectWithTag("Box");
         heldRb = heldObject.GetComponentInParent<Rigidbody2D>();
+        CheckPlayerRespawnState();
 
     }
+    private void CheckPlayerRespawnState()
+    {
+        if (GameManager.instance._hasCheckPointActive)
+        {
+            _canMove = true;
+            StartCheckPoint();
+        }
+        else
+        {
+            _canMove = false;
+            StartCoroutine(BlockMovement(_moveDelay));
+        }
 
+    }
+    private void StartCheckPoint()
+    {
+        m_animator.Play("Idle");
+
+    }
 
     void Update()
     {
@@ -189,6 +204,7 @@ public class PlayerController : MonoBehaviour
         BlockInputs();
         Move();
         if (!_isPushed) Jump();
+
     }
 
 
@@ -334,76 +350,25 @@ public class PlayerController : MonoBehaviour
     /// <summary>Pull Object </summary>
     private void HandleObjects()
     {
-
         if (m_ginput.IsTake)
         {
             _isTake = true;
-
         }
         else
         {
             _isTake = false;
-
         }
-        /* 
-       if (m_ginput.IsTake)
-       {
-           RaycastHit2D HitTake = Physics2D.Raycast(transform.position, transform.localScale, distanceToBox, _layerPull);
-           if (HitTake.collider != null)
-           {
-
-               if (heldObject.CompareTag("Box"))
-               {
-                   Debug.DrawLine(transform.position, heldObject.transform.position, Color.red);
-                   heldRb.bodyType = RigidbodyType2D.Dynamic;
-                   heldRb.AddForce(transform.position * _pushForce);
-               }
-           }
-
-
-       }
-
-       /*      if (m_ginput.IsTake)
-           {
-               m_DetectBox = Physics2D.OverlapCircleAll(transform.position, _radiusDetectPull);
-               foreach (var detectForPull in m_DetectBox)
-               {
-                   if (detectForPull.CompareTag("Box"))
-                   {
-                       m_joint.connectedBody = detectForPull.attachedRigidbody;
-                       m_joint.enabled = true;
-                       _isPull = true;
-                       break;
-                   }
-               }
-           }
-
-           else
-           {
-               m_joint.enabled = false;
-               _isPull = false;
-           }
-       */
-
     }
-
-
     private void PushAndPullObjects()
     {
-
-
         if (m_ginput.Push)
         {
             _isPushed = true;
-
         }
         else
         {
             _isPushed = false;
-
         }
-
-
     }
     //IEnumerators
     IEnumerator WaitReturnTime(float time)
@@ -458,7 +423,6 @@ public class PlayerController : MonoBehaviour
     {
         if (CurrentLife <= 0)// GameManager.instance.CurrentLife <= 0)
         {
-
             GameManager.instance.ReSpawnPlayer();
             CurrentLife = actualLife;
             ActualNumberOfLife();

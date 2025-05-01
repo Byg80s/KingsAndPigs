@@ -13,23 +13,17 @@ public class GameManager : MonoBehaviour
     #region PLAYER SETTINGS
     [Header("Player Settings")]
     [SerializeField] private GameObject _PlayerPrefab;
-    [SerializeField] private Transform _PlayerRespawnPoint;
+    [SerializeField] private Transform _PlayerRespawnPosition;
     [SerializeField] private Transform _PlayerExitLevelPoint;
-    [SerializeField] private PlayerController _playerControler;
-    [SerializeField] private bool _isPushAction;
-    public bool IsPushAction { get => _isPushAction; set => _isPushAction = value; }
+    [SerializeField] internal PlayerController PlayerControler;
+  //  public PlayerController PlayerControler => PlayerControler;
 
     [Header("Live Player")]
     [Tooltip("This is the maxim lifes")]
-    [SerializeField] private int _ActualLife;
-    public int ActualLife { get => _ActualLife; set => _ActualLife = value; }
+    [SerializeField] internal int ActualLife;
     [Tooltip("This is the current life in this moment")]
-    [SerializeField] private int _CurrentLive;
-    public int CurrentLive { get => _CurrentLive; set => _CurrentLive = value; }
-    [SerializeField] private int _NumberOfLives;
-    public int NumberOfLives { get => _NumberOfLives; set => _NumberOfLives = value; }
-
-    public PlayerController PlayerControler => _playerControler;
+    [SerializeField] internal int CurrentLive;
+    [SerializeField] internal int NumberOfLives;
     [SerializeField] private int _timeRespawn;
     public int TimeRespawn => _timeRespawn;
     [SerializeField] private bool _blockInputs;
@@ -57,23 +51,17 @@ public class GameManager : MonoBehaviour
     [SerializeField] private float _moveSpeed;
     public float MoveSpeed { get => _moveSpeed; }
 
-    [SerializeField] private int _indexWaipointTrapSnife;
-    public int IndexWaipointTrapSnife { get => _indexWaipointTrapSnife; set => _indexWaipointTrapSnife = value; }
 
     [SerializeField] private bool isDeadZone;
     public bool IsDeadZone { get => isDeadZone; set => isDeadZone = value; }
-    /*
-        [Header("Activate Traps")]
-        [SerializeField] private bool[] _DesactivationTraps;
-        public bool[] DesactivationTraps { get => _DesactivationTraps; set => _DesactivationTraps = value; }
 
-        [Header("Event Open Ground")]
-        [SerializeField] private int x;
-    */
     #endregion
     [Tooltip("Global light")]
     [SerializeField] private Light2D ligthOptions;
 
+    [Header("Respawn parameters")]
+    [SerializeField] internal bool _hasCheckPointActive;
+    [SerializeField] internal Vector3 _checkPointPosition;
 
     private void Awake()
     {
@@ -85,35 +73,38 @@ public class GameManager : MonoBehaviour
     {
 
     }
-    public void ReSpawnPlayer() => StartCoroutine(RespawnPlayerCorotineIfDie(TimeRespawn));
+    public void ReSpawnPlayer()
+    {
+        if (_hasCheckPointActive) _PlayerRespawnPosition.position = _checkPointPosition;
+        StartCoroutine(RespawnPlayerCorotineIfDie(TimeRespawn));
+
+    }
     public void ExitDoor() => StartCoroutine(RespawnPlayerCorotineIfExit(TimeRespawn));
 
     IEnumerator RespawnPlayerCorotineIfDie(int time)
     {
         yield return new WaitForSeconds(time);
-        RespawnPlayer(_PlayerPrefab, _PlayerRespawnPoint, "Player");
-        _playerControler.CurrentLife = ActualLife;
+        RespawnPlayer(_PlayerPrefab, _PlayerRespawnPosition, "Player");
+        PlayerControler.CurrentLife = ActualLife;
         //Check this
-        _playerControler.maxLife = NumberOfLives;
+        PlayerControler.maxLife = NumberOfLives;
     }
 
     IEnumerator RespawnPlayerCorotineIfExit(int time)
     {
         yield return new WaitForSeconds(time);
         RespawnPlayer(_PlayerPrefab, _PlayerExitLevelPoint, "Player");
-        _playerControler.CurrentLife = CurrentLive;
+        PlayerControler.CurrentLife = CurrentLive;
     }
     private void RespawnPlayer(GameObject Prefab, Transform PointRespawn, string Prefabtag)
     {
         GameObject newPlayer = Instantiate(Prefab, PointRespawn.position, Quaternion.identity);
         virtualCamera.Follow = newPlayer.transform;
         newPlayer.name = Prefabtag;
-        _playerControler = newPlayer.GetComponent<PlayerController>();
+        PlayerControler = newPlayer.GetComponent<PlayerController>();
     }
     public void AddCristals() => _cristalCollected++;
     public bool CrystalsHaveRandomLook() => CrystalsHaveRandomLook1;
-    // public bool ActivateTrapSnife() => ActivateTrapSnife1;
-    public int NumbersOfWayPoints() => IndexWaipointTrapSnife;
     public bool BlockInputs() => blockInputs;
     public float TimerInputsBlockRespawn() => TimeBlockInputsRespawn;
     public bool DeadZoneActivate() => IsDeadZone;
@@ -121,7 +112,7 @@ public class GameManager : MonoBehaviour
     {
         ligthOptions.intensity = ligth;
     }
-  
+
 
 
 }

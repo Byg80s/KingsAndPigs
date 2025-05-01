@@ -1,9 +1,6 @@
-using System;
-
 using UnityEngine;
-using Random = UnityEngine.Random;
 
-public class InstantiateBombs : MonoBehaviour
+public class InstantiateZoneForPigRangedBombda : MonoBehaviour
 {
     [SerializeField] private GameObject prefab;
     [SerializeField] private float minX;
@@ -16,10 +13,7 @@ public class InstantiateBombs : MonoBehaviour
     [SerializeField] private int timeBomsSpawn;
     [SerializeField] private int numberOfBombs;
     [SerializeField] private bool _activeBombs;
-    public bool activeBombs { get => _activeBombs; set => _activeBombs = value; }
-
     [SerializeField] private bool _isActivated = false;
-    public bool IsActivated { get => _isActivated; set => _isActivated = value; }
 
     Vector2 SpawnPos;
     private float randomX;
@@ -28,34 +22,36 @@ public class InstantiateBombs : MonoBehaviour
 
     private void Update()
     {
-        Spawm();
+        TimerCount();
+        if (timeSelected >= 6) Spawm();
     }
-  
+
     void Spawm()
     {
         if (_activeBombs && !_isActivated)
-        {          
+        {
             for (int i = 0; i < numberOfBombs; i++)
             {
 
                 randomX = Random.Range(minX, maxX);
-                randomY= Random.Range(minY, maxY);
+                randomY = Random.Range(minY, maxY);
                 SpawnPos = new Vector2(randomX, randomY);
-                Instantiate(prefab, SpawnPos, Quaternion.identity);                                
+                Instantiate(prefab, SpawnPos, Quaternion.identity);
             }
             _isActivated = true;
         }
         if (!_activeBombs)
         {
-            _isActivated = false; 
+            _isActivated = false;
         }
     }
     void TimerCount()
     {
-        timeSelected -= Time.deltaTime;
-        if (timeSelected <= 0)
+        timeSelected += Time.deltaTime;
+        if (timeSelected > 10)
         {
-            timeSelected = newTime;
+            timeSelected = 0;
         }
+
     }
 }

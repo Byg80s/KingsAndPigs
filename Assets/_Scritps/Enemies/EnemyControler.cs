@@ -17,6 +17,7 @@ public class EnemyControler : MonoBehaviour
     private Transform m_PlayerTransform;
     private GameObject _BombPosition;
     private Transform m_BombsTransform;
+    private BombTake _throwBomb;
 
     //Detection Raycast
     private bool _PlayerDetected;
@@ -57,7 +58,11 @@ public class EnemyControler : MonoBehaviour
     [Header("Parameters bombs")]
     [SerializeField] private bool checkBombDetection;
     [SerializeField] private float _isWaitWithBomb;
-    private bool _takeBomb;
+    private bool _takeBomb = false;
+    private bool _isThrowBomb = false;
+    [SerializeField] private float _speedBomb;
+    [SerializeField] private InstantiateBombs _makeBomb;
+    [SerializeField] private GameObject _bomb;
 
 
     [Tooltip("Is radius range for detect the player")]
@@ -120,8 +125,8 @@ public class EnemyControler : MonoBehaviour
     [SerializeField] private bool _isCanNocked;
     [SerializeField] private Vector2 _KnockForce;
     [SerializeField] private float _knockDuration;
-    [SerializeField] private InstantiateBombs _makeBomb;
-    [SerializeField] private GameObject _bomb;
+
+
 
 
     //Layers
@@ -353,7 +358,7 @@ public class EnemyControler : MonoBehaviour
             WayPointsUsePhysics();
 
         }
-        if (checkPlayerDetection && movementFoPhysics)
+        if (checkPlayerDetection && movementFoPhysics)//(checkPlayerDetection && movementFoPhysics)
         {
             FollowPlayerWithPhysics();
         }
@@ -479,7 +484,6 @@ public class EnemyControler : MonoBehaviour
             case EnemiesTypes.Ranged:
 
                 if (m_Way.Length == 0) return;
-
                 if (_isWaitMovement) return;
 
                 Vector3 WayPointsTargetRanged = m_Way[_index].position;
@@ -490,6 +494,11 @@ public class EnemyControler : MonoBehaviour
                 if (Newdirection.magnitude < _distanceChange && _takeBomb)
                 {
                     StartCoroutine(TimeWaitAfterMoveWithBombs(_isWaitWithBomb));
+                    return;
+                }
+                else if (Newdirection.magnitude < _distanceChange && !_takeBomb)
+                {
+                    StartCoroutine(TimeWaitAfterMove(timeWaitPatrol));
                     return;
                 }
                 Vector3 Newvelocity = Newdirection.normalized * _speedMove;
@@ -523,52 +532,48 @@ public class EnemyControler : MonoBehaviour
             case EnemiesTypes.Melee:
                 if (m_PlayerTransform != null)
                 {
-
-                    //    Vector3 PlayerPosMelee = m_PlayerTransform.position;
-                    //   Vector2 DirectionFollowMelee = (PlayerPosMelee - transform.position);
                     float PlayerPosMelee = Mathf.Sign(m_PlayerTransform.position.x - transform.position.x);
                     m_rb.linearVelocity = new Vector2(PlayerPosMelee * _speedMove * Time.fixedDeltaTime, m_rb.linearVelocity.y);
-
-                    #region OldCode
-                    /*    if (DirectionFollow.magnitude < _distanceChangeFollowPlayer)//!_isNocked &&
-                        {
-                            Flip();
-                            PlayerPos = m_Way[_index].position;
-                            DirectionFollow = (PlayerPos - transform.position);
-                        }
-                    // Physic movement
-
-                    // Vector3 VelocityNeedForGoPlayer = DirectionFollow.normalized * _speedMove * Time.fixedDeltaTime;
-                    //  m_rb.linearVelocity = new Vector3(VelocityNeedForGoPlayer.x, m_rb.linearVelocity.y);
-                    */
-                    #endregion
-
-
                 }
                 break;
             case EnemiesTypes.Ranged:
+
                 if (m_PlayerTransform != null)
                 {
-                    if (!_isAtacking)
+
+                    
+
+                    switch (_isAtacking )
                     {
-                        _PlayerDetected = false;
-                        m_rb.linearVelocity = Vector2.zero;
-                        EnemyStates = EnemyEstates.throwBomb;
-                        
-                      //  Instantiate(_bomb, m_PlayerTransform.position, Quaternion.identity);
-                        
+                        case true:
+                            float PlayerPosRanged = Mathf.Sign(m_PlayerTransform.position.x - transform.position.x);
+                            m_rb.linearVelocity = new Vector2(PlayerPosRanged * _speedMove * Time.fixedDeltaTime, m_rb.linearVelocity.y);
+
+                            break;
+
+                        case false:
+
+                            if (_isThrowBomb)
+                            {
+                                for (int i = 0; i < 1; i++)
+                                {
+                                    Instantiate(_bomb, transform.position, _bomb.transform.rotation);
+
+                                }
+                                _isThrowBomb = false;
+                                _radiusDetectPlayer = 0.1f;
+                            }
+
+                            break;
                     }
-                    else
-                    {
-                        _PlayerDetected = true;
-                        float PlayerPosRanged = Mathf.Sign(m_PlayerTransform.position.x - transform.position.x);
-                        m_rb.linearVelocity = new Vector2(PlayerPosRanged * _speedMove * Time.fixedDeltaTime, m_rb.linearVelocity.y);
-                    }
+
+
+
                 }
                 break;
             case EnemiesTypes.Boss:
 
-                if (m_PlayerTransform != null)
+                if (m_PlayerTransform != null )
                 {
 
 
@@ -686,6 +691,8 @@ public class EnemyControler : MonoBehaviour
         _isNocked = false;
         _isCanNocked = true;
     }
+    //this enumerator is posible optimice for all prefabs
+
     IEnumerator TimeDropBox(float time)
     {
 
@@ -746,6 +753,8 @@ public class EnemyControler : MonoBehaviour
         if (collision.gameObject.CompareTag("Bomb"))
         {
             _takeBomb = true;
+            _isThrowBomb = true;
+            if(_isThrowBomb) _radiusDetectPlayer = 3f;
             EnemyStates = EnemyEstates.takeBomb;
             Debug.Log("bomb detected= " + _takeBomb);
         }

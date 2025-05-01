@@ -44,7 +44,7 @@ public class DestroyBomb : MonoBehaviour
     IEnumerator DestroyThisBomb()
     {
         yield return new WaitForSeconds(1.0f);
-
+        if(gameObject != null) 
         Destroy(gameObject);
     }
 }

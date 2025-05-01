@@ -23,6 +23,8 @@ public class CheckPoint : MonoBehaviour
     {
        _isActive = true;
         m_Anim.SetTrigger(_idIsActive);
+        GameManager.instance._hasCheckPointActive = true;
+        GameManager.instance._checkPointPosition = transform.position;
     }
 
 }

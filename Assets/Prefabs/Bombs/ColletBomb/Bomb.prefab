@@ -11,7 +11,7 @@ GameObject:
   - component: {fileID: 8695928159093566564}
   - component: {fileID: 3502635315850147495}
   - component: {fileID: 2017448781624934509}
-  - component: {fileID: 3700611183475374017}
+  - component: {fileID: 2226199013799275215}
   m_Layer: 26
   m_Name: Bomb
   m_TagString: Bomb
@@ -125,7 +125,7 @@ CircleCollider2D:
   m_CompositeOrder: 0
   m_Offset: {x: 0, y: 0}
   m_Radius: 0.28125
---- !u!114 &3700611183475374017
+--- !u!114 &2226199013799275215
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -137,3 +137,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 8715a29bb19b05e448515ea33ccb8223, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  _speed: 0
+  _ThrowOffset: {x: 0, y: 0, z: 0}
+  _isThrow: 0

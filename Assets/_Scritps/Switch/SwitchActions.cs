@@ -94,9 +94,11 @@ public class SwitchActions : MonoBehaviour
     }
     IEnumerator TimeOfCameraActivated(float time)
     {
+        GameManager.instance.blockInputs = true;
         yield return new WaitForSeconds(time);
         _Composer.TargetOffset.y = 0f;
         _Composer.TargetOffset.x = 0f;
+        GameManager.instance.blockInputs = false;
         Destroy(_zoneActivateCamPos);
 
     }

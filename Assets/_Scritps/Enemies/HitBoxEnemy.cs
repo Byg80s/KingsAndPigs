@@ -17,6 +17,7 @@ public class HitBoxEnemy : MonoBehaviour
         {
             collision.GetComponentInParent<PlayerController>().KnockBack();
             collision.GetComponentInParent<PlayerController>().CurrentLife--;
+            GameManager.instance.LifeSystem(collision.GetComponentInParent<PlayerController>().CurrentLife);
 
         }
     }

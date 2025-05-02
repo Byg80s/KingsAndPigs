@@ -3,6 +3,7 @@ using System.Collections;
 using UnityEngine;
 using Unity.Cinemachine;
 using UnityEngine.Rendering.Universal;
+using UnityEngine.UI;
 
 public class GameManager : MonoBehaviour
 {
@@ -15,7 +16,8 @@ public class GameManager : MonoBehaviour
     [SerializeField] private GameObject _PlayerPrefab;
     [SerializeField] private Transform _PlayerRespawnPosition;
     [SerializeField] private Transform _PlayerExitLevelPoint;
-    [SerializeField] internal PlayerController PlayerControler;
+    [SerializeField] private PlayerController PlayerControler;
+    [SerializeField] internal bool blockInputs;
 
     [Header("Live Player")]
     [Tooltip("This is the maxim lifes")]
@@ -25,8 +27,6 @@ public class GameManager : MonoBehaviour
     [SerializeField] internal int NumberOfLives;
     [SerializeField] private int _timeRespawn;
     public int TimeRespawn => _timeRespawn;
-    [SerializeField] private bool _blockInputs;
-    public bool blockInputs { get => _blockInputs; set => _blockInputs = value; }
     [SerializeField] private float _timeBlockInputsRespawn;
     public float TimeBlockInputsRespawn { get => _timeBlockInputsRespawn; set => _timeBlockInputsRespawn = value; }
     #endregion
@@ -54,15 +54,23 @@ public class GameManager : MonoBehaviour
     [SerializeField] internal bool _hasCheckPointActive;
     [SerializeField] internal Vector3 _checkPointPosition;
 
+    #region UI
+    [Header("Ui control")]
+    [SerializeField] private Slider sliderLive;
+    #endregion
     private void Awake()
     {
         if (instance == null) instance = this;
         else Destroy(gameObject);
 
     }
+    private void Start()
+    {
+        
+    }
     private void Update()
     {
-
+      
     }
     public void ReSpawnPlayer()
     {
@@ -96,11 +104,21 @@ public class GameManager : MonoBehaviour
     }
     public void AddCristals() => _cristalCollected++;
     public bool CrystalsHaveRandomLook() => CrystalsHaveRandomLook1;
-    public bool BlockInputs() => blockInputs;
+    // public bool BlockInputs() => blockInputs;
     public float TimerInputsBlockRespawn() => TimeBlockInputsRespawn;
     public void GlobalLigth(float ligth)
     {
         ligthOptions.intensity = ligth;
+    }
+    public void LifeSystemMaxHealth(int health)
+    {
+        sliderLive.maxValue = health;
+        sliderLive.value = health;
+
+    }
+    public void LifeSystem(int health)
+    {
+        sliderLive.value = health;
     }
 
 

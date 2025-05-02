@@ -63,7 +63,7 @@ public class PlayerController : MonoBehaviour
     public bool IsGrounded { get => _isGrounded; }
     [Tooltip("Permit doubleJump")]
     [SerializeField] private bool _canDoubleJumped;
-    private bool _permitJumper=true;
+    private bool _permitJumper = true;
 
     [Header("Parameters Actions Push And Pull")]
     [SerializeField] private bool _isPushed;
@@ -137,7 +137,7 @@ public class PlayerController : MonoBehaviour
         m_rb = GetComponent<Rigidbody2D>();
         m_ginput = GetComponent<GatherInput>();
         m_animator = GetComponent<Animator>();
-        
+
 
     }
 
@@ -150,7 +150,7 @@ public class PlayerController : MonoBehaviour
         m_GameObjectsChildren[0].SetActive(false);
 
         _counterExtraJumps = _extraJumps;
-    //    _permitJumper = true;
+        //    _permitJumper = true;
 
 
         heldObject = GetComponent<GameObject>();
@@ -158,6 +158,8 @@ public class PlayerController : MonoBehaviour
         heldRb = heldObject.GetComponentInParent<Rigidbody2D>();
         CheckPlayerRespawnState();
 
+        //check this if a health bar
+        GameManager.instance.LifeSystemMaxHealth(CurrentLife);
     }
     private void CheckPlayerRespawnState()
     {
@@ -173,7 +175,7 @@ public class PlayerController : MonoBehaviour
         }
 
     }
-    private void StartCheckPoint() => m_animator.Play("Idle");   
+    private void StartCheckPoint() => m_animator.Play("Idle");
 
     void Update()
     {
@@ -186,8 +188,7 @@ public class PlayerController : MonoBehaviour
         if (!_canMove) return;
         if (_isNocked) return;
         CheckColision();
-        //Block Player Movement
-        BlockInputs();
+
         Move();
         if (!_isPushed) Jump();
 
@@ -256,17 +257,22 @@ public class PlayerController : MonoBehaviour
 
     private void Move()
     {
+
         if (!_canMove) return;
         if (_wallDetected && !_isGrounded) return;
         if (_isWallJumping) return;
-        Flip();
-        m_rb.linearVelocity = new Vector2(_speed * m_ginput.Value.x, m_rb.linearVelocity.y);
+        if (!GameManager.instance.blockInputs)
+        {
+            Flip();
+
+            m_rb.linearVelocity = new Vector2(_speed * m_ginput.Value.x, m_rb.linearVelocity.y);
+        }
     }
 
     // Flip Player
     private void Flip()
     {
-        if (m_ginput.Value.x * _direction < 0)//&& !GameManager.instance.blockInputs)
+        if (m_ginput.Value.x * _direction < 0)
         {
             HandleDirection();
         }
@@ -336,25 +342,14 @@ public class PlayerController : MonoBehaviour
     /// <summary>Pull Object </summary>
     private void HandleObjects()
     {
-        if (m_ginput.IsTake)
-        {
-            _isTake = true;
-        }
-        else
-        {
-            _isTake = false;
-        }
+        if (m_ginput.IsTake) _isTake = true;
+
+        else _isTake = false;
     }
     private void PushAndPullObjects()
     {
-        if (m_ginput.Push)
-        {
-            _isPushed = true;
-        }
-        else
-        {
-            _isPushed = false;
-        }
+        if (m_ginput.Push) _isPushed = true;
+        else _isPushed = false;
     }
     //IEnumerators
     IEnumerator WaitReturnTime(float time)
@@ -388,26 +383,15 @@ public class PlayerController : MonoBehaviour
         GameObject InDoorVfxPrefab = Instantiate(IndoorVfx, transform.position, Quaternion.identity);
         Destroy(gameObject);
     }
-    public void BlockInputs()
-    {
-        if (GameManager.instance.blockInputs && _isGrounded)
-        {
-            m_rb.linearVelocity = Vector2.zero;
-            m_rb.bodyType = RigidbodyType2D.Static;
-        }
-        else
-        {
-            m_rb.bodyType = RigidbodyType2D.Dynamic;
-        }
-        /////////////////////// check this /////////////////////
-    }
+
     void ActualNumberOfLife()
     {
+        
         if (CurrentLife <= 0) maxLife--;
     }
     private void DamageNeedDead()
     {
-        if (CurrentLife <= 0)// GameManager.instance.CurrentLife <= 0)
+        if (CurrentLife <= 0)
         {
             GameManager.instance.ReSpawnPlayer();
             CurrentLife = actualLife;

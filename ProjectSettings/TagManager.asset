@@ -34,6 +34,7 @@ TagManager:
   - Enemy
   - Ground
   - BombThrow
+  - Life
   layers:
   - Default
   - TransparentFX

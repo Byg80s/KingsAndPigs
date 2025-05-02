@@ -239,7 +239,7 @@ MonoBehaviour:
     m_Bits: 8388608
   distanceToBox: 0.3
   _pushForce: 0.01
-  _currentLife: 10
+  _currentLife: 100
   _maxLife: 3
   _actualLife: 10
   _speed: 5

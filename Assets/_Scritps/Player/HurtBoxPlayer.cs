@@ -15,6 +15,7 @@ public class HurtBoxPlayer : MonoBehaviour
             _playerController.KnockBack();
          if(_playerController.IsNocked  ) _playerController.CurrentLife--;
 
+           
 
         }
     }

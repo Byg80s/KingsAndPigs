@@ -34,6 +34,7 @@ public class EnemyControler : MonoBehaviour
 
     //Values
     [Header("Parameters Movement")]
+    [Tooltip("Speed when follow player")]
     [SerializeField] private float _speed;
     private int _direction = 1;
     [SerializeField] private bool _isGrounded;
@@ -85,8 +86,7 @@ public class EnemyControler : MonoBehaviour
 
 
     [Header("Live system")]
-    [SerializeField] private int _actualLife;
-    public int ActualLife { get => _actualLife; set => _actualLife = value; }
+    [SerializeField] internal int ActualLife;
 
     [SerializeField] private int _currentLife;
 
@@ -181,10 +181,10 @@ public class EnemyControler : MonoBehaviour
     void Update()
     {
         Animations();
-        if (_actualLife > 0) EnemiIaNoPhysics();
+        if (ActualLife > 0) EnemiIaNoPhysics();
         Dead();
         DropItemIfDeath();
-
+        Atack();
     }
     private void FixedUpdate()
     {
@@ -193,13 +193,13 @@ public class EnemyControler : MonoBehaviour
         ChangeRigidBodyType();
         CheckColision();
         StatesOfAnimationEnemy();
-        if (m_PlayerTransform != null && _actualLife > 0) EnemiIaWithPhysic();// || _actualLife > 0
+        if (m_PlayerTransform != null && ActualLife > 0) EnemiIaWithPhysic();// || _actualLife > 0
 
     }
     void Dead()
     {
 
-        if (_actualLife <= 0) StartCoroutine(DeathDestroy());
+        if (ActualLife <= 0) StartCoroutine(DeathDestroy());
     }
     IEnumerator DeathDestroy()
     {
@@ -372,7 +372,7 @@ public class EnemyControler : MonoBehaviour
         if (checkPlayerDetection) FollowPlayerNoPhysics();
 
 
-        Atack();
+
     }
 
     void Atack()
@@ -432,12 +432,12 @@ public class EnemyControler : MonoBehaviour
             switch (TypeEnemie)
             {
                 case EnemiesTypes.Melee:
-                    if (_PlayerDetected && _isGrounded && _actualLife > 0)
+                    if (_PlayerDetected && _isGrounded && ActualLife > 0)
                         transform.position = Vector2.MoveTowards(transform.position, new Vector2(m_PlayerTransform.position.x, transform.position.y), _speedMove * Time.deltaTime);
 
                     break;
                 case EnemiesTypes.Ranged:
-                    if (_PlayerDetected && _actualLife > 0)
+                    if (_PlayerDetected && ActualLife > 0)
 
                         transform.position = Vector2.MoveTowards(transform.position, m_PlayerTransform.position, _speedMove * Time.deltaTime);
                     break;
@@ -460,53 +460,13 @@ public class EnemyControler : MonoBehaviour
         {
             case EnemiesTypes.Melee:
 
-                if (m_Way.Length == 0) return;
-
-                if (_isWaitMovement) return;
-
-                Vector3 WayPointsTargetMelee = m_Way[_index].position;
-                Vector3 direction = WayPointsTargetMelee - transform.position;
-
-                if (direction.magnitude < _distanceChange)
-                {
-                    StartCoroutine(TimeWaitAfterMove(timeWaitPatrol));
-                    return;
-                }
-
-                Vector3 velocity = direction.normalized * _speedMove;
-                m_rb.linearVelocity = new Vector2(velocity.x, m_rb.linearVelocity.y);
-
-                if (velocity.x > 0 && _flip) Flip();
-                else if (velocity.x < 0 && !_flip) Flip();
+                WaypointsWithPhysicsMelee();
 
                 break;
 
             case EnemiesTypes.Ranged:
 
-                if (m_Way.Length == 0) return;
-                if (_isWaitMovement) return;
-
-                Vector3 WayPointsTargetRanged = m_Way[_index].position;
-                Vector3 Newdirection = WayPointsTargetRanged - transform.position;
-
-
-
-                if (Newdirection.magnitude < _distanceChange && _takeBomb)
-                {
-                    StartCoroutine(TimeWaitAfterMoveWithBombs(_isWaitWithBomb));
-                    return;
-                }
-                else if (Newdirection.magnitude < _distanceChange && !_takeBomb)
-                {
-                    StartCoroutine(TimeWaitAfterMove(timeWaitPatrol));
-                    return;
-                }
-                Vector3 Newvelocity = Newdirection.normalized * _speedMove;
-                m_rb.linearVelocity = new Vector2(Newvelocity.x, m_rb.linearVelocity.y);
-
-                if (Newvelocity.x > 0 && _flip) Flip();
-                else if (Newvelocity.x < 0 && !_flip) Flip();
-
+                WayPointsWithPhysicsRanged();
 
                 break;
             case EnemiesTypes.Flying:
@@ -530,67 +490,13 @@ public class EnemyControler : MonoBehaviour
         switch (TypeEnemie)
         {
             case EnemiesTypes.Melee:
-                if (m_PlayerTransform != null)
-                {
-                    float PlayerPosMelee = Mathf.Sign(m_PlayerTransform.position.x - transform.position.x);
-                    m_rb.linearVelocity = new Vector2(PlayerPosMelee * _speedMove * Time.fixedDeltaTime, m_rb.linearVelocity.y);
-                }
+                FollowPlayerWithPhysicsMelee();
                 break;
             case EnemiesTypes.Ranged:
-
-                if (m_PlayerTransform != null)
-                {
-
-                    
-
-                    switch (_isAtacking )
-                    {
-                        case true:
-                            float PlayerPosRanged = Mathf.Sign(m_PlayerTransform.position.x - transform.position.x);
-                            m_rb.linearVelocity = new Vector2(PlayerPosRanged * _speedMove * Time.fixedDeltaTime, m_rb.linearVelocity.y);
-
-                            break;
-
-                        case false:
-
-                            if (_isThrowBomb)
-                            {
-                                for (int i = 0; i < 1; i++)
-                                {
-                                    Instantiate(_bomb, transform.position, _bomb.transform.rotation);
-
-                                }
-                                _isThrowBomb = false;
-                                _radiusDetectPlayer = 0.1f;
-                            }
-
-                            break;
-                    }
-
-
-
-                }
+                FollowPlayerWithPhysicsRanged();
                 break;
             case EnemiesTypes.Boss:
-
-                if (m_PlayerTransform != null )
-                {
-
-
-                    float direction = Mathf.Sign(m_PlayerTransform.position.x - transform.position.x);//transform.position.normalized);
-                    m_rb.linearVelocity = new Vector2(direction * _speedMove, m_rb.linearVelocity.y);
-
-
-
-                    if (_PlayerIsInFirstZone)
-                    {
-                        _makeBomb.activeBombs = true;
-                    }
-                    else
-                    {
-                        _makeBomb.activeBombs = false;
-                    }
-                }
+                FollowPlayerWithPhysicsBoss();
                 break;
         }
 
@@ -605,7 +511,7 @@ public class EnemyControler : MonoBehaviour
         {
 
             case EnemiesTypeDrop.Box:
-                if (_actualLife <= 0 && PrefabBox != null)
+                if (ActualLife <= 0 && PrefabBox != null)
                 {
                     StartCoroutine(TimeDropBox(1));
                 }
@@ -614,21 +520,21 @@ public class EnemyControler : MonoBehaviour
 
 
             case EnemiesTypeDrop.Key:
-                if (_actualLife <= 0 && PrefabBox != null)
+                if (ActualLife <= 0 && PrefabBox != null)
                 {
                     StartCoroutine(TimeDropKey(1));
                 }
                 break;
 
             case EnemiesTypeDrop.PotionHealth:
-                if (_actualLife <= 0 && PrefabBox != null)
+                if (ActualLife <= 0 && PrefabBox != null)
                 {
                     StartCoroutine(TimeDropPotionHeal(1));
                 }
                 break;
 
             case EnemiesTypeDrop.PotionMana:
-                if (_actualLife <= 0 && PrefabBox != null)
+                if (ActualLife <= 0 && PrefabBox != null)
                 {
                     StartCoroutine(TimerDropPotionMana(1));
                 }
@@ -638,8 +544,105 @@ public class EnemyControler : MonoBehaviour
 
         }
     }
+    void WaypointsWithPhysicsMelee()
+    {
+        if (m_Way.Length == 0) return;
 
+        if (_isWaitMovement) return;
 
+        Vector3 WayPointsTargetMelee = m_Way[_index].position;
+        Vector3 direction = WayPointsTargetMelee - transform.position;
+
+        if (direction.magnitude < _distanceChange)
+        {
+            StartCoroutine(TimeWaitAfterMove(timeWaitPatrol));
+            return;
+        }
+
+        Vector3 velocity = direction.normalized * _speedMove;
+        m_rb.linearVelocity = new Vector2(velocity.x, m_rb.linearVelocity.y);
+
+        if (velocity.x > 0 && _flip) Flip();
+        else if (velocity.x < 0 && !_flip) Flip();
+    }
+    void WayPointsWithPhysicsRanged()
+    {
+        if (m_Way.Length == 0) return;
+        if (_isWaitMovement) return;
+
+        Vector3 WayPointsTargetRanged = m_Way[_index].position;
+        Vector3 Newdirection = WayPointsTargetRanged - transform.position;
+
+        if (Newdirection.magnitude < _distanceChange && _takeBomb)
+        {
+            StartCoroutine(TimeWaitAfterMoveWithBombs(_isWaitWithBomb));
+            return;
+        }
+        else if (Newdirection.magnitude < _distanceChange && !_takeBomb)
+        {
+            StartCoroutine(TimeWaitAfterMove(timeWaitPatrol));
+            return;
+        }
+        Vector3 Newvelocity = Newdirection.normalized * _speedMove;
+        m_rb.linearVelocity = new Vector2(Newvelocity.x, m_rb.linearVelocity.y);
+
+        if (Newvelocity.x > 0 && _flip) Flip();
+        else if (Newvelocity.x < 0 && !_flip) Flip();
+    }
+    void WayPointWithPhysBoss()
+    {
+
+    }
+    void FollowPlayerWithPhysicsMelee()
+    {
+        if (m_PlayerTransform != null)
+        {
+            float PlayerPosMelee = Mathf.Sign(m_PlayerTransform.position.x - transform.position.x);
+            m_rb.linearVelocity = new Vector2(PlayerPosMelee * _speed * Time.deltaTime, m_rb.linearVelocity.y);
+        }
+    }
+    void FollowPlayerWithPhysicsRanged()
+    {
+        if (m_PlayerTransform != null)
+        {
+            switch (_isAtacking)
+            {
+                case true:
+                    float PlayerPosRanged = Mathf.Sign(m_PlayerTransform.position.x - transform.position.x);
+                    m_rb.linearVelocity = new Vector2(PlayerPosRanged * _speed * Time.deltaTime, m_rb.linearVelocity.y);
+
+                    break;
+                case false:
+
+                    if (_isThrowBomb)
+                    {
+                        for (int i = 0; i < 1; i++)
+                        {
+                            Instantiate(_bomb, transform.position, _bomb.transform.rotation);
+                        }
+                        _isThrowBomb = false;
+                        _radiusDetectPlayer = 0.1f;
+                    }
+                    break;
+            }
+        }
+    }
+    void FollowPlayerWithPhysicsBoss()
+    {
+        if (m_PlayerTransform != null)
+        {
+            float direction = Mathf.Sign(m_PlayerTransform.position.x - transform.position.x);//transform.position.normalized);
+            m_rb.linearVelocity = new Vector2(direction * _speed, m_rb.linearVelocity.y);
+            if (_PlayerIsInFirstZone)
+            {
+                _makeBomb.activeBombs = true;
+            }
+            else
+            {
+                _makeBomb.activeBombs = false;
+            }
+        }
+    }
     //IEnumerators
 
     // Timers enumerators for waypoints
@@ -695,14 +698,10 @@ public class EnemyControler : MonoBehaviour
 
     IEnumerator TimeDropBox(float time)
     {
-
         yield return new WaitForSeconds(time);
         if (!_isIntancied)
             Instantiate(PrefabBox, transform.position, Quaternion.identity);
         _isIntancied = true;
-
-
-
     }
     IEnumerator TimeDropKey(float time)
     {
@@ -754,7 +753,7 @@ public class EnemyControler : MonoBehaviour
         {
             _takeBomb = true;
             _isThrowBomb = true;
-            if(_isThrowBomb) _radiusDetectPlayer = 3f;
+            if (_isThrowBomb) _radiusDetectPlayer = 3f;
             EnemyStates = EnemyEstates.takeBomb;
             Debug.Log("bomb detected= " + _takeBomb);
         }

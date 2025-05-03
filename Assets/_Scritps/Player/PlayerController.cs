@@ -44,7 +44,7 @@ public class PlayerController : MonoBehaviour
     //Values
     [Header("Parameters Movement")]
 
-    [SerializeField] private float _speed;
+    [SerializeField] internal float _speed;
     [Tooltip("Define the speed run player")]
     [SerializeField] private float _normalSpeed;
     [Tooltip("block or unlook the movement of player")]
@@ -139,8 +139,6 @@ public class PlayerController : MonoBehaviour
         m_rb = GetComponent<Rigidbody2D>();
         m_ginput = GetComponent<GatherInput>();
         m_animator = GetComponent<Animator>();
-
-
     }
 
 
@@ -152,15 +150,12 @@ public class PlayerController : MonoBehaviour
         m_GameObjectsChildren[0].SetActive(false);
 
         _counterExtraJumps = _extraJumps;
-        //    _permitJumper = true;
-
 
         heldObject = GetComponent<GameObject>();
         heldObject = GameObject.FindGameObjectWithTag("Box");
         heldRb = heldObject.GetComponentInParent<Rigidbody2D>();
         CheckPlayerRespawnState();
 
-        //check this if a health bar
         GameManager.instance.LifeSystemMaxHealth(CurrentLife);
     }
     private void CheckPlayerRespawnState()
@@ -274,21 +269,26 @@ public class PlayerController : MonoBehaviour
     // Flip Player
     private void Flip()
     {
+        if (_isTake) return;
         if (m_ginput.Value.x * _direction < 0)
         {
             HandleDirection();
+
         }
+
     }
 
     private void HandleDirection()
     {
         m_transform.localScale = new Vector2(-m_transform.localScale.x, m_transform.localScale.y);
         _direction *= -1;
+
     }
 
     //Jump
     private void Jump()
     {
+        if (_isTake) return;
         if (m_ginput.IsJumping && _permitJumper)
         {
             if (_isGrounded)
@@ -324,7 +324,7 @@ public class PlayerController : MonoBehaviour
     }
     public void Attack()
     {
-       
+
         AnimatorStateInfo state = m_animator.GetCurrentAnimatorStateInfo(0);
 
         if (state.IsName("Attack"))
@@ -342,12 +342,11 @@ public class PlayerController : MonoBehaviour
         }
 
     }
-   
+
     /// <summary>Pull Object </summary>
     private void HandleObjects()
     {
         if (m_ginput.IsTake) _isTake = true;
-
         else _isTake = false;
     }
     private void PushAndPullObjects()

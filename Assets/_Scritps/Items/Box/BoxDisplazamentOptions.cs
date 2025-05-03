@@ -1,6 +1,7 @@
 using UnityEngine;
 using UnityEngine.InputSystem;
 using UnityEngine.UIElements;
+using static UnityEngine.RuleTile.TilingRuleOutput;
 
 public class BoxDisplazamentOptions : MonoBehaviour
 {
@@ -13,6 +14,9 @@ public class BoxDisplazamentOptions : MonoBehaviour
     [SerializeField] private float pullSpeed;
     [SerializeField] private LayerMask m_layerMaskPlayer;
     [SerializeField] private LayerMask m_layerMaskGround;
+
+
+    public float pullForce = 10f;
 
 
     private Vector2 front;
@@ -33,8 +37,11 @@ public class BoxDisplazamentOptions : MonoBehaviour
     }
     private void FixedUpdate()
     {
-        if (!_isTaked) CheckIsPushPlayerButton();
-        if (!_isPushed) CheckIsTakePlayerButton();
+        Debug.Log(m_playerController.m_rb.gravityScale);
+        //  if (!_isTaked)
+        CheckIsPushPlayerButton();
+        // if (!_isPushed)
+        CheckIsTakePlayerButton();
         hitDown = Physics2D.Raycast(transform.position, down, _distanceToGround, m_layerMaskGround);
 
     }
@@ -55,7 +62,7 @@ public class BoxDisplazamentOptions : MonoBehaviour
                 if (hitDown) m_rb.constraints = RigidbodyConstraints2D.FreezePositionX;
                 else m_rb.constraints = RigidbodyConstraints2D.None;
             }
-           else m_rb.constraints = RigidbodyConstraints2D.None;
+            else m_rb.constraints = RigidbodyConstraints2D.None;
         }
 
     }
@@ -64,28 +71,39 @@ public class BoxDisplazamentOptions : MonoBehaviour
         _isTaked = m_playerController.IsTake;
 
         if (m_pointDetect == null) return;
+
+        CheckHitLayerMaskPlayer();
+
+        if ((_isTaked) && (hitLeft.collider != null && hitLeft.collider.CompareTag("Player") || hitRigth.collider != null && hitRigth.collider.CompareTag("Player")))
         {
-            CheckHitLayerMaskPlayer();
-            if ((_isPushed && !_isTaked) && (hitLeft.collider != null && hitLeft.collider.CompareTag("Player") || hitRigth.collider != null && hitRigth.collider.CompareTag("Player")))
-            {
-                Debug.DrawLine(transform.position, m_pointDetect.transform.position, Color.black);
-                if (hitDown) m_rb.constraints = RigidbodyConstraints2D.FreezePositionX;
-                else m_rb.constraints = RigidbodyConstraints2D.None;
-                transform.position = transform.position;
-            }
 
-            if ((!_isPushed && _isTaked) && (hitLeft.collider != null && hitLeft.collider.CompareTag("Player") || hitRigth.collider != null && hitRigth.collider.CompareTag("Player")))
-            {
-                Debug.Log("Is Take");
-                transform.position = m_pointDetect.transform.position;
-
-            }
+            transform.parent = m_playerController.transform;
+            m_rb.constraints = RigidbodyConstraints2D.None;
+            m_rb.bodyType = RigidbodyType2D.Kinematic;
+            m_playerController._speed = 0.5f;
+            Debug.Log("is take");
            
         }
+        else
+        {
+            transform.parent = null;
+            m_rb.bodyType = RigidbodyType2D.Dynamic;
+            m_playerController._speed = 5f;
+            Debug.Log("No take");
+        }
+
     }
+
     private void CheckHitLayerMaskPlayer()
     {
         hitRigth = Physics2D.Raycast(transform.position, front, _distanceToPlayer, m_layerMaskPlayer);
         hitLeft = Physics2D.Raycast(transform.position, back, _distanceToPlayer, m_layerMaskPlayer);
+        Collider2D player = Physics2D.OverlapCircle(transform.position, _distanceToPlayer, m_layerMaskPlayer);
+
     }
+
+
+
+
+
 }

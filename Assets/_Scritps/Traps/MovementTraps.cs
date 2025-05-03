@@ -74,10 +74,19 @@ public class MovementTraps : MonoBehaviour
         //  collision.gameObject.transform.parent = transform;
         //   collision.gameObject.transform.parent = transform;
         //}
+        if (collision.gameObject.CompareTag("Box"))
+        {
+            collision.gameObject.transform.parent = transform;
+        }
     }
     private void OnCollisionExit2D(Collision2D collision)
     {
         if (collision.gameObject.CompareTag("Player") && _fixInPlattform)
+        {
+            collision.gameObject.transform.parent = null;
+        }
+
+        if (collision.gameObject.CompareTag("Box"))
         {
             collision.gameObject.transform.parent = null;
         }

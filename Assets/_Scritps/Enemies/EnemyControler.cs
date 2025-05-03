@@ -4,9 +4,15 @@ using System.Collections.Generic;
 using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.EventSystems;
+using UnityEngine.UI;
 
 public class EnemyControler : MonoBehaviour
 {
+    #region UI
+    [Header("Ui control")]
+    [SerializeField] internal Slider sliderLive;
+    #endregion
+
     [Header("Components")]
     //Components
     private Rigidbody2D m_rb;
@@ -78,10 +84,11 @@ public class EnemyControler : MonoBehaviour
 
     [Header("Parameters Wall detection")]
 
-    [Header("Select Enemy type and Dropeds")]
+    [Header("Select Enemy type, Dropeds and pointsValue")]
     [SerializeField] private EnemiesTypes TypeEnemie;
     [SerializeField] private EnemyEstates EnemyStates;
     [SerializeField] private EnemiesTypeDrop TypeDrop;
+    private int _points;
     private bool _isIntancied = false;
 
 
@@ -176,15 +183,16 @@ public class EnemyControler : MonoBehaviour
         _index = 0;
         m_colliderChildren[0].enabled = false;
         m_colliderChildren[1].enabled = true;
+        LifeSystemMaxHealth(ActualLife);
     }
 
     void Update()
     {
-        Animations();
+
         if (ActualLife > 0) EnemiIaNoPhysics();
         Dead();
         DropItemIfDeath();
-        Atack();
+        if (!_isDead) Atack();
     }
     private void FixedUpdate()
     {
@@ -203,12 +211,14 @@ public class EnemyControler : MonoBehaviour
     }
     IEnumerator DeathDestroy()
     {
+       
         m_animator.SetBool(_idDead, true);
         m_colliderChildren[0].enabled = false;
         m_colliderChildren[1].enabled = false;
         m_rb.bodyType = RigidbodyType2D.Static;
         _isDead = true;
         yield return new WaitForSeconds(2);
+        GameManager.instance._PointsRecibed += _points;
         Destroy(gameObject);
     }
     void ChangeRigidBodyType()
@@ -229,7 +239,7 @@ public class EnemyControler : MonoBehaviour
         m_animator.SetBool(_idGround, _isGrounded);
 
     }
-    void StatesOfAnimationEnemy()
+    private void StatesOfAnimationEnemy()
     {
         switch (EnemyStates)
         {
@@ -238,7 +248,7 @@ public class EnemyControler : MonoBehaviour
                 m_animator.SetBool(_isMove, false);
                 break;
             case EnemyEstates.patrol:
-                m_animator.SetBool(_idGround, false);
+                m_animator.SetBool(_idGround, true);
                 m_animator.SetBool(_isMove, true);
                 break;
             case EnemyEstates.takeBomb:
@@ -339,6 +349,8 @@ public class EnemyControler : MonoBehaviour
         Vector2 Scale = transform.localScale;
         Scale.x *= -1;
         transform.localScale = Scale;
+        RectTransform rectrans =sliderLive.GetComponent<RectTransform>();
+        rectrans.localScale = Scale;
     }
 
     //KnockBack
@@ -459,23 +471,24 @@ public class EnemyControler : MonoBehaviour
         switch (TypeEnemie)
         {
             case EnemiesTypes.Melee:
-
+                _points = 125;
                 WaypointsWithPhysicsMelee();
 
                 break;
 
             case EnemiesTypes.Ranged:
-
-                WayPointsWithPhysicsRanged();
+                _points = 213;
 
                 break;
             case EnemiesTypes.Flying:
+                _points = 432;
                 break;
             case EnemiesTypes.Stealth:
+                _points = 1150;
                 break;
             case EnemiesTypes.Boss:
 
-
+                _points = 12500;
                 break;
             default:
                 break;
@@ -643,6 +656,17 @@ public class EnemyControler : MonoBehaviour
             }
         }
     }
+    public void LifeSystemMaxHealth(int health)
+    {
+        sliderLive.maxValue = health;
+        sliderLive.value = health;
+
+    }
+    public void LifeSystem(int health)
+    {
+        sliderLive.value = health;
+    }
+
     //IEnumerators
 
     // Timers enumerators for waypoints

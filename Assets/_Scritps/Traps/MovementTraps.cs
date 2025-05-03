@@ -68,6 +68,7 @@ public class MovementTraps : MonoBehaviour
         {
             collision.gameObject.transform.parent = transform;
         }
+        //NEED CHECK THIS
         if (collision.gameObject.CompareTag("Box") && !_playerController.IsPushed)
         {
             collision.gameObject.transform.parent = transform;

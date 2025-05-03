@@ -4,6 +4,8 @@ using UnityEngine;
 using Unity.Cinemachine;
 using UnityEngine.Rendering.Universal;
 using UnityEngine.UI;
+using TMPro;
+
 
 public class GameManager : MonoBehaviour
 {
@@ -16,7 +18,8 @@ public class GameManager : MonoBehaviour
     [SerializeField] private GameObject _PlayerPrefab;
     [SerializeField] private Transform _PlayerRespawnPosition;
     [SerializeField] private Transform _PlayerExitLevelPoint;
-    [SerializeField] private PlayerController PlayerControler;
+    [SerializeField] private PlayerController PlayerControler;    
+    private Crystals crystals;
     [SerializeField] internal bool blockInputs;
 
     [Header("Live Player")]
@@ -56,7 +59,9 @@ public class GameManager : MonoBehaviour
 
     #region UI
     [Header("Ui control")]
-    [SerializeField] private Slider sliderLive;
+    [SerializeField] internal Slider sliderLive;
+    [SerializeField] internal int _PointsRecibed;
+    [SerializeField] TextMeshProUGUI _score;
     #endregion
     private void Awake()
     {
@@ -66,11 +71,12 @@ public class GameManager : MonoBehaviour
     }
     private void Start()
     {
-        
+        crystals = FindAnyObjectByType<Crystals>();
+      
     }
     private void Update()
     {
-      
+        PointsCyanGems();
     }
     public void ReSpawnPlayer()
     {
@@ -105,20 +111,28 @@ public class GameManager : MonoBehaviour
     public void AddCristals() => _cristalCollected++;
     public bool CrystalsHaveRandomLook() => CrystalsHaveRandomLook1;
     // public bool BlockInputs() => blockInputs;
-    public float TimerInputsBlockRespawn() => TimeBlockInputsRespawn;
+    //  public float TimerInputsBlockRespawn() => TimeBlockInputsRespawn;
     public void GlobalLigth(float ligth)
     {
         ligthOptions.intensity = ligth;
     }
-    public void LifeSystemMaxHealth(int health)
+    internal void LifeSystemMaxHealth(int health)
     {
         sliderLive.maxValue = health;
         sliderLive.value = health;
 
     }
-    public void LifeSystem(int health)
+    internal void LifeSystem(int health)
     {
         sliderLive.value = health;
+    }
+
+
+    //check this
+
+    internal void PointsCyanGems()
+    {
+        _score.text = _PointsRecibed.ToString();
     }
 
 

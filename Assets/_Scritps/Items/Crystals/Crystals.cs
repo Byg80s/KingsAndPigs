@@ -1,5 +1,6 @@
 using System;
 using Unity;
+using Unity.VisualScripting;
 using UnityEngine;
 using Random = UnityEngine.Random;
 
@@ -14,7 +15,11 @@ public class Crystals : MonoBehaviour
     [SerializeField] private Animator _animator;
     [Header("Color Crystals")]
     [SerializeField] private CrystalsType _crystalType;
+    [SerializeField] internal int pointsColor;
     private int _idAnim, _idCristalsBlendtree;
+
+
+
 
 
 
@@ -32,10 +37,34 @@ public class Crystals : MonoBehaviour
     {
         _gameManager = GameManager.instance;
         SetRandomCristals();
+        PointsColors();
     }
     private void Update()
     {
 
+    }
+    private int PointsColors()
+    {
+        switch (_crystalType)
+        {
+            case CrystalsType.Cyan:
+                pointsColor = 100;
+
+                break;
+            case CrystalsType.Green:
+                pointsColor = 200;
+                break;
+            case CrystalsType.Red:
+                pointsColor = 300;
+                break;
+            case CrystalsType.Orange:
+                pointsColor = 400;
+                break;
+            case CrystalsType.Purple:
+                pointsColor = 500;
+                break;
+        }
+        return pointsColor;
     }
     private void SetRandomCristals()
     {
@@ -48,6 +77,7 @@ public class Crystals : MonoBehaviour
         _animator.SetFloat(_idCristalsBlendtree, RandomCristals);
     }
 
+
     private void UpdateDiamondType()
     {
         _animator.SetFloat(_idCristalsBlendtree, (int)_crystalType);
@@ -55,13 +85,17 @@ public class Crystals : MonoBehaviour
 
     private void OnTriggerEnter2D(Collider2D collision)
     {
+
         if (collision.CompareTag("Player"))
         {
-            //     _spriteRenderer.enabled = false;
             m_rb.simulated = false;
-            _gameManager.AddCristals();
+            if (_crystalType == CrystalsType.Cyan) _gameManager.AddCristals();
             _animator.SetTrigger(_idAnim);
+            _gameManager._PointsRecibed +=pointsColor;
+
         }
 
     }
+
+
 }

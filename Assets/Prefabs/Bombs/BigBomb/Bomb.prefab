@@ -30,7 +30,7 @@ Transform:
   m_GameObject: {fileID: 4617052422737826441}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -56.589504, y: 25.83, z: 0}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
@@ -79,7 +79,7 @@ SpriteRenderer:
   m_AutoUVMaxAngle: 89
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: -1049709849
-  m_SortingLayer: 4
+  m_SortingLayer: 5
   m_SortingOrder: 0
   m_Sprite: {fileID: 21300000, guid: 001270cb4fd55b649b04970f04e35f8d, type: 2}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
@@ -126,14 +126,14 @@ Rigidbody2D:
   m_Simulated: 1
   m_UseFullKinematicContacts: 0
   m_UseAutoMass: 1
-  m_Mass: 0.13211288
+  m_Mass: 0.12997946
   m_LinearDamping: 0
   m_AngularDamping: 0.05
   m_GravityScale: 0.5
   m_Material: {fileID: 0}
   m_IncludeLayers:
     serializedVersion: 2
-    m_Bits: 64
+    m_Bits: 192
   m_ExcludeLayers:
     serializedVersion: 2
     m_Bits: 0
@@ -154,7 +154,7 @@ CircleCollider2D:
   m_Material: {fileID: 0}
   m_IncludeLayers:
     serializedVersion: 2
-    m_Bits: 0
+    m_Bits: 64
   m_ExcludeLayers:
     serializedVersion: 2
     m_Bits: 0
@@ -171,7 +171,7 @@ CircleCollider2D:
   m_CallbackLayers:
     serializedVersion: 2
     m_Bits: 4294967295
-  m_IsTrigger: 1
+  m_IsTrigger: 0
   m_UsedByEffector: 0
   m_CompositeOperation: 0
   m_CompositeOrder: 0
@@ -201,7 +201,7 @@ GameObject:
   - component: {fileID: 9112979136726170748}
   m_Layer: 20
   m_Name: TrigerDetect
-  m_TagString: Untagged
+  m_TagString: Bomb
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -235,7 +235,7 @@ CircleCollider2D:
   m_Material: {fileID: 0}
   m_IncludeLayers:
     serializedVersion: 2
-    m_Bits: 0
+    m_Bits: 64
   m_ExcludeLayers:
     serializedVersion: 2
     m_Bits: 0
@@ -252,7 +252,7 @@ CircleCollider2D:
   m_CallbackLayers:
     serializedVersion: 2
     m_Bits: 4294967295
-  m_IsTrigger: 0
+  m_IsTrigger: 1
   m_UsedByEffector: 0
   m_CompositeOperation: 0
   m_CompositeOrder: 0
@@ -267,11 +267,10 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 3406256499697356585}
-  - component: {fileID: 7826105806003802311}
   - component: {fileID: 6408648215486747543}
   m_Layer: 20
   m_Name: Bomb
-  m_TagString: Untagged
+  m_TagString: Bomb
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -291,18 +290,6 @@ Transform:
   m_Children: []
   m_Father: {fileID: 7920453166786907199}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &7826105806003802311
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 8032721341844723571}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 8afecea693048114bae1b9886f7f57fc, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!58 &6408648215486747543
 CircleCollider2D:
   m_ObjectHideFlags: 0

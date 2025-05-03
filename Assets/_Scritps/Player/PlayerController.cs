@@ -264,9 +264,9 @@ public class PlayerController : MonoBehaviour
         if (!GameManager.instance.blockInputs)
         {
             Flip();
-
             m_rb.linearVelocity = new Vector2(_speed * m_ginput.Value.x, m_rb.linearVelocity.y);
         }
+        else { m_rb.linearVelocity = Vector2.zero; }
     }
 
     // Flip Player
@@ -322,7 +322,7 @@ public class PlayerController : MonoBehaviour
     }
     public void Attack()
     {
-
+       
         AnimatorStateInfo state = m_animator.GetCurrentAnimatorStateInfo(0);
 
         if (state.IsName("Attack"))
@@ -331,6 +331,7 @@ public class PlayerController : MonoBehaviour
             attack = false;
         if (attack)
         {
+
             m_colliderChildren[1].enabled = true;
         }
         else
@@ -386,7 +387,7 @@ public class PlayerController : MonoBehaviour
 
     void ActualNumberOfLife()
     {
-        
+
         if (CurrentLife <= 0) maxLife--;
     }
     private void DamageNeedDead()

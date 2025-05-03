@@ -44,9 +44,7 @@ public class DestroyBomb : MonoBehaviour
         {
             m_anim.SetTrigger(_idXplode);
             StartCoroutine(Shake());
-            StartCoroutine(DestroyThisBomb());
-           
-
+            StartCoroutine(DestroyThisBomb());          
         }
 
         else if (collision.gameObject.CompareTag("Player"))
@@ -55,7 +53,6 @@ public class DestroyBomb : MonoBehaviour
             m_playerControler.KnockBack();
             m_playerControler.CurrentLife--;
             StartCoroutine(DestroyThisBomb());
-
         }
 
     }
@@ -64,12 +61,9 @@ public class DestroyBomb : MonoBehaviour
 
     IEnumerator Shake()
     {
-
         FindAnyObjectByType<CameraShake>().ShakeCamera(2f, 1f);
         yield return new WaitForSeconds(1f);
         FindAnyObjectByType<CameraShake>().ShakeCamera(0f, 0f);
-
-
     }
 
     IEnumerator DestroyThisBomb()
@@ -77,6 +71,5 @@ public class DestroyBomb : MonoBehaviour
         yield return new WaitForSeconds(1f);
         if (gameObject != null)
             Destroy(gameObject);
-
     }
 }

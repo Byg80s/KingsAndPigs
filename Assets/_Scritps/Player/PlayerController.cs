@@ -25,7 +25,9 @@ public class PlayerController : MonoBehaviour
     private Rigidbody2D heldRb;
     private bool _noIsNull;
 
-    private Rigidbody2D m_rb;
+
+    //check pas interal to private
+    internal Rigidbody2D m_rb;
     private GatherInput m_ginput;
     private Animator m_animator;
 
@@ -340,6 +342,7 @@ public class PlayerController : MonoBehaviour
         }
 
     }
+   
     /// <summary>Pull Object </summary>
     private void HandleObjects()
     {

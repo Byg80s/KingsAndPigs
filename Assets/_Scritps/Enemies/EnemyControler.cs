@@ -85,7 +85,7 @@ public class EnemyControler : MonoBehaviour
     [Header("Parameters Wall detection")]
 
     [Header("Select Enemy type, Dropeds and pointsValue")]
-    [SerializeField] private EnemiesTypes TypeEnemie;
+    [SerializeField] internal EnemiesTypes TypeEnemie;
     [SerializeField] private EnemyEstates EnemyStates;
     [SerializeField] private EnemiesTypeDrop TypeDrop;
     private int _points;
@@ -151,7 +151,6 @@ public class EnemyControler : MonoBehaviour
     public int _index;
     private bool _flip;
 
-
     private void Awake()
     {
         m_rb = GetComponent<Rigidbody2D>();
@@ -211,7 +210,7 @@ public class EnemyControler : MonoBehaviour
     }
     IEnumerator DeathDestroy()
     {
-       
+
         m_animator.SetBool(_idDead, true);
         m_colliderChildren[0].enabled = false;
         m_colliderChildren[1].enabled = false;
@@ -349,8 +348,11 @@ public class EnemyControler : MonoBehaviour
         Vector2 Scale = transform.localScale;
         Scale.x *= -1;
         transform.localScale = Scale;
-        RectTransform rectrans =sliderLive.GetComponent<RectTransform>();
-        rectrans.localScale = Scale;
+        RectTransform rectrans = sliderLive.GetComponent<RectTransform>();       
+        Vector3 sliderScale = rectrans.localScale;
+        sliderScale.x *= -1;
+        rectrans.localScale = sliderScale;
+
     }
 
     //KnockBack
@@ -660,7 +662,6 @@ public class EnemyControler : MonoBehaviour
     {
         sliderLive.maxValue = health;
         sliderLive.value = health;
-
     }
     public void LifeSystem(int health)
     {

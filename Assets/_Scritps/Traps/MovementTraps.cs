@@ -64,15 +64,16 @@ public class MovementTraps : MonoBehaviour
 
     private void OnCollisionEnter2D(Collision2D collision)
     {
-        if (collision.gameObject.CompareTag("Player")   && _fixInPlattform)
+        if (collision.gameObject.CompareTag("Player") && _fixInPlattform)
         {
             collision.gameObject.transform.parent = transform;
         }
         //NEED CHECK THIS
-        if (collision.gameObject.CompareTag("Box") && !_playerController.IsPushed)
-        {
-            collision.gameObject.transform.parent = transform;
-        }
+        //  if (collision.gameObject.CompareTag("Box") && !_playerController.IsPushed)
+        //{
+        //  collision.gameObject.transform.parent = transform;
+        //   collision.gameObject.transform.parent = transform;
+        //}
     }
     private void OnCollisionExit2D(Collision2D collision)
     {
@@ -80,10 +81,9 @@ public class MovementTraps : MonoBehaviour
         {
             collision.gameObject.transform.parent = null;
         }
-        if (collision.gameObject.CompareTag("Box") && _playerController.IsPushed) 
-        {
-            collision.gameObject.transform.parent = null;
-        }
+        //     if (collision.gameObject.CompareTag("Box") && _playerController.IsPushed)
+        ////     collision.gameObject.transform.parent = null;
+        //}
 
     }
 }

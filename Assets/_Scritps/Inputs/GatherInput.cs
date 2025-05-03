@@ -1,5 +1,7 @@
 using UnityEngine;
 using UnityEngine.InputSystem;
+using Unity.VisualScripting;
+
 public class GatherInput : MonoBehaviour
 {
     //Variables
@@ -30,6 +32,10 @@ public class GatherInput : MonoBehaviour
     [SerializeField] private bool _isDown;
     public bool DownPt { get => _isDown; set => _isDown = value; }
 
+
+    private float _coolDown = 0.3f;
+    private float _timeAttackReady = 0;
+
     //Components
     private Animator _animator;
 
@@ -41,7 +47,11 @@ public class GatherInput : MonoBehaviour
         _controls = new Controls();
         _animator = GetComponent<Animator>();
     }
+    private void Update()
+    {
+        _timeAttackReady += Time.deltaTime;
 
+    }
 
     // ENABLE CONTROLS SYSTEM PLAYER
     private void OnEnable()
@@ -102,8 +112,7 @@ public class GatherInput : MonoBehaviour
     //Action Attack
     private void StartAttack(InputAction.CallbackContext context)
     {
-        _animator.SetTrigger("_isAttack");
-        // Atack =!Atack;
+        CoolDownSystem();      
     }
     private void StoptAttack(InputAction.CallbackContext context)
     {
@@ -160,5 +169,14 @@ public class GatherInput : MonoBehaviour
         _controls.Player.UpPlattform.performed -= StartUpPlatfform;
         _controls.Player.UpPlattform.canceled -= StopUpPlatfform;
         _controls.Player.Disable();
+    }
+    private void CoolDownSystem()
+    {
+        if (_timeAttackReady >= _coolDown)
+        {
+            _animator.SetTrigger("_isAttack");
+            _timeAttackReady = 0;
+        }
+
     }
 }

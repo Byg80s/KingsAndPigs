@@ -91,6 +91,7 @@ public class Crystals : MonoBehaviour
             m_rb.simulated = false;
             if (_crystalType == CrystalsType.Cyan) _gameManager.AddCristals();
             _animator.SetTrigger(_idAnim);
+            AudioManager.instance.Play("Gems");
             _gameManager._PointsRecibed +=pointsColor;
 
         }

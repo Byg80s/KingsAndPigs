@@ -12,6 +12,7 @@ public class PlayerController : MonoBehaviour
     [SerializeField] private Transform m_transform;
     [SerializeField] private Collider2D[] m_colliderChildren;
     [SerializeField] private GameObject[] m_GameObjectsChildren;
+    private AudioManager m_AudioManager;
 
     //Detectbox
     [Header("Parameters Detect boxes")]
@@ -141,6 +142,7 @@ public class PlayerController : MonoBehaviour
         m_rb = GetComponent<Rigidbody2D>();
         m_ginput = GetComponent<GatherInput>();
         m_animator = GetComponent<Animator>();
+        m_AudioManager = GetComponent<AudioManager>();
     }
 
 
@@ -264,8 +266,18 @@ public class PlayerController : MonoBehaviour
         {
             Flip();
             m_rb.linearVelocity = new Vector2(_speed * m_ginput.Value.x, m_rb.linearVelocity.y);
+           
+            
         }
-        else { m_rb.linearVelocity = Vector2.zero; }
+        else
+        {
+            m_rb.linearVelocity = Vector2.zero;
+            AudioManager.instance.Stop("Move");
+
+        }
+        if(!_isGrounded)return;
+       //AudioManager.instance.Play("Move");
+      // AudioManager.instance.Stop("Move");
     }
 
     // Flip Player
@@ -293,9 +305,13 @@ public class PlayerController : MonoBehaviour
         if (_isTake) return;
         if (m_ginput.IsJumping && _permitJumper)
         {
+
             if (_isGrounded)
             {
+
                 m_rb.linearVelocity = new Vector2(_speed * m_ginput.Value.x, _jumpForce);
+                AudioManager.instance.Play("Jump");
+
                 _canDoubleJumped = true;
             }
             else if (_wallDetected) WallJump();
@@ -315,6 +331,7 @@ public class PlayerController : MonoBehaviour
     private void DoubleJump()
     {
         m_rb.linearVelocity = new Vector2(_speed * m_ginput.Value.x, _jumpForce);
+        AudioManager.instance.Play("Jump");
         if (_canDoubleJumped)
             _counterExtraJumps--;
     }

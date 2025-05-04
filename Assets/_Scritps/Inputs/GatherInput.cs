@@ -8,6 +8,7 @@ public class GatherInput : MonoBehaviour
 
 
     private Controls _controls;
+    private PlayerController _playerController;
 
     [SerializeField] private bool _isJumping;
     public bool IsJumping { get => _isJumping; set => _isJumping = value; }
@@ -46,6 +47,7 @@ public class GatherInput : MonoBehaviour
     {
         _controls = new Controls();
         _animator = GetComponent<Animator>();
+        _playerController = GetComponent<PlayerController>();
     }
     private void Update()
     {
@@ -112,7 +114,7 @@ public class GatherInput : MonoBehaviour
     //Action Attack
     private void StartAttack(InputAction.CallbackContext context)
     {
-        CoolDownSystem();      
+        CoolDownSystem();
     }
     private void StoptAttack(InputAction.CallbackContext context)
     {
@@ -175,6 +177,7 @@ public class GatherInput : MonoBehaviour
         if (_timeAttackReady >= _coolDown)
         {
             _animator.SetTrigger("_isAttack");
+            AudioManager.instance.Play("Attack");
             _timeAttackReady = 0;
         }
 

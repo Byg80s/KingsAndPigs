@@ -8,6 +8,7 @@ public class BoxDisplazamentOptions : MonoBehaviour
     private Rigidbody2D m_rb;
     private PlayerController m_playerController;
     [SerializeField] private GameObject m_pointDetect;
+    private Rigidbody2D PlayerRb;
     [SerializeField] private RaycastHit2D hitRigth, hitLeft, hitDown;
     [SerializeField] private float _distanceToPlayer;
     [SerializeField] private float _distanceToGround;
@@ -33,11 +34,11 @@ public class BoxDisplazamentOptions : MonoBehaviour
         front = Vector2.right;
         back = Vector2.left;
         down = Vector2.down;
+        PlayerRb = m_pointDetect.gameObject.GetComponent<Rigidbody2D>();
 
     }
     private void FixedUpdate()
     {
-        Debug.Log(m_playerController.m_rb.gravityScale);
         //  if (!_isTaked)
         CheckIsPushPlayerButton();
         // if (!_isPushed)
@@ -79,16 +80,17 @@ public class BoxDisplazamentOptions : MonoBehaviour
 
             transform.parent = m_playerController.transform;
             m_rb.constraints = RigidbodyConstraints2D.None;
+            PlayerRb .gravityScale = 10f;
             m_rb.bodyType = RigidbodyType2D.Kinematic;
-            m_playerController._speed = 0.5f;
+
             Debug.Log("is take");
-           
+
         }
         else
         {
             transform.parent = null;
             m_rb.bodyType = RigidbodyType2D.Dynamic;
-            m_playerController._speed = 5f;
+            PlayerRb.gravityScale = 2.5f;
             Debug.Log("No take");
         }
 

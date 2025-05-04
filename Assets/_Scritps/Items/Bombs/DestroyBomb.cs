@@ -12,18 +12,12 @@ public class DestroyBomb : MonoBehaviour
     private int _idXplode;
     private AnimatorStateInfo state;
 
-    private void Awake()
-    {
-
-    }
+   
     private void Start()
     {
         m_anim = GetComponent<Animator>();
         m_playerControler = FindAnyObjectByType<PlayerController>();
         state = m_anim.GetCurrentAnimatorStateInfo(0);
-
-
-
     }
     private void Update()
     {
@@ -34,9 +28,6 @@ public class DestroyBomb : MonoBehaviour
     {
         _idXplode = Animator.StringToHash("Xplote");
     }
-
-
-
     private void OnCollisionEnter2D(Collision2D collision)
     {
 
@@ -44,7 +35,7 @@ public class DestroyBomb : MonoBehaviour
         {
             m_anim.SetTrigger(_idXplode);
             StartCoroutine(Shake());
-            StartCoroutine(DestroyThisBomb());          
+            StartCoroutine(DestroyThisBomb());
         }
 
         else if (collision.gameObject.CompareTag("Player"))
@@ -54,11 +45,7 @@ public class DestroyBomb : MonoBehaviour
             m_playerControler.CurrentLife--;
             StartCoroutine(DestroyThisBomb());
         }
-
     }
-
-
-
     IEnumerator Shake()
     {
         FindAnyObjectByType<CameraShake>().ShakeCamera(2f, 1f);

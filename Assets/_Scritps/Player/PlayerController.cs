@@ -44,9 +44,10 @@ public class PlayerController : MonoBehaviour
     //Values
     [Header("Parameters Movement")]
 
-    [SerializeField] internal float _speed;
+    [SerializeField] private float _speed;
     [Tooltip("Define the speed run player")]
     [SerializeField] private float _normalSpeed;
+    public float NormalSpeed { get => _normalSpeed; set => _normalSpeed = value; }
     [Tooltip("block or unlook the movement of player")]
     [SerializeField] private bool _canMove;
     public bool canMove { get => _canMove; set => _canMove = value; }
@@ -114,6 +115,7 @@ public class PlayerController : MonoBehaviour
     [Header("parameters Knock")]
     [SerializeField] private bool _isNocked;
     public bool IsNocked { get => _isNocked; set => _isNocked = value; }
+
 
     [SerializeField] private bool _isCanNocked;
     [SerializeField] private Vector2 _KnockForce;

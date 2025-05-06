@@ -36,10 +36,14 @@ public class DestroyBomb : MonoBehaviour
             m_anim.SetTrigger(_idXplode);
             StartCoroutine(Shake());
             StartCoroutine(DestroyThisBomb());
+            AudioManager.instance.Play("Explo");
+
         }
 
         else if (collision.gameObject.CompareTag("Player"))
         {
+            AudioManager.instance.Play("Explo");
+
             m_anim.SetTrigger(_idXplode);
             m_playerControler.KnockBack();
             m_playerControler.CurrentLife--;

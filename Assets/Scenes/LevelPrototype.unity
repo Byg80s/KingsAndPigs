@@ -368,6 +368,18 @@ PrefabInstance:
       value: PigNormalA2 (6)
       objectReference: {fileID: 0}
     - target: {fileID: 2486584548007768556, guid: e42e750706b58024c926ff535494f94c, type: 3}
+      propertyPath: _KnockForce.x
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 2486584548007768556, guid: e42e750706b58024c926ff535494f94c, type: 3}
+      propertyPath: _KnockForce.y
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 2486584548007768556, guid: e42e750706b58024c926ff535494f94c, type: 3}
+      propertyPath: _knockDuration
+      value: 1.2
+      objectReference: {fileID: 0}
+    - target: {fileID: 2486584548007768556, guid: e42e750706b58024c926ff535494f94c, type: 3}
       propertyPath: 'm_Way.Array.data[0]'
       value: 
       objectReference: {fileID: 1642102460}
@@ -128991,6 +129003,18 @@ PrefabInstance:
     - target: {fileID: 2163914948117394738, guid: e42e750706b58024c926ff535494f94c, type: 3}
       propertyPath: m_Name
       value: PigNormalA2 (1)
+      objectReference: {fileID: 0}
+    - target: {fileID: 2486584548007768556, guid: e42e750706b58024c926ff535494f94c, type: 3}
+      propertyPath: _KnockForce.x
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 2486584548007768556, guid: e42e750706b58024c926ff535494f94c, type: 3}
+      propertyPath: _KnockForce.y
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 2486584548007768556, guid: e42e750706b58024c926ff535494f94c, type: 3}
+      propertyPath: _knockDuration
+      value: 1.2
       objectReference: {fileID: 0}
     - target: {fileID: 2486584548007768556, guid: e42e750706b58024c926ff535494f94c, type: 3}
       propertyPath: 'm_Way.Array.data[0]'
@@ -358199,6 +358223,18 @@ PrefabInstance:
       value: PigNormalA2 (5)
       objectReference: {fileID: 0}
     - target: {fileID: 2486584548007768556, guid: e42e750706b58024c926ff535494f94c, type: 3}
+      propertyPath: _KnockForce.x
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 2486584548007768556, guid: e42e750706b58024c926ff535494f94c, type: 3}
+      propertyPath: _KnockForce.y
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 2486584548007768556, guid: e42e750706b58024c926ff535494f94c, type: 3}
+      propertyPath: _knockDuration
+      value: 1.2
+      objectReference: {fileID: 0}
+    - target: {fileID: 2486584548007768556, guid: e42e750706b58024c926ff535494f94c, type: 3}
       propertyPath: 'm_Way.Array.data[0]'
       value: 
       objectReference: {fileID: 1306164658}
@@ -386222,6 +386258,18 @@ PrefabInstance:
       value: 
       objectReference: {fileID: 1988646191693794196, guid: fda937107dd08d24ca117c3a91d7ea97, type: 3}
     - target: {fileID: 2486584548007768556, guid: e42e750706b58024c926ff535494f94c, type: 3}
+      propertyPath: _KnockForce.x
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 2486584548007768556, guid: e42e750706b58024c926ff535494f94c, type: 3}
+      propertyPath: _KnockForce.y
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 2486584548007768556, guid: e42e750706b58024c926ff535494f94c, type: 3}
+      propertyPath: _knockDuration
+      value: 1.2
+      objectReference: {fileID: 0}
+    - target: {fileID: 2486584548007768556, guid: e42e750706b58024c926ff535494f94c, type: 3}
       propertyPath: 'm_Way.Array.data[0]'
       value: 
       objectReference: {fileID: 612496298}
@@ -402043,6 +402091,18 @@ PrefabInstance:
     - target: {fileID: 2163914948117394738, guid: e42e750706b58024c926ff535494f94c, type: 3}
       propertyPath: m_Name
       value: PigNormalA2 (2)
+      objectReference: {fileID: 0}
+    - target: {fileID: 2486584548007768556, guid: e42e750706b58024c926ff535494f94c, type: 3}
+      propertyPath: _KnockForce.x
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 2486584548007768556, guid: e42e750706b58024c926ff535494f94c, type: 3}
+      propertyPath: _KnockForce.y
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 2486584548007768556, guid: e42e750706b58024c926ff535494f94c, type: 3}
+      propertyPath: _knockDuration
+      value: 1.2
       objectReference: {fileID: 0}
     - target: {fileID: 2486584548007768556, guid: e42e750706b58024c926ff535494f94c, type: 3}
       propertyPath: 'm_Way.Array.data[0]'
@@ -439590,6 +439650,16 @@ MonoBehaviour:
     loop: 0
   - name: DeadPlayer
     _clip: {fileID: 8300000, guid: 662f8b0fe7f39d341a63968054ccc95d, type: 3}
+    _volume: 1
+    _pitch: 1
+    loop: 0
+  - name: Explo
+    _clip: {fileID: 8300000, guid: 2a1d9457615d7db41ac9e1eec282ffbd, type: 3}
+    _volume: 1
+    _pitch: 1
+    loop: 0
+  - name: AttackEnemy
+    _clip: {fileID: 8300000, guid: 132f502e03330844293c60b2ea839b8b, type: 3}
     _volume: 1
     _pitch: 1
     loop: 0
@@ -488826,6 +488896,18 @@ PrefabInstance:
       value: PigNormalA2 (4)
       objectReference: {fileID: 0}
     - target: {fileID: 2486584548007768556, guid: e42e750706b58024c926ff535494f94c, type: 3}
+      propertyPath: _KnockForce.x
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 2486584548007768556, guid: e42e750706b58024c926ff535494f94c, type: 3}
+      propertyPath: _KnockForce.y
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 2486584548007768556, guid: e42e750706b58024c926ff535494f94c, type: 3}
+      propertyPath: _knockDuration
+      value: 1.2
+      objectReference: {fileID: 0}
+    - target: {fileID: 2486584548007768556, guid: e42e750706b58024c926ff535494f94c, type: 3}
       propertyPath: 'm_Way.Array.data[0]'
       value: 
       objectReference: {fileID: 1899487320}
@@ -512458,6 +512540,10 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 3906551845710982971, guid: ecfb3063d2ac76941b4f40e58a7c8a02, type: 3}
+      propertyPath: _KnockForce.y
+      value: 0.5
+      objectReference: {fileID: 0}
     - target: {fileID: 6112325943626580624, guid: ecfb3063d2ac76941b4f40e58a7c8a02, type: 3}
       propertyPath: m_Name
       value: Player
@@ -513097,6 +513183,8 @@ MonoBehaviour:
   _activeEventCDO1: 0
   _activeEventCDO2: 0
   _activeEventCDO3: 0
+  _timeStartColdDown: 0
+  _timeCdAttack: 0
   GroundLayer:
     serializedVersion: 2
     m_Bits: 128
@@ -513131,6 +513219,26 @@ PrefabInstance:
     - target: {fileID: 2163914948117394738, guid: e42e750706b58024c926ff535494f94c, type: 3}
       propertyPath: m_Name
       value: PigNormalA2
+      objectReference: {fileID: 0}
+    - target: {fileID: 2486584548007768556, guid: e42e750706b58024c926ff535494f94c, type: 3}
+      propertyPath: _KnockForce.x
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 2486584548007768556, guid: e42e750706b58024c926ff535494f94c, type: 3}
+      propertyPath: _KnockForce.y
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 2486584548007768556, guid: e42e750706b58024c926ff535494f94c, type: 3}
+      propertyPath: _timeCdAttack
+      value: 0.5
+      objectReference: {fileID: 0}
+    - target: {fileID: 2486584548007768556, guid: e42e750706b58024c926ff535494f94c, type: 3}
+      propertyPath: _knockDuration
+      value: 1.2
+      objectReference: {fileID: 0}
+    - target: {fileID: 2486584548007768556, guid: e42e750706b58024c926ff535494f94c, type: 3}
+      propertyPath: _radiusDetectPlayer
+      value: 8.64
       objectReference: {fileID: 0}
     - target: {fileID: 2486584548007768556, guid: e42e750706b58024c926ff535494f94c, type: 3}
       propertyPath: 'm_Way.Array.data[0]'

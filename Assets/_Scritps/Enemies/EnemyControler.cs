@@ -140,7 +140,9 @@ public class EnemyControler : MonoBehaviour
     [SerializeField] private float _coolDownR3;
     private float _timerCD01 = 0, _timerCD02 = 0, timerCD03 = 0;
     public bool _activeEventCDO1 = false, _activeEventCDO2 = false, _activeEventCDO3 = false;
-
+    [Header("CoolDowns")]
+    [SerializeField] float _timeStartColdDown=0;
+    [SerializeField] float _timeCdAttack;
 
 
 
@@ -223,6 +225,8 @@ public class EnemyControler : MonoBehaviour
     {
 
         m_animator.SetBool(_idDead, true);
+        AudioManager.instance.Play("DeadPlayer");
+
         m_colliderChildren[0].enabled = false;
         m_colliderChildren[1].enabled = false;
         m_rb.bodyType = RigidbodyType2D.Static;
@@ -360,7 +364,7 @@ public class EnemyControler : MonoBehaviour
         Vector3 sliderScale = rectrans.localScale;
         sliderScale.x *= -1;
         rectrans.localScale = sliderScale;
-
+        _direction = _flip ? -1 : 1;
     }
 
     //KnockBack
@@ -390,12 +394,23 @@ public class EnemyControler : MonoBehaviour
 
     void Atack()
     {
-        if (_isAtacking)
+        if (!_isAtacking) return;
+        _timeStartColdDown += Time.deltaTime;
+
+
+        if (_isAtacking && !_isNocked)//&& _timeStartColdDown>= _timeCdAttack)
         {
+            //check this need only one shot
+
             m_colliderChildren[0].enabled = true;
             m_animator.SetTrigger(_idAtack);
+            _timeStartColdDown = 0;
+         //   AudioManager.instance.Play("AttackEnemy");
         }
-        else m_colliderChildren[0].enabled = false;
+        else
+        {
+            m_colliderChildren[0].enabled = false;
+        }
 
     }
     void AtackWithBomb()
@@ -488,7 +503,7 @@ public class EnemyControler : MonoBehaviour
     void FollowPlayerWithPhysics()
     {
 
-        if (m_PlayerTransform != null)
+        if (m_PlayerTransform != null && !_isNocked)
         {
             switch (TypeEnemie)
             {

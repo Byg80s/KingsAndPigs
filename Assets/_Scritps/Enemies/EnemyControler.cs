@@ -1,6 +1,7 @@
 using System;
 using System.Collections;
 using System.Collections.Generic;
+using Unity.Android.Gradle.Manifest;
 using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.EventSystems;
@@ -57,10 +58,6 @@ public class EnemyControler : MonoBehaviour
     [SerializeField] private bool _detectAttackLeftDirection;
     [Tooltip("This parameter is for change distance change follow player")]
     [SerializeField] private float _distanceChangeFollowPlayer;
-    [Tooltip("This parameter is only for Boos,you need chanche type enemy in the inspector, this use for change to range atack type 01")]
-    [SerializeField] private float _radiusDetectPlayerForAtackRangeType01;
-    [Tooltip("This parameter is only for Boos,you need chanche type enemy in the inspector, this use for change to range atack type 02")]
-    [SerializeField] private float _radiusDetectPlayerForAtackRangeType02;
 
     [Header("Parameters bombs")]
     [SerializeField] private bool checkBombDetection;
@@ -94,7 +91,6 @@ public class EnemyControler : MonoBehaviour
 
     [Header("Live system")]
     [SerializeField] internal int ActualLife;
-
     [SerializeField] private int _currentLife;
 
     //only for check and need drop
@@ -132,6 +128,20 @@ public class EnemyControler : MonoBehaviour
     [SerializeField] private bool _isCanNocked;
     [SerializeField] private Vector2 _KnockForce;
     [SerializeField] private float _knockDuration;
+
+    //Boss States Fases
+    [Header("Boss Patameters")]
+    [Tooltip("This parameter is only for Boos,you need chanche type enemy in the inspector, this use for change to range atack type 01")]
+    [SerializeField] private float _radiusDetectPlayerForAtackRangeType01;
+    [Tooltip("This parameter is only for Boos,you need chanche type enemy in the inspector, this use for change to range atack type 02")]
+    [SerializeField] private float _radiusDetectPlayerForAtackRangeType02;
+    [SerializeField] private float _coolDownR1;
+    [SerializeField] private float _coolDownR2;
+    [SerializeField] private float _coolDownR3;
+    private float _timerCD01 = 0, _timerCD02 = 0, timerCD03 = 0;
+    public bool _activeEventCDO1 = false, _activeEventCDO2 = false, _activeEventCDO3 = false;
+
+
 
 
 
@@ -188,6 +198,7 @@ public class EnemyControler : MonoBehaviour
     void Update()
     {
 
+
         if (ActualLife > 0) EnemiIaNoPhysics();
         Dead();
         DropItemIfDeath();
@@ -203,7 +214,7 @@ public class EnemyControler : MonoBehaviour
         if (m_PlayerTransform != null && ActualLife > 0) EnemiIaWithPhysic();// || _actualLife > 0
 
     }
-    void Dead()
+    private void Dead()
     {
 
         if (ActualLife <= 0) StartCoroutine(DeathDestroy());
@@ -220,7 +231,16 @@ public class EnemyControler : MonoBehaviour
         GameManager.instance._PointsRecibed += _points;
         Destroy(gameObject);
     }
-    void ChangeRigidBodyType()
+    private bool TimersCoolDowns(float realTime, float CooldownComparetime)
+    {
+        return realTime >= CooldownComparetime;
+
+    }
+
+    //Laser
+
+
+    private void ChangeRigidBodyType()
     {
         if (movementFoPhysics)
         {
@@ -285,14 +305,9 @@ public class EnemyControler : MonoBehaviour
         LfootRay = Physics2D.Raycast(Lfoot.position, Vector2.down, RayGround, GroundLayer);
         RfootRay = Physics2D.Raycast(Rfoot.position, Vector2.down, RayGround, GroundLayer);
 
-        if (LfootRay || RfootRay)
-        {
-            _isGrounded = true;
-        }
-        else
-        {
-            _isGrounded = false;
-        }
+        if (LfootRay || RfootRay) _isGrounded = true;
+        else _isGrounded = false;
+
     }
     void DetectedPlayer()
     {
@@ -305,21 +320,14 @@ public class EnemyControler : MonoBehaviour
             _PlayerIsInSecondZone = Physics2D.OverlapCircle(transform.position, _radiusDetectPlayerForAtackRangeType02, PlayerLayer);
 
 
-            if (_PlayerDetected)
-            {
-                checkPlayerDetection = true;
-            }
-            else
-            {
-                checkPlayerDetection = false;
-            }
+            if (_PlayerDetected) checkPlayerDetection = true;
+            else checkPlayerDetection = false;
+
         }
 
         _PlayerPosition = GameObject.FindGameObjectWithTag("Player");
-        if (_PlayerPosition != null)
-        {
-            m_PlayerTransform = _PlayerPosition.transform;
-        }
+        if (_PlayerPosition != null) m_PlayerTransform = _PlayerPosition.transform;
+
     }
     void DetectBomb()
     {
@@ -348,7 +356,7 @@ public class EnemyControler : MonoBehaviour
         Vector2 Scale = transform.localScale;
         Scale.x *= -1;
         transform.localScale = Scale;
-        RectTransform rectrans = sliderLive.GetComponent<RectTransform>();       
+        RectTransform rectrans = sliderLive.GetComponent<RectTransform>();
         Vector3 sliderScale = rectrans.localScale;
         sliderScale.x *= -1;
         rectrans.localScale = sliderScale;
@@ -363,30 +371,21 @@ public class EnemyControler : MonoBehaviour
         m_rb.linearVelocity = new Vector2(_KnockForce.x * -_direction, _KnockForce.y);
         m_animator.SetTrigger(_idKnock);
     }
+    void MovementFollowPlayer()
+    {
+        float direction = Mathf.Sign(m_PlayerTransform.position.x - transform.position.x);//transform.position.normalized);
+        m_rb.linearVelocity = new Vector2(direction * _speed, m_rb.linearVelocity.y);
+    }
 
     void EnemiIaWithPhysic()
     {
-
-        if (!checkPlayerDetection && movementFoPhysics)
-        {
-            WayPointsUsePhysics();
-
-        }
-        if (checkPlayerDetection && movementFoPhysics)//(checkPlayerDetection && movementFoPhysics)
-        {
-            FollowPlayerWithPhysics();
-        }
-
+        if (!checkPlayerDetection && movementFoPhysics) WayPointsUsePhysics();
+        if (checkPlayerDetection && movementFoPhysics) FollowPlayerWithPhysics();
     }
     void EnemiIaNoPhysics()
     {
-
         if (!checkPlayerDetection && !movementFoPhysics) WayPointsNoUsePhysics();
-
         if (checkPlayerDetection) FollowPlayerNoPhysics();
-
-
-
     }
 
     void Atack()
@@ -396,16 +395,13 @@ public class EnemyControler : MonoBehaviour
             m_colliderChildren[0].enabled = true;
             m_animator.SetTrigger(_idAtack);
         }
-        else
-        {
-            m_colliderChildren[0].enabled = false;
-        }
+        else m_colliderChildren[0].enabled = false;
+
     }
     void AtackWithBomb()
     {
 
     }
-
 
     void WayPointsNoUsePhysics()
     {
@@ -414,19 +410,10 @@ public class EnemyControler : MonoBehaviour
         transform.position = Vector2.MoveTowards(transform.position, m_Way[_index].transform.position, _speed * Time.deltaTime);
         if (Vector2.Distance(transform.position, m_Way[_index].transform.position) < 0.01f)
         {
-
             Flip();
-
-
             _index += 1 % m_Way.Length;
         }
-        if (_index >= m_Way.Length)
-        {
-            _index = 0;
-        }
-
-
-
+        if (_index >= m_Way.Length) _index = 0;
 
     }
     void FollowPlayerNoPhysics()
@@ -436,11 +423,9 @@ public class EnemyControler : MonoBehaviour
 
 
             if ((m_PlayerTransform.position.x > transform.position.x && _flip) || (m_PlayerTransform.position.x < transform.position.x && !_flip))// add && _flip
-            {
-
                 Flip();
 
-            }
+
 
 
             switch (TypeEnemie)
@@ -502,57 +487,48 @@ public class EnemyControler : MonoBehaviour
     //Follow player with Physics
     void FollowPlayerWithPhysics()
     {
-        switch (TypeEnemie)
+
+        if (m_PlayerTransform != null)
         {
-            case EnemiesTypes.Melee:
-                FollowPlayerWithPhysicsMelee();
-                break;
-            case EnemiesTypes.Ranged:
-                FollowPlayerWithPhysicsRanged();
-                break;
-            case EnemiesTypes.Boss:
-                FollowPlayerWithPhysicsBoss();
-                break;
+            switch (TypeEnemie)
+            {
+                case EnemiesTypes.Melee:
+                    FollowPlayerWithPhysicsMelee();
+                    break;
+                case EnemiesTypes.Ranged:
+                    FollowPlayerWithPhysicsRanged();
+                    break;
+                case EnemiesTypes.Boss:
+                    FollowPlayerWithPhysicsBoss();
+                    break;
+            }
         }
 
     }
 
-
     void DropItemIfDeath()
     {
-
-
         switch (TypeDrop)
         {
 
             case EnemiesTypeDrop.Box:
-                if (ActualLife <= 0 && PrefabBox != null)
-                {
-                    StartCoroutine(TimeDropBox(1));
-                }
+                if (ActualLife <= 0 && PrefabBox != null) StartCoroutine(TimeDropBox(1));
 
                 break;
 
-
             case EnemiesTypeDrop.Key:
-                if (ActualLife <= 0 && PrefabBox != null)
-                {
-                    StartCoroutine(TimeDropKey(1));
-                }
+                if (ActualLife <= 0 && PrefabBox != null) StartCoroutine(TimeDropKey(1));
+
                 break;
 
             case EnemiesTypeDrop.PotionHealth:
-                if (ActualLife <= 0 && PrefabBox != null)
-                {
-                    StartCoroutine(TimeDropPotionHeal(1));
-                }
+                if (ActualLife <= 0 && PrefabBox != null) StartCoroutine(TimeDropPotionHeal(1));
+
                 break;
 
             case EnemiesTypeDrop.PotionMana:
-                if (ActualLife <= 0 && PrefabBox != null)
-                {
-                    StartCoroutine(TimerDropPotionMana(1));
-                }
+                if (ActualLife <= 0 && PrefabBox != null) StartCoroutine(TimerDropPotionMana(1));
+
                 break;
 
             case EnemiesTypeDrop.Null: break;
@@ -561,9 +537,7 @@ public class EnemyControler : MonoBehaviour
     }
     void WaypointsWithPhysicsMelee()
     {
-        if (m_Way.Length == 0) return;
-
-        if (_isWaitMovement) return;
+        if (m_Way.Length == 0 || _isWaitMovement) return;
 
         Vector3 WayPointsTargetMelee = m_Way[_index].position;
         Vector3 direction = WayPointsTargetMelee - transform.position;
@@ -610,53 +584,55 @@ public class EnemyControler : MonoBehaviour
     }
     void FollowPlayerWithPhysicsMelee()
     {
-        if (m_PlayerTransform != null)
-        {
-            float PlayerPosMelee = Mathf.Sign(m_PlayerTransform.position.x - transform.position.x);
-            m_rb.linearVelocity = new Vector2(PlayerPosMelee * _speed * Time.deltaTime, m_rb.linearVelocity.y);
-        }
+        MovementFollowPlayer();
     }
+
     void FollowPlayerWithPhysicsRanged()
     {
-        if (m_PlayerTransform != null)
+        switch (_isAtacking)
         {
-            switch (_isAtacking)
-            {
-                case true:
-                    float PlayerPosRanged = Mathf.Sign(m_PlayerTransform.position.x - transform.position.x);
-                    m_rb.linearVelocity = new Vector2(PlayerPosRanged * _speed * Time.deltaTime, m_rb.linearVelocity.y);
+            case true:
+                MovementFollowPlayer();
 
-                    break;
-                case false:
+                break;
+            case false:
 
-                    if (_isThrowBomb)
+                if (_isThrowBomb)
+                {
+                    for (int i = 0; i < 1; i++)
                     {
-                        for (int i = 0; i < 1; i++)
-                        {
-                            Instantiate(_bomb, transform.position, _bomb.transform.rotation);
-                        }
-                        _isThrowBomb = false;
-                        _radiusDetectPlayer = 0.1f;
+                        Instantiate(_bomb, transform.position, _bomb.transform.rotation);
                     }
-                    break;
-            }
+                    _isThrowBomb = false;
+                    _radiusDetectPlayer = 0.1f;
+                }
+                break;
         }
     }
+
+
     void FollowPlayerWithPhysicsBoss()
     {
-        if (m_PlayerTransform != null)
+        MovementFollowPlayer();
+        if (_PlayerIsInFirstZone) _makeBomb.activeBombs = true;
+        else _makeBomb.activeBombs = false;
+
+        //is more time is melee atack active soak area
+        if (_isAtacking)
         {
-            float direction = Mathf.Sign(m_PlayerTransform.position.x - transform.position.x);//transform.position.normalized);
-            m_rb.linearVelocity = new Vector2(direction * _speed, m_rb.linearVelocity.y);
-            if (_PlayerIsInFirstZone)
+            _timerCD01 += Time.deltaTime;
+            if (TimersCoolDowns(_timerCD01, _coolDownR1))
             {
-                _makeBomb.activeBombs = true;
+                _timerCD01 = 0;
+                _activeEventCDO1=true;
             }
-            else
-            {
-                _makeBomb.activeBombs = false;
-            }
+            else _activeEventCDO1 = false;
+
+
         }
+
+
+
     }
     public void LifeSystemMaxHealth(int health)
     {

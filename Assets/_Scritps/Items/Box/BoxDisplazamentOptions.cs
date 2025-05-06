@@ -1,7 +1,7 @@
 using UnityEngine;
 using UnityEngine.InputSystem;
 using UnityEngine.UIElements;
-using static UnityEngine.RuleTile.TilingRuleOutput;
+//using static UnityEngine.RuleTile.TilingRuleOutput;
 
 public class BoxDisplazamentOptions : MonoBehaviour
 {
@@ -25,6 +25,7 @@ public class BoxDisplazamentOptions : MonoBehaviour
     private Vector2 down;
     [SerializeField] private bool _isPushed;
     [SerializeField] private bool _isTaked;
+    internal bool takeBox=false;
 
     private void Start()
     {
@@ -80,18 +81,18 @@ public class BoxDisplazamentOptions : MonoBehaviour
 
             transform.parent = m_playerController.transform;
             m_rb.constraints = RigidbodyConstraints2D.None;
-            PlayerRb .gravityScale = 10f;
             m_rb.bodyType = RigidbodyType2D.Kinematic;
 
             Debug.Log("is take");
+            takeBox=true;
 
         }
         else
         {
             transform.parent = null;
             m_rb.bodyType = RigidbodyType2D.Dynamic;
-            PlayerRb.gravityScale = 2.5f;
             Debug.Log("No take");
+            takeBox=false;
         }
 
     }

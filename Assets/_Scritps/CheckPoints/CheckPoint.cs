@@ -13,15 +13,17 @@ public class CheckPoint : MonoBehaviour
     }
     private void OnTriggerEnter2D(Collider2D collision)
     {
-        if(_isActive)return;
-
+        if (_isActive) return;
         if (collision.CompareTag("Player"))
+        {
             ActiveCheckPoint();
+            AudioManager.instance.Play("Checkpoint");
+        }
     }
 
     private void ActiveCheckPoint()
     {
-       _isActive = true;
+        _isActive = true;
         m_Anim.SetTrigger(_idIsActive);
         GameManager.instance._hasCheckPointActive = true;
         GameManager.instance._checkPointPosition = transform.position;

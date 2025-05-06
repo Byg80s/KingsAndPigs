@@ -8,15 +8,12 @@ public class ActiveTextShow : MonoBehaviour
     private bool _activeText = true;
 
     void Start()
-    {
-
-        
+    {        
         Desactivate();
     }
     private void OnTriggerEnter2D(Collider2D collision)
     {
-        Debug.Log(tag);
-        
+        Debug.Log(tag);       
        if(_activeText) StartCoroutine(ActivateShowText());
 
     }
@@ -31,8 +28,7 @@ public class ActiveTextShow : MonoBehaviour
     }
     private void Desactivate()
     {
-        TextActive.SetActive(false);
-        
+        TextActive.SetActive(false);        
     }
     IEnumerator ActivateShowText()
     {

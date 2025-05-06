@@ -85,8 +85,7 @@ public class GatherInput : MonoBehaviour
     private void StartMove(InputAction.CallbackContext context)
     {
         _value = context.ReadValue<Vector2>().normalized;
-
-        // _valueX = Mathf.RoundToInt(context.ReadValue<float>()); // This make movement input stick to 1
+       // _valueX = Mathf.RoundToInt(context.ReadValue<float>()); // This make movement input stick to 1
     }
 
     private void StopMove(InputAction.CallbackContext context)
@@ -180,6 +179,6 @@ public class GatherInput : MonoBehaviour
             AudioManager.instance.Play("Attack");
             _timeAttackReady = 0;
         }
-
     }
+
 }

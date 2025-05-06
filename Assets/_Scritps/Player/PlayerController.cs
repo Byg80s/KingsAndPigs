@@ -10,9 +10,11 @@ public class PlayerController : MonoBehaviour
     [Header("Components")]
     //Components
     [SerializeField] private Transform m_transform;
+    [Tooltip("Colliders in player, ( hitbox,hurtbox,etc")]
     [SerializeField] private Collider2D[] m_colliderChildren;
+    [Tooltip("GameObjects of Player, (in this case expample ligth in player)")]
     [SerializeField] private GameObject[] m_GameObjectsChildren;
-    private AudioManager m_AudioManager;
+    //private AudioManager m_AudioManager;
 
     //Detectbox
     [Header("Parameters Detect boxes")]
@@ -22,9 +24,6 @@ public class PlayerController : MonoBehaviour
     [SerializeField] private float distanceToBox;
     [Tooltip("Force need for move the box")]
     [SerializeField] private float _pushForce;
-    private GameObject heldObject;
-    private Rigidbody2D heldRb;
-    private bool _noIsNull;
 
 
     //check pas interal to private
@@ -44,7 +43,7 @@ public class PlayerController : MonoBehaviour
 
     //Values
     [Header("Parameters Movement")]
-
+    private bool _isMovingSoundPlaying;
     [SerializeField] private float _speed;
     [Tooltip("Define the speed run player")]
     [SerializeField] private float _normalSpeed;
@@ -88,7 +87,6 @@ public class PlayerController : MonoBehaviour
     [SerializeField] private bool _isWallJumping;
     [SerializeField] private float _wallTimeDetection;
     [SerializeField] private bool _isMove;
-
 
 
 
@@ -142,7 +140,6 @@ public class PlayerController : MonoBehaviour
         m_rb = GetComponent<Rigidbody2D>();
         m_ginput = GetComponent<GatherInput>();
         m_animator = GetComponent<Animator>();
-        m_AudioManager = GetComponent<AudioManager>();
     }
 
 
@@ -155,9 +152,6 @@ public class PlayerController : MonoBehaviour
 
         _counterExtraJumps = _extraJumps;
 
-        heldObject = GetComponent<GameObject>();
-        heldObject = GameObject.FindGameObjectWithTag("Box");
-        heldRb = heldObject.GetComponentInParent<Rigidbody2D>();
         CheckPlayerRespawnState();
 
         GameManager.instance.LifeSystemMaxHealth(CurrentLife);
@@ -182,7 +176,6 @@ public class PlayerController : MonoBehaviour
     {
         Animations();
         DamageNeedDead();
-
     }
     private void FixedUpdate()
     {
@@ -231,10 +224,8 @@ public class PlayerController : MonoBehaviour
             _counterExtraJumps = _extraJumps;
             _canDoubleJumped = true;
         }
-        else
-        {
-            _isGrounded = false;
-        }
+        else _isGrounded = false;
+
     }
     #region WallDetect 
     //If wall is detected is posible jump in wall and deslice slowly
@@ -258,45 +249,39 @@ public class PlayerController : MonoBehaviour
 
     private void Move()
     {
+        if (!_canMove || _wallDetected && !_isGrounded || _isWallJumping) return;
 
-        if (!_canMove) return;
-        if (_wallDetected && !_isGrounded) return;
-        if (_isWallJumping) return;
         if (!GameManager.instance.blockInputs)
         {
             Flip();
             m_rb.linearVelocity = new Vector2(_speed * m_ginput.Value.x, m_rb.linearVelocity.y);
-           
-            
         }
-        else
+        else m_rb.linearVelocity = Vector2.zero;
+
+        // Sound Movement
+        if (Mathf.Abs(m_rb.linearVelocity.x) > 0.1f && _isGrounded && !_isMovingSoundPlaying)
         {
-            m_rb.linearVelocity = Vector2.zero;
-            AudioManager.instance.Stop("Move");
-
+            AudioManager.instance.Play("Move");
+            _isMovingSoundPlaying = true;
         }
-        if(!_isGrounded)return;
-       //AudioManager.instance.Play("Move");
-      // AudioManager.instance.Stop("Move");
-    }
+        else if ((Mathf.Abs(m_rb.linearVelocity.x) <= 0.1f || !_isGrounded) && _isMovingSoundPlaying)
+        {
+            AudioManager.instance.Stop("Move");
+            _isMovingSoundPlaying = false;
+        }
 
+
+    }
     // Flip Player
     private void Flip()
     {
         if (_isTake) return;
-        if (m_ginput.Value.x * _direction < 0)
-        {
-            HandleDirection();
-
-        }
-
+        if (m_ginput.Value.x * _direction < 0) HandleDirection();
     }
-
     private void HandleDirection()
     {
         m_transform.localScale = new Vector2(-m_transform.localScale.x, m_transform.localScale.y);
         _direction *= -1;
-
     }
 
     //Jump
@@ -305,17 +290,14 @@ public class PlayerController : MonoBehaviour
         if (_isTake) return;
         if (m_ginput.IsJumping && _permitJumper)
         {
-
             if (_isGrounded)
             {
-
                 m_rb.linearVelocity = new Vector2(_speed * m_ginput.Value.x, _jumpForce);
-                AudioManager.instance.Play("Jump");
-
                 _canDoubleJumped = true;
+                //Jump sound
+                AudioManager.instance.Play("Jump");
             }
             else if (_wallDetected) WallJump();
-
             else if (_counterExtraJumps > 0 && _canDoubleJumped) DoubleJump();
         }
         m_ginput.IsJumping = false;
@@ -331,9 +313,9 @@ public class PlayerController : MonoBehaviour
     private void DoubleJump()
     {
         m_rb.linearVelocity = new Vector2(_speed * m_ginput.Value.x, _jumpForce);
+        if (_canDoubleJumped) _counterExtraJumps--;
+        //Jump Sound
         AudioManager.instance.Play("Jump");
-        if (_canDoubleJumped)
-            _counterExtraJumps--;
     }
     public void KnockBack()
     {
@@ -343,26 +325,13 @@ public class PlayerController : MonoBehaviour
     }
     public void Attack()
     {
-
         AnimatorStateInfo state = m_animator.GetCurrentAnimatorStateInfo(0);
-
-        if (state.IsName("Attack"))
-            attack = true;
-        else
-            attack = false;
-        if (attack)
-        {
-
-            m_colliderChildren[1].enabled = true;
-        }
-        else
-        {
-            m_colliderChildren[1].enabled = false;
-        }
-
+        if (state.IsName("Attack")) attack = true;
+        else attack = false;
+        if (attack) m_colliderChildren[1].enabled = true;
+        else m_colliderChildren[1].enabled = false;
     }
 
-    /// <summary>Pull Object </summary>
     private void HandleObjects()
     {
         if (m_ginput.IsTake) _isTake = true;
@@ -395,10 +364,10 @@ public class PlayerController : MonoBehaviour
     }
     public void Died()
     {
+        AudioManager.instance.Play("DeadPlayer");
 
         GameObject DeathVfxPrefab = Instantiate(DeathVfx, transform.position, Quaternion.identity);
         Destroy(gameObject);
-
     }
     public void ExitLevel()
     {
@@ -408,7 +377,6 @@ public class PlayerController : MonoBehaviour
 
     void ActualNumberOfLife()
     {
-
         if (CurrentLife <= 0) maxLife--;
     }
     private void DamageNeedDead()
@@ -447,15 +415,7 @@ public class PlayerController : MonoBehaviour
     }
     private void OnTriggerStay2D(Collider2D collision)
     {
-        if (collision.CompareTag("LightLevelsForest"))// ADD TAG BOX BUT FIRT NEED CHECK IS ONLY IN THE FOREST
-        {
-            m_GameObjectsChildren[0].SetActive(true);
-        }
-
-
-        if (collision.CompareTag("LightLevels") || collision.CompareTag("Watter"))// ADD TAG BOX BUT FIRT NEED CHECK IS ONLY IN THE FOREST
-        {
-            m_GameObjectsChildren[0].SetActive(false);
-        }
+        if (collision.CompareTag("LightLevelsForest")) m_GameObjectsChildren[0].SetActive(true);// ADD TAG BOX BUT FIRT NEED CHECK IS ONLY IN THE FOREST
+        if (collision.CompareTag("LightLevels") || collision.CompareTag("Watter")) m_GameObjectsChildren[0].SetActive(false);// ADD TAG BOX BUT FIRST NEED CHECK IS ONLY IN THE FOREST                     
     }
 }
